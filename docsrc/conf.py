@@ -71,7 +71,9 @@ html_theme_options = {
     "search_bar_text": "Search for treasure...",
     # By default your site will have a search bar in the nav bar, but when we include the about.html,
     # this gets removed to so you can add one to the top "navbar" instead
-    "navbar_end": ["navbar-icon-links.html", "search-field.html"]
+    "navbar_end": ["navbar-icon-links.html", "search-field.html"],
+    # Hiding the previous and next buttons
+    "show_prev_next": False,
 }
 
 def setup(app):
