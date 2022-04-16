@@ -31,14 +31,12 @@ Transferring Bits
 ======================
 
 .. figure:: ../assets/i2c_data_validity.jpg
-  :scale: 100%
   
   Data Validity, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
 As shown above, the SDA line has to remain stable when the SCL line is high, unless the signal is a START condition or a STOP condition: the chip changes the voltage level of the SDA line when the SCL line is high. Each package is 8-bit long and the MSB bit is transmitted first.
 
 .. figure:: ../assets/i2c_conditions.jpg
-  :scale: 100%
   
   START, REPEATED START and STOP conditions, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
@@ -52,7 +50,6 @@ The I²C interface of the ATmega328P has 7-bit address. The first 7-bit of the p
 Usually, developers could allocate the address for the I²C device, but the address 0000 000 is reserved for a general call, which is used when a master wants to talk to all devices. If a general call is issued, salves can decide whether to respond to it.
 
 .. figure:: ../assets/i2c_address_packet_format.jpg
-  :scale: 100%
   
   Address Packet Format, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
@@ -62,7 +59,6 @@ Data Packet Format
 After receiving the 8-bit data package from a master, the slave has to generate an Acknowledge signal by pulling the SCL line low at the ninth clock. If the slave could not process more packages, it should leave the SCL line high at the ninth clock: a NACK signal.
 
 .. figure:: ../assets/i2c_data_packet_format.jpg
-  :scale: 100%
   
   Data Packet Format, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
@@ -87,7 +83,6 @@ Master Transmitter mode
 ========================
 
 .. figure:: ../assets/i2c_master_transmitter_mode.jpg
-  :scale: 100%
 
   Master Transmitter mode
 
@@ -97,7 +92,6 @@ Master receiver mode
 ========================
 
 .. figure:: ../assets/i2c_master_receiver_mode.jpg
-  :scale: 100%
 
   Master receiver mode
 
@@ -107,7 +101,6 @@ Combined transmission mode
 ============================
 
 .. figure:: ../assets/i2c_combined_transmission_mode.jpg
-  :scale: 100%
 
   Combined transmission mode, taken from MPU-9250 Product Specification Revision 1.0
 
@@ -128,7 +121,6 @@ When the SCL goes from low to high, all masters start counting the high period o
 Due to the property of the open-drain line, the SCL line is high if and only all SCL ports are high, thus the low period of the SCL line depends on the master with the longest low period, the rest masters goes to waiting mode. The first master that jumps from high to low pulls the SCL line to low, which means the high period of the SCL line equal to the high period of the master with the shortest high period.
 
 .. figure:: ../assets/i2c_wired_ANDing.jpg
-  :scale: 100%
 
   wired-ANDing, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
@@ -148,7 +140,6 @@ Arbitration will continue until there is only one master.
     - A REPEATED START and a STOP condition.
 
 .. figure:: ../assets/i2c_arbitration.jpg
-  :scale: 100%
 
   Arbitration, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
@@ -156,7 +147,6 @@ ATmega328P (Arduino Nano) I²C module
 =====================================
 
 .. figure:: ../assets/i2c_ATmega328P_i2c_module.jpg
-  :scale: 100%
 
   ATmega328P I²C Module, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
@@ -207,7 +197,6 @@ Based on the SCL clock and PrescalerValue, the TWBR can be computed by:
 If we want it work as a slave, the address has to be assigned and stored in the TWAR register:
 
 .. figure:: ../assets/i2c_TWAR_register.jpg
-  :scale: 100%
 
   TWAR register, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
@@ -238,7 +227,6 @@ Transmit the START signal
 AS mentioned above, the I²C module contains the START and STOP control unit, which could be accessed from TWCR register:
 
 .. figure:: ../assets/i2c_TWCR_register.jpg
-  :scale: 100%
 
   TWCR register, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
