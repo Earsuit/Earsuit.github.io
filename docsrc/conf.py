@@ -21,10 +21,6 @@ project = 'XIANYU'
 copyright = '2022, Earsuit'
 author = 'Earsuit'
 
-# The full version, including alpha/beta/rc tags
-release = '1.0'
-
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
