@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'XIANYU'
-copyright = '2022, Earsuit'
+copyright = '2022, Earsuit renyudicn@ouotlook.com'
 author = 'Earsuit'
 
 # -- General configuration ---------------------------------------------------
