@@ -58,7 +58,7 @@ fontawesome_included = True
 html_sidebars = {
     "index": ["aboutme.html", "archives.html"],
     "about": ["aboutme.html"],
-    "blog": ["tagcloud.html", "archives.html"],
+    "blogs": ["tagcloud.html", "archives.html"],
     "blog/**": ["postcard.html", "archives.html"],
 }
 

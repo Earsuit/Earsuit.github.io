@@ -9,6 +9,10 @@ Recent Posts
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :hidden:
+
+   index
+   blogs
 
 .. postlist:: 10
    :author: Earsuit
