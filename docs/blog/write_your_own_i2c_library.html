@@ -169,71 +169,77 @@
   <a class="reference internal nav-link" href="#common-transmission">
    Common transmission
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#master-transmitter-mode">
-   Master Transmitter mode
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#master-receiver-mode">
-   Master receiver mode
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#combined-transmission-mode">
-   Combined transmission mode
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#master-transmitter-mode">
+     Master Transmitter mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#master-receiver-mode">
+     Master receiver mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combined-transmission-mode">
+     Combined transmission mode
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#multi-master-bus-systems">
    Multi-master Bus Systems
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clock-synchronization">
-   Clock Synchronization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arbitration">
-   Arbitration
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clock-synchronization">
+     Clock Synchronization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arbitration">
+     Arbitration
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#atmega328p-arduino-nano-i2c-module">
    ATmega328P (Arduino Nano) I²C module
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initialize-the-i2c-module">
-   Initialize the I²C module
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transmit-the-start-signal">
-   Transmit the START signal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transmit-a-stop-signal">
-   Transmit a STOP signal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transmit-the-address-and-write-read-bit-or-data">
-   Transmit the address and WRITE/READ bit or data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#request-messages-from-a-slave">
-   Request messages from a slave
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#receive-messages-from-a-salve">
-   Receive messages from a salve
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialize-the-i2c-module">
+     Initialize the I²C module
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transmit-the-start-signal">
+     Transmit the START signal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transmit-a-stop-signal">
+     Transmit a STOP signal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transmit-the-address-and-write-read-bit-or-data">
+     Transmit the address and WRITE/READ bit or data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#request-messages-from-a-slave">
+     Request messages from a slave
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#receive-messages-from-a-salve">
+     Receive messages from a salve
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -316,9 +322,8 @@ Common I²C bus speeds are stander mode (100 Kbit/s) and low speed mode (10 Kbit
 <li><p>P - STOP signal</p></li>
 <li><p>NACK - not acknowledge bit</p></li>
 </ul>
-</div>
 <div class="section" id="master-transmitter-mode">
-<h2>Master Transmitter mode<a class="headerlink" href="#master-transmitter-mode" title="Permalink to this headline">¶</a></h2>
+<h3>Master Transmitter mode<a class="headerlink" href="#master-transmitter-mode" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id5">
 <img alt="../_images/i2c_master_transmitter_mode.jpg" src="../_images/i2c_master_transmitter_mode.jpg" />
 <p class="caption"><span class="caption-text">Master Transmitter mode</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
@@ -326,7 +331,7 @@ Common I²C bus speeds are stander mode (100 Kbit/s) and low speed mode (10 Kbit
 <p>The master sends a START signal followed by the slave address and WRITE bit. After receiving the ACK signal issued by the slave, the master starts to transmit the data packages until a STOP is singled.</p>
 </div>
 <div class="section" id="master-receiver-mode">
-<h2>Master receiver mode<a class="headerlink" href="#master-receiver-mode" title="Permalink to this headline">¶</a></h2>
+<h3>Master receiver mode<a class="headerlink" href="#master-receiver-mode" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id6">
 <img alt="../_images/i2c_master_receiver_mode.jpg" src="../_images/i2c_master_receiver_mode.jpg" />
 <p class="caption"><span class="caption-text">Master receiver mode</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
@@ -334,19 +339,19 @@ Common I²C bus speeds are stander mode (100 Kbit/s) and low speed mode (10 Kbit
 <p>After receiving the address and READ bit, the slave generates a ACK signal followed by a data package. If the master receives the data package, it has to acknowledge it to allow the slave to send more packages. The master sends a NACK signal followed by a STOP signal after receiving the last package.</p>
 </div>
 <div class="section" id="combined-transmission-mode">
-<h2>Combined transmission mode<a class="headerlink" href="#combined-transmission-mode" title="Permalink to this headline">¶</a></h2>
+<h3>Combined transmission mode<a class="headerlink" href="#combined-transmission-mode" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id7">
 <img alt="../_images/i2c_combined_transmission_mode.jpg" src="../_images/i2c_combined_transmission_mode.jpg" />
 <p class="caption"><span class="caption-text">Combined transmission mode, taken from MPU-9250 Product Specification Revision 1.0</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>The combined transmission mode allows us to change the direction of the message. The master still needs to send the NACK signal before the STOP signal.</p>
 </div>
+</div>
 <div class="section" id="multi-master-bus-systems">
 <h2>Multi-master Bus Systems<a class="headerlink" href="#multi-master-bus-systems" title="Permalink to this headline">¶</a></h2>
 <p>One feature of the I²C bus is the ability to have multi masters in the bus, however, it requires a mechanism to ensure that only one master takes control of the bus at a time and the synchronization of the clock generated by different masters.</p>
-</div>
 <div class="section" id="clock-synchronization">
-<h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline">¶</a></h2>
+<h3>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline">¶</a></h3>
 <p>The wired-ANDing of the I²C interface is used to synchronize the clock. Every I²C interface has two counters counting the high and low time-out periods:</p>
 <p>When the SCL goes from high to low, all masters start counting the low period of the SCL line.
 When the SCL goes from low to high, all masters start counting the high period of the SCL line.
@@ -357,7 +362,7 @@ Due to the property of the open-drain line, the SCL line is high if and only all
 </div>
 </div>
 <div class="section" id="arbitration">
-<h2>Arbitration<a class="headerlink" href="#arbitration" title="Permalink to this headline">¶</a></h2>
+<h3>Arbitration<a class="headerlink" href="#arbitration" title="Permalink to this headline">¶</a></h3>
 <p>Arbitration decides which master should take control of the I²C bus.</p>
 <p>When a master sends a data package, it continuously monitors the SDA line to see whether data is the same as what it transmitted. If it’s different, it has lost the arbitration and then becomes a slave (if it is allowed) to check whether it’s being addressed. Only when a bit in the data package transmitted from a master is high and that bit on the bus is low, the master loses the arbitration.</p>
 <p>Arbitration will continue until there is only one master.</p>
@@ -372,6 +377,7 @@ Due to the property of the open-drain line, the SCL line is high if and only all
 <div class="figure align-default" id="id9">
 <img alt="../_images/i2c_arbitration.jpg" src="../_images/i2c_arbitration.jpg" />
 <p class="caption"><span class="caption-text">Arbitration, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 <div class="section" id="atmega328p-arduino-nano-i2c-module">
@@ -405,9 +411,8 @@ Due to the property of the open-drain line, the SCL line is high if and only all
 <li><p>When a bus error has occurred due to an illegal START or STOP condition.</p></li>
 </ul>
 </div></blockquote>
-</div>
 <div class="section" id="initialize-the-i2c-module">
-<h2>Initialize the I²C module<a class="headerlink" href="#initialize-the-i2c-module" title="Permalink to this headline">¶</a></h2>
+<h3>Initialize the I²C module<a class="headerlink" href="#initialize-the-i2c-module" title="Permalink to this headline">¶</a></h3>
 <p>If we don’t want to use an external pull-up resistor, we could turn on the internal pull-up resistor:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDA</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
 <span class="n">pinMode</span><span class="p">(</span><span class="n">SCL</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
@@ -441,7 +446,7 @@ Due to the property of the open-drain line, the SCL line is high if and only all
 </div>
 </div>
 <div class="section" id="transmit-the-start-signal">
-<h2>Transmit the START signal<a class="headerlink" href="#transmit-the-start-signal" title="Permalink to this headline">¶</a></h2>
+<h3>Transmit the START signal<a class="headerlink" href="#transmit-the-start-signal" title="Permalink to this headline">¶</a></h3>
 <p>AS mentioned above, the I²C module contains the START and STOP control unit, which could be accessed from TWCR register:</p>
 <div class="figure align-default" id="id12">
 <img alt="../_images/i2c_TWCR_register.jpg" src="../_images/i2c_TWCR_register.jpg" />
@@ -464,7 +469,7 @@ any ongoing operation.</p>
 </div>
 </div>
 <div class="section" id="transmit-a-stop-signal">
-<h2>Transmit a STOP signal<a class="headerlink" href="#transmit-a-stop-signal" title="Permalink to this headline">¶</a></h2>
+<h3>Transmit a STOP signal<a class="headerlink" href="#transmit-a-stop-signal" title="Permalink to this headline">¶</a></h3>
 <p>The code to generate a STOP signal is simple:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="o">|</span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">));</span>
 <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">))));</span>
@@ -472,7 +477,7 @@ any ongoing operation.</p>
 </div>
 </div>
 <div class="section" id="transmit-the-address-and-write-read-bit-or-data">
-<h2>Transmit the address and WRITE/READ bit or data<a class="headerlink" href="#transmit-the-address-and-write-read-bit-or-data" title="Permalink to this headline">¶</a></h2>
+<h3>Transmit the address and WRITE/READ bit or data<a class="headerlink" href="#transmit-the-address-and-write-read-bit-or-data" title="Permalink to this headline">¶</a></h3>
 <p>The data is stored in TWDR register. We can only write to TWDR register when the TWINT bit is 1. And we don’t have access to the TWDR register before the first interrupt flag. When the data is ready, the TWINT and TWEN bit should be written to 1 to start transmitting.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MT_SLA_W_ACK 0x18</span>
 <span class="cp">#define WRITE 0x00</span>
@@ -488,7 +493,7 @@ any ongoing operation.</p>
 </div>
 </div>
 <div class="section" id="request-messages-from-a-slave">
-<h2>Request messages from a slave<a class="headerlink" href="#request-messages-from-a-slave" title="Permalink to this headline">¶</a></h2>
+<h3>Request messages from a slave<a class="headerlink" href="#request-messages-from-a-slave" title="Permalink to this headline">¶</a></h3>
 <p>As mentioned above, the I²C module has three transmitter modes: Master receiver mode, Master transmitter mode and Combined transmission mode. The Combined transmission mode is a combination of Master transmitter mode and Master receiver mode, here we focus on the burst read sequence in the Master receiver mode.</p>
 <p>The master sends a START signal to start the transmission followed by the salve address and a READ bit. We could use a for loop to read the bytes, but a NACK is issued by the master after reading the last byte. The TWEA bit is written to 1 to issue an ACK signal, otherwise a NACK signal is issued.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define RX_BUFFER_SIZE 32</span>
@@ -527,7 +532,7 @@ any ongoing operation.</p>
 <p>The master should send a STOP signal after this.</p>
 </div>
 <div class="section" id="receive-messages-from-a-salve">
-<h2>Receive messages from a salve<a class="headerlink" href="#receive-messages-from-a-salve" title="Permalink to this headline">¶</a></h2>
+<h3>Receive messages from a salve<a class="headerlink" href="#receive-messages-from-a-salve" title="Permalink to this headline">¶</a></h3>
 <p>As a slave, the I²C module is initialized differently and we need to back up the TWCR register: uint8_t backup = TWCR;. Then we should check the status of the I²C module to make sure the master is calling the device. If the device is addressed, the buffer array is initialized, switch off the interrupt request (The I²C module will generate an interrupt request every time it completes an operation if the interrupt request function isn’t switched off, and the chip will store these requests and process them after this interrupt routing) and turn on the acknowledge generator. Usually, we put the following code in the ISR function to allow the device do other tasks while waiting for the request from a master.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define SR_AD_RECEIVED 0x60</span>
 <span class="cp">#define GENERAL_CALL 0x70</span>
@@ -562,6 +567,7 @@ any ongoing operation.</p>
 </pre></div>
 </div>
 <p>Don’t forget to restore the TECR register: TWCR = backup;.</p>
+</div>
 </div>
 </div>
 
