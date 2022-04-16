@@ -141,9 +141,6 @@ When a master sends a data package, it continuously monitors the SDA line to see
 
 Arbitration will continue until there is only one master.
 
- 
-.. compound::
-
     Note that arbitration is not allowed between:
 
     - A REPEATED START condition and a data bit.
@@ -178,9 +175,6 @@ Where
 When the I²C Module is working, it continuously detects the bus to see whether it loses the arbitration. The status is stored in the bit 7 to bit 3 of TWSR register.
 
 The I²C Module is based on interrupt, after finishing one operation, the TWSR register will record the current status and the TWINT bit in the TWCR register (TWI Control Register) will be set to 0 automatically. If the TWIE bit in the TWCR and the I bit in the SREG register are set to 1, the I²C Module will issue an interrupt request. By the way, we could know whether an operation is finished by checking the value of the TWINT bit.
-
- 
-.. compound::
 
     The TWINT Flag is set in the following situations:
 
