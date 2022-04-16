@@ -54,3 +54,12 @@ html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
 
 fontawesome_included = True
+
+html_sidebars = {
+   '**': ['searchbox.html', 
+          'postcard.html', 
+           'recentposts.html',
+          'tagcloud.html', 
+          'categories.html',
+          'archives.html', ]
+}
