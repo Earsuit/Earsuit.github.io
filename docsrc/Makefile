@@ -22,6 +22,6 @@ help:
 github:
 	@rm -rf ../docs
 	@rm -rf _build
-	@touch .nojekyll
 	@make html
 	@cp -a _build/html/. ../docs
+	@touch ../docs/.nojekyll
