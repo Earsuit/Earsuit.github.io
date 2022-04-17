@@ -24,5 +24,6 @@ github:
 	@rm -rf _build
 	@make html
 	@cp -a _build/html/. ../docs
+	@cp google/* ../docs
 	@touch ../docs/.nojekyll
 	@python RestartNumbering.py
