@@ -30,6 +30,7 @@ extensions = [
 "ablog",
 "sphinx.ext.intersphinx",
 "sphinx_panels",
+"sphinx_sitemap",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -109,3 +110,11 @@ post_auto_image = 0
 # post_auto_excerpt: Number of paragraphs (default is 1) that will be displayed as an excerpt from the post. Setting
 # this 0 will result in displaying no post excerpt in archive pages.
 post_auto_excerpt = 1
+
+# -- Options for site map output -------------------------------------------------
+
+# Set the value of html_baseurl in your Sphinx conf.py to the current base URL of your documentation.
+html_baseurl = 'https://earsuit.github.io/'
+
+# Set sitemap_filename in conf.py to the desired filename
+sitemap_filename = "sitemap.xml"
