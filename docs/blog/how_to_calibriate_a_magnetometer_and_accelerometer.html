@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   How to calibrate a magnetometer &amp; accelerometer (MPU9250) — XIANYU  documentation
+  </title>
+  <link href="../_static/css/theme.css" rel="stylesheet"/>
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet"/>
+  <link href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+  <link href="../_static/pygments.css" rel="stylesheet" type="text/css">
+   <link href="../_static/css/blank.css" rel="stylesheet" type="text/css">
+    <link href="../_static/custom.css" rel="stylesheet" type="text/css">
+     <link href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" rel="stylesheet" type="text/css">
+      <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+       <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css"/>
+       <link as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js" rel="preload"/>
+       <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
+       </script>
+       <script src="../_static/jquery.js">
+       </script>
+       <script src="../_static/underscore.js">
+       </script>
+       <script src="../_static/doctools.js">
+       </script>
+       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <link href="../genindex.html" rel="index" title="Index">
+        <link href="../search.html" rel="search" title="Search"/>
+        <link href="how_to_read_data_from_mpu9250.html" rel="next" title="How to read data from MPU9250"/>
+        <link href="../blogs.html" rel="prev" title="Blogs"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="None" name="docsearch:language"/>
+        <!-- Google Analytics -->
+        <style type="text/css">
+         ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+        </style>
+       </link>
+      </link>
+     </link>
+    </link>
+   </link>
+  </link>
+ </head>
+ <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+  <div class="container-fluid" id="banner">
+  </div>
+  <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+    <div id="navbar-start">
+     <a class="navbar-brand" href="../index.html">
+      <p class="title">
+       XIANYU
+      </p>
+     </a>
+    </div>
+    <button aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar-collapsible" data-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    <div class="col-lg-9 collapse navbar-collapse" id="navbar-collapsible">
+     <div class="mr-auto" id="navbar-center">
+      <div class="navbar-center-item">
+       <ul class="navbar-nav" id="navbar-main-elements">
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../index.html">
+          Recent Posts
+         </a>
+        </li>
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../blogs.html">
+          Blogs
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div id="navbar-end">
+      <div class="navbar-end-item">
+       <ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+        <li class="nav-item">
+         <a class="nav-link" href="https://github.com/Earsuit/" rel="noopener" target="_blank" title="GitHub">
+          <span>
+           <i class="fab fa-github-square">
+           </i>
+          </span>
+          <label class="sr-only">
+           GitHub
+          </label>
+         </a>
+        </li>
+       </ul>
+      </div>
+      <div class="navbar-end-item">
+       <form action="../search.html" class="bd-search d-flex align-items-center" method="get">
+        <i class="icon fas fa-search">
+        </i>
+        <input aria-label="Search for treasure..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search for treasure..." type="search"/>
+       </form>
+      </div>
+     </div>
+    </div>
+   </div>
+  </nav>
+  <div class="container-xl">
+   <div class="row">
+    <!-- Only show if we have sidebars configured, else just a small margin  -->
+    <div class="col-12 col-md-3 bd-sidebar">
+     <h2>
+      <i class="fa fa-calendar">
+      </i>
+      13 October 2019
+     </h2>
+     <ul>
+      <li id="author">
+       <span>
+        <i class="fa-fw fa fa-user">
+        </i>
+       </span>
+       <a href="author/earsuit.html">
+        Earsuit
+       </a>
+      </li>
+      <li id="category">
+       <span>
+        <i class="fa-fw fa fa-folder-open">
+        </i>
+       </span>
+       <a href="category/microcontroller.html">
+        Microcontroller
+       </a>
+      </li>
+      <li id="tags">
+       <span>
+        <i class="fa-fw fa fa-tags">
+        </i>
+       </span>
+       <a href="tag/microcontroller.html">
+        Microcontroller
+       </a>
+       <a href="tag/mpu9250.html">
+        MPU9250
+       </a>
+      </li>
+     </ul>
+     <h3>
+      <a href="archive.html">
+       Archives
+      </a>
+     </h3>
+     <ul>
+      <li>
+       <a href="2019.html">
+        2019 (1)
+       </a>
+      </li>
+      <li>
+       <a href="2018.html">
+        2018 (2)
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="d-none d-xl-block col-xl-2 bd-toc">
+     <div class="toc-item">
+      <div class="tocsection onthispage pt-5 pb-3">
+       <i class="fas fa-list">
+       </i>
+       On this page
+      </div>
+      <nav id="bd-toc-nav">
+       <ul class="visible nav section-nav flex-column">
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#ideal-world">
+          Ideal world
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#real-world">
+          Real world
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#affine-transformation">
+          Affine transformation
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#method-1-simple-way-to-calibrate">
+          Method 1: Simple way to Calibrate
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#try-it-on-real-data">
+            Try it on real data
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#methood-2-offline-least-squares-fitting-of-an-ellipsoid">
+          Methood 2: Offline Least-Squares fitting of an ellipsoid
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#id1">
+            Try it on real data
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#method-3-recursive-least-squares-for-online-identification">
+          Method 3: Recursive Least-Squares for online identification
+         </a>
+        </li>
+       </ul>
+      </nav>
+     </div>
+     <div class="toc-item">
+     </div>
+    </div>
+    <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+     <div>
+      <div class="section" id="how-to-calibrate-a-magnetometer-accelerometer-mpu9250">
+       <h1>
+        How to calibrate a magnetometer &amp; accelerometer (MPU9250)
+        <a class="headerlink" href="#how-to-calibrate-a-magnetometer-accelerometer-mpu9250" title="Permalink to this headline">
+         ¶
+        </a>
+       </h1>
+       <p>
+        The magnetometer is a device that measures the direction and strength of magnetism. As we all know, compass is a famous
+type of magnetometer which tells the orientation by measuring the Earth’s magnetic field. Here I will present three
+methods to calibrate the magnetometer, one is simple and straight forward and the other two utilize Least-Squares
+estimation, which can be done offline or online.
+       </p>
+       <p>
+        The code can be downloaded from
+        <a class="reference external" href="https://github.com/Earsuit/MPU9250-calibration">
+         here
+        </a>
+        .
+       </p>
+       <p>
+        The same can be done for calibrating the accelerometer, once you rotate the sensor slowly.
+       </p>
+       <div class="section" id="ideal-world">
+        <h2>
+         Ideal world
+         <a class="headerlink" href="#ideal-world" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         In ideal case, the measured magnetic field
+         <span class="math notranslate nohighlight">
+          \(B_m^s\)
+         </span>
+         in sensor frame is given by
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-0">
+         <span class="eqno">
+          (1)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-0" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol B_m^s =\boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)\boldsymbol B_e^g \end{equation}\]
+        </div>
+        <p>
+         where
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol B_e^g = B\begin{bmatrix}cos(\delta)\\0\\sin(\delta)\end{bmatrix}\)
+         </span>
+         is the Earth’s magnetic field
+vector which has magnitude B and magnetic inclination
+         <span class="math notranslate nohighlight">
+          \(\delta\)
+         </span>
+         in ground frame and
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol R_x(\alpha),\boldsymbol R_y(\beta),\boldsymbol R_z(\gamma)\)
+         </span>
+         are the rotation matrices rotate around x,
+y,z axes. The bold version means it’s a vector or matrix.
+        </p>
+        <p>
+         Simply modifying the above equation gives the locus of the magnetometer measurements under arbitrary rotation of the chips
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-1">
+         <span class="eqno">
+          (2)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-1" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} (\boldsymbol B_m^s)^T\boldsymbol B_m^s = (\boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)\boldsymbol B_e^g)^T \boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)\boldsymbol B_e^g \end{equation}\]
+        </div>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-2">
+         <span class="eqno">
+          (3)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-2" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation} (\boldsymbol B_m^s)^T\boldsymbol B_m^s = (\boldsymbol RB\begin{bmatrix}cos(\delta)\\0\\sin(\delta)\end{bmatrix})^T \boldsymbol RB\begin{bmatrix}cos(\delta)\\0\\sin(\delta)\end{bmatrix} \end{equation}\end{split}\]
+        </div>
+        <div class="math notranslate nohighlight" id="eq-locus-ideal">
+         <span id="equation-eq-locus-ideal">
+         </span>
+         <span class="eqno">
+          (4)
+          <a class="headerlink" href="#eq-locus-ideal" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} (\boldsymbol B_m^s)^T\boldsymbol B_m^s = B^2 \end{equation} \label{eq:locus_ideal}\]
+        </div>
+        <p>
+         As
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol R\)
+         </span>
+         is a rotation matrix, the transpose of it is identical to rotation by the inverse angle, given
+         <span class="math notranslate nohighlight">
+          \((\boldsymbol R)^T \boldsymbol R = \boldsymbol I\)
+         </span>
+         . Where we define
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol R = \boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)\)
+         </span>
+         .
+        </p>
+        <p>
+         <a class="reference internal" href="#eq-locus-ideal">
+          <span class="std std-ref">
+           Equation
+          </span>
+         </a>
+         defines the locus of the magnetometer measurements lying on the surface of a sphere centered at origin with radius equal to
+         <span class="math notranslate nohighlight">
+          \(B\)
+         </span>
+         .
+        </p>
+        <div class="figure align-default" id="id2">
+         <img alt="../_images/locus_of_the_magnetometer_measurements_in_ideal_case.jpg" src="../_images/locus_of_the_magnetometer_measurements_in_ideal_case.jpg"/>
+         <p class="caption">
+          <span class="caption-number">
+           Figure 1
+          </span>
+          <span class="caption-text">
+           Locus of the magnetometer measurements in ideal case
+          </span>
+          <a class="headerlink" href="#id2" title="Permalink to this image">
+           ¶
+          </a>
+         </p>
+        </div>
+       </div>
+       <div class="section" id="real-world">
+        <h2>
+         Real world
+         <a class="headerlink" href="#real-world" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         However, besides the Earth’s magnetic field, many objects around the magnetometer can interfere the measured magnetism,
+and they can be classified as hard-iron interference and soft-iron interference.
+        </p>
+        <p>
+         The hard-iron interference is usually caused by the permanently magnetized ferromagnetic objects which add or subtract
+to the Earth’s magnetic field. In most cases, we can assume it’s a constant
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol v\)
+         </span>
+         . Unlike the hard-iron
+interference, the soft-iron interference is the change in magnitude and direction of the Earth’s magnetic field, which
+can be modelled as a matrix
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol W\)
+         </span>
+         .
+        </p>
+        <p>
+         Considering the effect of these interference, the equation 1 becomes to
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-3">
+         <span class="eqno">
+          (5)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-3" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol B_m^s =\boldsymbol W\boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)\boldsymbol B_e^g + \boldsymbol V \end{equation}\]
+        </div>
+        <p>
+         This time, the locus of the magnetometer measurements lies on a surface of an ellipsoid shifted away from the origin by
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol V\)
+         </span>
+         :
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-4">
+         <span class="eqno">
+          (6)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-4" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} (\boldsymbol B_m^s - \boldsymbol V)^T (\boldsymbol W^{-1})^T \boldsymbol W^{-1}(\boldsymbol B_m^s - \boldsymbol V) = B^2 \end{equation}\]
+        </div>
+       </div>
+       <div class="section" id="affine-transformation">
+        <h2>
+         Affine transformation
+         <a class="headerlink" href="#affine-transformation" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         The calibration process tries to estimate the ellipsoid and transform it back to a sphere. To do this, we need to build
+an affine transformation between a sphere and an ellipsoid.
+        </p>
+        <p>
+         This transformation that map a unit sphere to an ellipsoid can be performed by stretching along axis then rotating
+around each axis:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-5">
+         <span class="eqno">
+          (7)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-5" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation} \begin{bmatrix}x'\\y'\\z'\end{bmatrix} = \boldsymbol{R}_1(\alpha)\boldsymbol{R}_2(\beta)\boldsymbol{R}_3(\gamma)\boldsymbol{J}(a,b,c)\begin{bmatrix}x\\y\\z\end{bmatrix} + \begin{bmatrix}x_0\\y_0\\z_0\end{bmatrix}\end{equation}\end{split}\]
+        </div>
+        <p>
+         where
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{J}(a,b,c) = \begin{bmatrix}a &amp; 0 &amp;0\\0 &amp; b &amp;0\\0&amp;0&amp;c\end{bmatrix}\)
+         </span>
+        </p>
+        <p>
+         The inverse transformation is given by
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-6">
+         <span class="eqno">
+          (8)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-6" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation} \begin{bmatrix}x\\y\\z\end{bmatrix} = \boldsymbol{M}\begin{bmatrix}x'\\y'\\z'\end{bmatrix} - \boldsymbol{M} \begin{bmatrix}x_0\\y_0\\z_0\end{bmatrix} \end{equation}\end{split}\]
+        </div>
+        <p>
+         with
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{M} = J(\frac{1}{a},\frac{1}{b},\frac{1}{c})\boldsymbol{R}_3(-\gamma)\boldsymbol{R}_2(-\beta)\boldsymbol{R}_1(-\alpha)\)
+         </span>
+         .
+        </p>
+        <p>
+         In our case the ellipsoid is aligned with axis, thus no rotation is performed (
+         <span class="math notranslate nohighlight">
+          \(\alpha = \beta = \gamma = 0\)
+         </span>
+         ).
+        </p>
+       </div>
+       <div class="section" id="method-1-simple-way-to-calibrate">
+        <h2>
+         Method 1: Simple way to Calibrate
+         <a class="headerlink" href="#method-1-simple-way-to-calibrate" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         After knowing the effect of the interference, the following part introduces a simple and effective calibration
+algorithm. By rotating the magnetometer at one point, the maximum and minimum reading of each axis can be recored, which
+leads to the value of
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol V\)
+         </span>
+         :
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-7">
+         <span class="eqno">
+          (9)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-7" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} V_x = \frac{x_{max}+x_{min}}{2} \end{equation}\]
+        </div>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-8">
+         <span class="eqno">
+          (10)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-8" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} V_y = \frac{y_{max}+y_{min}}{2} \end{equation}\]
+        </div>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-9">
+         <span class="eqno">
+          (11)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-9" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} V_z = \frac{z_{max}+z_{min}}{2} \end{equation}\]
+        </div>
+        <p>
+         For the soft-iron interference, we need map an ellipsoid to a sphere. We know that an ellipsoid is given in the form of
+        </p>
+        <div class="math notranslate nohighlight" id="eq-ellipsoid">
+         <span id="equation-eq-ellipsoid">
+         </span>
+         <span class="eqno">
+          (12)
+          <a class="headerlink" href="#eq-ellipsoid" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} (\boldsymbol x - \boldsymbol x)^T \boldsymbol A (\boldsymbol x - \boldsymbol v) = 1 \end{equation} \label{eq:ellipsoid}\]
+        </div>
+        <p>
+         given that A must be diagonalized by
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol A = \boldsymbol R^T \boldsymbol D \boldsymbol R\)
+         </span>
+         , where
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol R\)
+         </span>
+         boldsymbol D` is a diagonal matrix.
+        </p>
+        <p>
+         A sphere can be obtained by simply modify
+         <a class="reference internal" href="#eq-ellipsoid">
+          <span class="std std-ref">
+           this equation
+          </span>
+         </a>
+         :
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-10">
+         <span class="eqno">
+          (13)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-10" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} (\boldsymbol x - \boldsymbol v)^T \boldsymbol A (\boldsymbol x - \boldsymbol v) = [\boldsymbol D^{\frac{1}{2}}\boldsymbol R (\boldsymbol x - \boldsymbol v)]^T[\boldsymbol D^{\frac{1}{2}}\boldsymbol R (\boldsymbol x - \boldsymbol v)] = 1 \end{equation}\]
+        </div>
+        <p>
+         In our case, the principle axes of the ellipsoid coincide with the X,Y and Z axis, thus the matrix
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol A\)
+         </span>
+         is diagonal and the diagonal entries are the inverse of the length of each principle axis
+(
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol D = \boldsymbol A, \boldsymbol R = \boldsymbol I\)
+         </span>
+         ).
+        </p>
+        <p>
+         The length of elliptical principle axes is given by:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-11">
+         <span class="eqno">
+          (14)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-11" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} L_x = \frac{x_{max}-x_{min}}{2} \end{equation}\]
+        </div>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-12">
+         <span class="eqno">
+          (15)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-12" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} L_y = \frac{y_{max}-y_{min}}{2} \end{equation}\]
+        </div>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-13">
+         <span class="eqno">
+          (16)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-13" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} L_z = \frac{z_{max}-z_{min}}{2} \end{equation}\]
+        </div>
+        <p>
+         Now we get the matrix
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol A = \begin{bmatrix}L_x &amp; 0 &amp;0\\0 &amp; L_y &amp; 0\\0 &amp; 0 &amp; L_z\end{bmatrix}\)
+         </span>
+         , do we
+need to compute the square root of it? The answer is no, as we don’t care about the real strength of magnetism. Thus a
+scaled sphere is given by
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-14">
+         <span class="eqno">
+          (17)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-14" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} [\boldsymbol A(\boldsymbol x - \boldsymbol v)]^T[\boldsymbol A(\boldsymbol x - \boldsymbol v)] = 1 \end{equation}\]
+        </div>
+        <div class="section" id="try-it-on-real-data">
+         <h3>
+          Try it on real data
+          <a class="headerlink" href="#try-it-on-real-data" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The magnetometer.ino is the code needed to be uploaded to the Arduino, and the magnetometer.py is a python 3 program for
+receiving the readings and write to a .csv file, which can be opened by Excel.
+         </p>
+         <p>
+          Please enter your port name for the Arduino in the magnetometer.py.
+         </p>
+         <p>
+          Before calibration, the readings of three axes in 2D looks like this
+         </p>
+         <div class="figure align-default" id="id3">
+          <img alt="../_images/scatter_plot_of_raw_readings.png" src="../_images/scatter_plot_of_raw_readings.png"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 2
+           </span>
+           <span class="caption-text">
+            Scatter plot of raw readings
+           </span>
+           <a class="headerlink" href="#id3" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          Once the calibration process started, turning the sensor through a variety of figure-eight patterns, the final scatter
+plot should looks like
+         </p>
+         <div class="figure align-default" id="id4">
+          <img alt="../_images/scatter_plot_of_calibrated_readings.png" src="../_images/scatter_plot_of_calibrated_readings.png"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 3
+           </span>
+           <span class="caption-text">
+            Scatter plot of calibrated readings
+           </span>
+           <a class="headerlink" href="#id4" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          We can see that this simple method works.
+         </p>
+         <p>
+          In the .csv file, we can find that the estimated hard-iron interference and soft-iron interference converge to some values after server seconds.
+         </p>
+        </div>
+       </div>
+       <div class="section" id="methood-2-offline-least-squares-fitting-of-an-ellipsoid">
+        <h2>
+         Methood 2: Offline Least-Squares fitting of an ellipsoid
+         <a class="headerlink" href="#methood-2-offline-least-squares-fitting-of-an-ellipsoid" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         However, the method 1 sometimes is not good enough to capture the property of an ellipsoid. Therefore, least square
+estimation comes into play. Again, the general equation for a non-rotated ellipsoid is given by
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-15">
+         <span class="eqno">
+          (18)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-15" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} (\boldsymbol x - \boldsymbol v)^T \boldsymbol A (\boldsymbol x - \boldsymbol v) = 1 \end{equation}\]
+        </div>
+        <p>
+         where
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-16">
+         <span class="eqno">
+          (19)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-16" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation*} \boldsymbol{A} = \begin{bmatrix}\frac{1}{{x_r}^2} &amp; 0 &amp; 0\\0 &amp; \frac{1}{{y_r}^2} &amp; 0\\0 &amp; 0 &amp; \frac{1}{{z_r}^2}\end{bmatrix} \\ \boldsymbol{v} = \begin{bmatrix}x_c\\y_c\\z_c\end{bmatrix} \end{equation*}\end{split}\]
+        </div>
+        <p>
+         and
+         <span class="math notranslate nohighlight">
+          \(x_r,y_r,z_r\)
+         </span>
+         are half the length of the principal axes,
+         <span class="math notranslate nohighlight">
+          \(x_c,y_c,z_c\)
+         </span>
+         represent the center of it.
+        </p>
+        <p>
+         Writing the above equation in quadratic form gives
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-17">
+         <span class="eqno">
+          (20)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-17" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} x^2 + \frac{{x_r}^2}{{y_r}^2}y^2 + \frac{{x_r}^2}{{z_r}^2}z^2 - 2x_cx - 2\frac{{x_r}^2}{{y_r}^2}y_cy - 2\frac{{x_r}^2}{{z_r}^2}z_cz + {x_c}^2 + \frac{{x_r}^2}{{y_r}^2}{y_c}^2 + \frac{{x_r}^2}{{z_r}^2}{z_c}^2 - {x_r}^2 = 0 \end{equation}\]
+        </div>
+        <p>
+         To simplify the process, let us define:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-18">
+         <span class="eqno">
+          (21)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-18" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation*} \begin{aligned}a &amp; = \frac{{x_r}^2}{{y_r}^2}\\ b &amp; = \frac{{x_r}^2}{{z_r}^2}\\ c &amp; = -2x_c \\ d &amp; = -2\frac{{x_r}^2}{{y_r}^2}y_c \\ e &amp; = -2\frac{{x_r}^2}{{z_r}^2}z_c\\ f&amp; = {x_c}^2 + \frac{{x_r}^2}{{y_r}^2}{y_c}^2 + \frac{{x_r}^2}{{z_r}^2}{z_c}^2 - {x_r}^2 \end{aligned} \end{equation*}\end{split}\]
+        </div>
+        <p>
+         which gives
+        </p>
+        <div class="math notranslate nohighlight" id="eq-quadratic">
+         <span id="equation-eq-quadratic">
+         </span>
+         <span class="eqno">
+          (22)
+          <a class="headerlink" href="#eq-quadratic" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} ay^2 + bz^2 + cx + dy + ez + f = -x^2 \end{equation} \label{eq:quadratic}\]
+        </div>
+        <p>
+         Let’s assume we have a set of data which contains n measuremens, then we have
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-19">
+         <span class="eqno">
+          (23)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-19" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation} \begin{aligned}\begin{bmatrix}-{x_0}^2\\-{x_1}^2\\...\\-{x_n}^2\end{bmatrix} &amp; = \begin{bmatrix}{y_0}^2 &amp; {z_0}^2 &amp; x_0 &amp; y_0 &amp; z_0 &amp; 1\\{y_1}^2 &amp; {z_1}^2 &amp; x_1 &amp; y_1 &amp; z_1 &amp; 1\\... &amp; ... &amp; ... &amp; ...&amp; ... &amp; ... \\{y_n}^2 &amp; {z_n}^2 &amp; x_n &amp; y_n &amp; z_n &amp; 1\end{bmatrix} \begin{bmatrix}a\\b\\c\\d\\e\\f\end{bmatrix} \\ \boldsymbol{Y} &amp; = \boldsymbol{\Psi}\boldsymbol{\Theta}
+\end{aligned} \end{equation}\end{split}\]
+        </div>
+        <p>
+         The error squared we want to minimize is
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-20">
+         <span class="eqno">
+          (24)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-20" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \epsilon = \boldsymbol{E}^T \boldsymbol{E} = (\boldsymbol{Y} - \boldsymbol{\Psi}\boldsymbol{\Theta})^T(\boldsymbol{Y} - \boldsymbol{\Psi}\boldsymbol{\Theta}) \end{equation}\]
+        </div>
+        <p>
+         To find the
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\Theta}\)
+         </span>
+         that minimiszes the error, we need to differentiate
+         <span class="math notranslate nohighlight">
+          \(\epsilon\)
+         </span>
+         w.r.t
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\Theta}\)
+         </span>
+         and set it to zero.
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-21">
+         <span class="eqno">
+          (25)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-21" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation} \frac{d\epsilon}{d\boldsymbol{\Theta}} = 2\boldsymbol{\Psi}^T\boldsymbol{\Psi}\boldsymbol{\Theta} - 2\boldsymbol{\Psi}^T\boldsymbol{Y} = 0 \\\boldsymbol{\Psi}^T\boldsymbol{\Psi}\boldsymbol{\Theta} = \boldsymbol{\Psi}^T\boldsymbol{Y} \end{equation}\end{split}\]
+        </div>
+        <p>
+         Now provided that
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\Psi}^T\boldsymbol{\Psi}\)
+         </span>
+         is invertible we can solve for the least-squares
+parameter estimate as
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-22">
+         <span class="eqno">
+          (26)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-22" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation}\boldsymbol{\Theta} = (\boldsymbol{\Psi}^T\boldsymbol{\Psi})^{-1}\boldsymbol{\Psi}^T\boldsymbol{Y} \end{equation}
+\label{eq:LS}\]
+        </div>
+        <p>
+         Once we get
+         <span class="math notranslate nohighlight">
+          \(x_c,y_c,z_c,x_r,y_r,z_r\)
+         </span>
+         , we can use the affine transformation obtained to map it to a unit sphere.
+        </p>
+        <div class="section" id="id1">
+         <h3>
+          Try it on real data
+          <a class="headerlink" href="#id1" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          As this method is an offline method, we need to capture as much data as we can and do it with Matlab or some other tools.
+         </p>
+         <p>
+          The result for the ellipsoid and mapped unit sphere are shown below.
+         </p>
+         <div class="figure align-default" id="id5">
+          <img alt="../_images/plot_of_the_estimated_sllipsoid.jpg" src="../_images/plot_of_the_estimated_sllipsoid.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 4
+           </span>
+           <span class="caption-text">
+            Plot of the estimated sllipsoid
+           </span>
+           <a class="headerlink" href="#id5" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <div class="figure align-default" id="id6">
+          <img alt="../_images/mapped_unit_sphere.jpg" src="../_images/mapped_unit_sphere.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 5
+           </span>
+           <span class="caption-text">
+            Mapped unit sphere
+           </span>
+           <a class="headerlink" href="#id6" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+        </div>
+       </div>
+       <div class="section" id="method-3-recursive-least-squares-for-online-identification">
+        <h2>
+         Method 3: Recursive Least-Squares for online identification
+         <a class="headerlink" href="#method-3-recursive-least-squares-for-online-identification" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         Someone one might worry that what if the interference changed once we have finished the offline calibration? Do we need
+to calibrate again? Fortunately, most of the time the change of the interference is not significant. This online method
+is just for people that want to ensure the estimation of the ellipsoid remain a certain accuracy with respect to the
+change of the environment. The draw back of the online method is that it’s computationally expensive.
+        </p>
+        <p>
+         The purpose is to update the estimatation as each new data point becomes available.
+        </p>
+        <p>
+         With
+         <a class="reference internal" href="#eq-quadratic">
+          <span class="std std-ref">
+           equation
+          </span>
+         </a>
+         , we define
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{r} = \begin{bmatrix} y^2 &amp; z^2 &amp; x &amp; y &amp; z &amp; 1\end{bmatrix}\)
+         </span>
+         .
+        </p>
+        <p>
+         Assume we already have N sets of data:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-23">
+         <span class="eqno">
+          (27)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-23" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation}\boldsymbol{\Theta}_N = (\boldsymbol{\Psi}_N^T\boldsymbol{\Psi}_N)^{-1}\boldsymbol{\Psi}^T_N\boldsymbol{Y} _N\end{equation}\]
+        </div>
+        <p>
+         Let’s see how it will change when we add an extra data point:
+        </p>
+        <div class="math notranslate nohighlight" id="eq-extra-data">
+         <span id="equation-eq-extra-data">
+         </span>
+         <span class="eqno">
+          (28)
+          <a class="headerlink" href="#eq-extra-data" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation}\boldsymbol{\Theta}_{N+1} = (\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y} _{N+1} \label{eq:extra_data}\end{equation}\]
+        </div>
+        <p>
+         Firstly, take a look at the first part
+         <span class="math notranslate nohighlight">
+          \((\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}\)
+         </span>
+         . We know that
+        </p>
+        <div class="math notranslate nohighlight" id="eq-first-part">
+         <span id="equation-eq-first-part">
+         </span>
+         <span class="eqno">
+          (29)
+          <a class="headerlink" href="#eq-first-part" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation}\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1} = \sum_{k=0}^{N+1}\boldsymbol{r}_k^T\boldsymbol{r}_k = \sum_{k=0}^{N} \boldsymbol{r}_k^T\boldsymbol{r}_k + \boldsymbol{r}_{N+1}^T\boldsymbol{r}_{N+1} = \boldsymbol{\Psi}_N^T\boldsymbol{\Psi}_N + \boldsymbol{r}_{N+1}^T\boldsymbol{r}_{N+1} \label{eq:first_part}\end{equation}\]
+        </div>
+        <p>
+         Then, let’s define
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{P}_{N+1} = (\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}\)
+         </span>
+         , the
+         <a class="reference internal" href="#eq-first-part">
+          <span class="std std-ref">
+           equation
+          </span>
+         </a>
+         can be written as
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-24">
+         <span class="eqno">
+          (30)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-24" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol{P}_{N+1} = (\boldsymbol{P}_N^{-1}+\boldsymbol{r}_{N+1}^T\boldsymbol{r}_{N+1})^{-1} \end{equation}\]
+        </div>
+        <p>
+         According to the matrix inversion lemma:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-25">
+         <span class="eqno">
+          (31)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-25" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} (\boldsymbol{A}+\boldsymbol{B}\boldsymbol{C}\boldsymbol{D})^{-1} = \boldsymbol{A}^{-1} - \boldsymbol{A}^{-1}\boldsymbol{B}(\boldsymbol{C}^{-1}+\boldsymbol{D}\boldsymbol{A}^{-1}\boldsymbol{B})^{-1}\boldsymbol{D}\boldsymbol{A}^{-1} \end{equation}\]
+        </div>
+        <p>
+         then we have
+        </p>
+        <div class="math notranslate nohighlight" id="eq-term1">
+         <span id="equation-eq-term1">
+         </span>
+         <span class="eqno">
+          (32)
+          <a class="headerlink" href="#eq-term1" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol{P}_{N+1} = \boldsymbol{P}_N - \boldsymbol{P}_N\boldsymbol{r}^T_{N+1}(1+\boldsymbol{r}_{N+1}\boldsymbol{P}_N\boldsymbol{r}_{N+1}^T)^{-1}\boldsymbol{r}_{N+1}\boldsymbol{P}_N = \boldsymbol{P}_N - \frac{\boldsymbol{P}_N\boldsymbol{r}^T_{N+1}\boldsymbol{r}_{N+1}\boldsymbol{P}_N}{1+\boldsymbol{r}_{N+1}\boldsymbol{P}_N\boldsymbol{r}_{N+1}^T} \label{eq:term1} \end{equation}\]
+        </div>
+        <p>
+         We can see that this gives us a recursive way to update the first part without any matrix inversion! Secondly, let’s consider
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y}_{N+1}\)
+         </span>
+         .
+        </p>
+        <div class="math notranslate nohighlight" id="eq-term2">
+         <span id="equation-eq-term2">
+         </span>
+         <span class="eqno">
+          (33)
+          <a class="headerlink" href="#eq-term2" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation}\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y}_{N+1} = \boldsymbol{\Psi}^T_N\boldsymbol{Y}_N + \boldsymbol{r}^T_{N+1}y_{N+1} \label{eq:term2}\end{equation}\]
+        </div>
+        <p>
+         Now substitute
+         <a class="reference internal" href="#eq-term1">
+          <span class="std std-ref">
+           equation
+          </span>
+         </a>
+         and
+         <a class="reference internal" href="#eq-term2">
+          <span class="std std-ref">
+           equation
+          </span>
+         </a>
+         into equation
+         <a class="reference internal" href="#eq-extra-data">
+          <span class="std std-ref">
+           equation
+          </span>
+         </a>
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-26">
+         <span class="eqno">
+          (34)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-26" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{aligned}
+\boldsymbol{\Theta}_{N+1} &amp; = (\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y}_{N+1}\\
+&amp; = (\boldsymbol{P}_N - \frac{\boldsymbol{P}_N\boldsymbol{r}^T_{N+1}\boldsymbol{r}_{N+1}\boldsymbol{P}_N}{1+\boldsymbol{r}_{N+1}\boldsymbol{P}_N\boldsymbol{r}_{N+1}^T})(\boldsymbol{\Psi}^T_N\boldsymbol{Y}_N + \boldsymbol{r}^T_{N+1}y_{N+1}) \\
+&amp; = \boldsymbol{P}_N \boldsymbol{\Psi}^T_N \boldsymbol{Y}_N + \boldsymbol{P}_N \boldsymbol{r}^T_{N+1}y_{N+1} - \frac{\boldsymbol{P}_N \boldsymbol{r}^T_{N+1} \boldsymbol{r}_{N+1} \boldsymbol{P}_N(\boldsymbol{\Psi}^T_N \boldsymbol{Y}_N + \boldsymbol{r}^T_{N+1}y_{N+1})}{1+\boldsymbol{r}_{N+1} \boldsymbol{P}_N \boldsymbol{r}^T_{N+1}} \\
+&amp; = \boldsymbol{\Theta}_N + \frac{\boldsymbol{P}_N \boldsymbol{r}^T_{N+1}y_{N+1}(1+\boldsymbol{r}_{N+1} \boldsymbol{P}_N \boldsymbol{r}^T_{N+1}) - \boldsymbol{P}_N \boldsymbol{r}^T_{N+1} \boldsymbol{r}_{N+1} \boldsymbol{P}_N(\boldsymbol{\Psi}^T_N \boldsymbol{Y}_N + \boldsymbol{r}^T_{N+1}y_{N+1})}{1+\boldsymbol{r}_{N+1} \boldsymbol{P}_N \boldsymbol{r}^T_{N+1}}\\
+&amp; = \boldsymbol{\Theta}_N + \frac{\boldsymbol{P}_N \boldsymbol{r}^T_{N+1}}{1+\boldsymbol{r}_{N+1} \boldsymbol{P}_N \boldsymbol{r}^T_{N+1}}[y_{N+1} - \boldsymbol{r}_{N+1}\boldsymbol{\Theta}_N]
+\end{aligned}\end{split}\]
+        </div>
+        <p>
+         with
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{P}_{N+1} = \boldsymbol{P}_N - \frac{\boldsymbol{P}_N\boldsymbol{r}^T_{N+1}\boldsymbol{r}_{N+1}\boldsymbol{P}_N}{1+\boldsymbol{r}_{N+1}\boldsymbol{P}_N\boldsymbol{r}_{N+1}^T}\)
+         </span>
+        </p>
+        <p>
+         If we define
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{L}_{N+1} = \frac{\boldsymbol{P}_N \boldsymbol{r}^T_{N+1}}{1+\boldsymbol{r}_{N+1} \boldsymbol{P}_N \boldsymbol{r}^T_{N+1}}\)
+         </span>
+         , the recursive least-squares becomes
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-27">
+         <span class="eqno">
+          (35)
+          <a class="headerlink" href="#equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-27" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\boldsymbol{\Theta}_{N+1} = \boldsymbol{\Theta}_N + \boldsymbol{L}_{N+1}[y_{N+1} - \boldsymbol{r}_{N+1}\boldsymbol{\Theta}_N]\]
+        </div>
+        <p>
+         Looks familiar, this is an integrator!
+        </p>
+        <p>
+         To use it, we need to provide the initial values for
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{P}_N\)
+         </span>
+         and
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\Theta}_N\)
+         </span>
+         . Luckily, we can get it from the offline method.
+        </p>
+       </div>
+      </div>
+      <div class="section">
+       <div class="section">
+        <span style="float: left">
+         <a href="how_to_read_data_from_mpu9250.html">
+          <i class="fa fa-arrow-circle-left">
+          </i>
+          How to read data from MPU9250
+         </a>
+        </span>
+        <span>
+        </span>
+        <span style="float: right">
+        </span>
+       </div>
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  </script>
+  <footer class="footer mt-5 mt-md-0">
+   <div class="container">
+    <div class="footer-item">
+     <p class="copyright">
+      © Copyright 2022, Earsuit.
+      <br/>
+     </p>
+    </div>
+    <div class="footer-item">
+     <p class="sphinx-version">
+      Created using
+      <a href="http://sphinx-doc.org/">
+       Sphinx
+      </a>
+      4.1.1.
+      <br/>
+     </p>
+    </div>
+   </div>
+  </footer>
+ </body>
+</html>

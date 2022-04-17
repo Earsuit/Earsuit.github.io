@@ -2,7 +2,7 @@ How to read data from MPU9250
 ################################
 
 .. post:: 11, Feb 2018
-    :tags: I2C, Microcontroller, MPU9250
+    :tags: Microcontroller, MPU9250
     :category: Microcontroller
     :author: Earsuit
 
