@@ -1,52 +1,41 @@
-
 <!DOCTYPE html>
-
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How to read data from MPU9250 &#8212; XIANYU  documentation</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
-
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    
-      
-
-    
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Write your own I²C library" href="write_your_own_i2c_library.html" /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-      
-<style type="text/css">
-  ul.ablog-archive {
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   How to read data from MPU9250 — XIANYU  documentation
+  </title>
+  <link href="../_static/css/theme.css" rel="stylesheet"/>
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet"/>
+  <link href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+  <link href="../_static/pygments.css" rel="stylesheet" type="text/css">
+   <link href="../_static/css/blank.css" rel="stylesheet" type="text/css">
+    <link href="../_static/custom.css" rel="stylesheet" type="text/css">
+     <link href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" rel="stylesheet" type="text/css">
+      <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+       <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css"/>
+       <link as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js" rel="preload"/>
+       <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
+       </script>
+       <script src="../_static/jquery.js">
+       </script>
+       <script src="../_static/underscore.js">
+       </script>
+       <script src="../_static/doctools.js">
+       </script>
+       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <link href="../genindex.html" rel="index" title="Index">
+        <link href="../search.html" rel="search" title="Search"/>
+        <link href="write_your_own_i2c_library.html" rel="prev" title="Write your own I²C library"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="None" name="docsearch:language"/>
+        <!-- Google Analytics -->
+        <style type="text/css">
+         ul.ablog-archive {
     list-style: none;
     overflow: auto;
     margin-left: 0px;
@@ -68,376 +57,677 @@
   ul.postlist-style-circle {
     list-style-type: circle;
   }
-</style>
-
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-<a class="navbar-brand" href="../index.html">
-<p class="title">XIANYU</p>
-</a>
-
-    
+        </style>
+       </link>
+      </link>
+     </link>
+    </link>
+   </link>
+  </link>
+ </head>
+ <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+  <div class="container-fluid" id="banner">
   </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  
-  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
-      
+  <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+    <div id="navbar-start">
+     <a class="navbar-brand" href="../index.html">
+      <p class="title">
+       XIANYU
+      </p>
+     </a>
+    </div>
+    <button aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar-collapsible" data-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    <div class="col-lg-9 collapse navbar-collapse" id="navbar-collapsible">
+     <div class="mr-auto" id="navbar-center">
       <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="../index.html">
-  Recent Posts
- </a>
-</li>
-
-<li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="../blogs.html">
-  Blogs
- </a>
-</li>
-
-    
-</ul>
-      </div>
-      
-    </div>
-
-    <div id="navbar-end">
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/Earsuit/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+       <ul class="navbar-nav" id="navbar-main-elements">
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../index.html">
+          Recent Posts
+         </a>
         </li>
-      </ul>
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../blogs.html">
+          Blogs
+         </a>
+        </li>
+       </ul>
       </div>
-      
+     </div>
+     <div id="navbar-end">
       <div class="navbar-end-item">
-        <form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search for treasure..." aria-label="Search for treasure..." autocomplete="off" >
-</form>
+       <ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+        <li class="nav-item">
+         <a class="nav-link" href="https://github.com/Earsuit/" rel="noopener" target="_blank" title="GitHub">
+          <span>
+           <i class="fab fa-github-square">
+           </i>
+          </span>
+          <label class="sr-only">
+           GitHub
+          </label>
+         </a>
+        </li>
+       </ul>
       </div>
-      
+      <div class="navbar-end-item">
+       <form action="../search.html" class="bd-search d-flex align-items-center" method="get">
+        <i class="icon fas fa-search">
+        </i>
+        <input aria-label="Search for treasure..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search for treasure..." type="search"/>
+       </form>
+      </div>
+     </div>
     </div>
-  </div>
-</div>
-    </nav>
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  11 February 2018 
-</h2>
-
-<ul>
-   
-<li id="author">
-  <span
-    ><i class="fa-fw fa fa-user"></i></span
-  >
-   
-  <a href="author/earsuit.html">Earsuit</a>  
-</li>
-   
-<li id="category">
-  <span
-    ><i class="fa-fw fa fa-folder-open"></i></span
-  >
-   
-  <a href="category/microcontroller.html">Microcontroller</a>  
-</li>
- 
-<li id="tags">
-  <span
-    ><i class="fa-fw fa fa-tags"></i> </span
-  >
-   
-  <a href="tag/i2c.html">I2C</a>   
-  <a href="tag/microcontroller.html">Microcontroller</a>   
-  <a href="tag/mpu9250.html">MPU9250</a>  
-</li>
- 
-</ul>
-
-<h3>
-  <a href="archive.html">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="2018.html">2018 (2)</a>
-  </li>
-   
-</ul>
-
-            </div>
-            
-          
-
-          
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-brief-introduction-to-the-mpu9250">
-   A brief introduction to the MPU9250
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mpu9250-i2c-communication">
-     MPU9250 I²C communication
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#interpret-the-raw-data">
-     Interpret the raw data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mpu9250-setup">
-   MPU9250 setup
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clock-source">
-     Clock source
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gyroscope-and-accelerometer-setup">
-     Gyroscope and accelerometer setup
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#magnetometer-setup">
-     Magnetometer setup
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-from-the-mpu9250">
-   Read from the MPU9250
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-the-gyroscope">
-     Read the gyroscope
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-the-accelerometer">
-     Read the accelerometer
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-the-magnetometer">
-     Read the magnetometer
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#print-the-data">
-   Print the data
-  </a>
- </li>
-</ul>
-
-</nav>
-              </div>
-              
-              <div class="toc-item">
-                
-              </div>
-              
-            
-          </div>
-          
-
-          
-          
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
-              
-              <div>
-                 <div class="section" id="how-to-read-data-from-mpu9250">
-<h1>How to read data from MPU9250<a class="headerlink" href="#how-to-read-data-from-mpu9250" title="Permalink to this headline">¶</a></h1>
-<p>This article aims at reading data from the MPU9250. It only covers how to get the raw data from the MPU9250. I’d like
-to post another article about how to calibrate the MPU9250.</p>
-<p>In this article, we will use the
-<a class="reference external" href="https://longnight975551865.wordpress.com/2018/02/11/write-your-own-i%C2%B2c-library/">I2C library</a> mentioned in
+   </div>
+  </nav>
+  <div class="container-xl">
+   <div class="row">
+    <!-- Only show if we have sidebars configured, else just a small margin  -->
+    <div class="col-12 col-md-3 bd-sidebar">
+     <h2>
+      <i class="fa fa-calendar">
+      </i>
+      11 February 2018
+     </h2>
+     <ul>
+      <li id="author">
+       <span>
+        <i class="fa-fw fa fa-user">
+        </i>
+       </span>
+       <a href="author/earsuit.html">
+        Earsuit
+       </a>
+      </li>
+      <li id="category">
+       <span>
+        <i class="fa-fw fa fa-folder-open">
+        </i>
+       </span>
+       <a href="category/microcontroller.html">
+        Microcontroller
+       </a>
+      </li>
+      <li id="tags">
+       <span>
+        <i class="fa-fw fa fa-tags">
+        </i>
+       </span>
+       <a href="tag/i2c.html">
+        I2C
+       </a>
+       <a href="tag/microcontroller.html">
+        Microcontroller
+       </a>
+       <a href="tag/mpu9250.html">
+        MPU9250
+       </a>
+      </li>
+     </ul>
+     <h3>
+      <a href="archive.html">
+       Archives
+      </a>
+     </h3>
+     <ul>
+      <li>
+       <a href="2018.html">
+        2018 (2)
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="d-none d-xl-block col-xl-2 bd-toc">
+     <div class="toc-item">
+      <div class="tocsection onthispage pt-5 pb-3">
+       <i class="fas fa-list">
+       </i>
+       On this page
+      </div>
+      <nav id="bd-toc-nav">
+       <ul class="visible nav section-nav flex-column">
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#a-brief-introduction-to-the-mpu9250">
+          A brief introduction to the MPU9250
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#mpu9250-i2c-communication">
+            MPU9250 I²C communication
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#interpret-the-raw-data">
+            Interpret the raw data
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#mpu9250-setup">
+          MPU9250 setup
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#clock-source">
+            Clock source
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#gyroscope-and-accelerometer-setup">
+            Gyroscope and accelerometer setup
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#magnetometer-setup">
+            Magnetometer setup
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#read-from-the-mpu9250">
+          Read from the MPU9250
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#read-the-gyroscope">
+            Read the gyroscope
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#read-the-accelerometer">
+            Read the accelerometer
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#read-the-magnetometer">
+            Read the magnetometer
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#print-the-data">
+          Print the data
+         </a>
+        </li>
+       </ul>
+      </nav>
+     </div>
+     <div class="toc-item">
+     </div>
+    </div>
+    <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+     <div>
+      <div class="section" id="how-to-read-data-from-mpu9250">
+       <h1>
+        How to read data from MPU9250
+        <a class="headerlink" href="#how-to-read-data-from-mpu9250" title="Permalink to this headline">
+         ¶
+        </a>
+       </h1>
+       <p>
+        This article aims at reading data from the MPU9250. It only covers how to get the raw data from the MPU9250. I’d like
+to post another article about how to calibrate the MPU9250.
+       </p>
+       <p>
+        In this article, we will use the
+        <a class="reference external" href="https://longnight975551865.wordpress.com/2018/02/11/write-your-own-i%C2%B2c-library/">
+         I2C library
+        </a>
+        mentioned in
 this article. The datasheet and register map for the MPU9250 can be downloaded
-<a class="reference external" href="https://longnight975551865.wordpress.com/2018/02/11/write-your-own-i%C2%B2c-library/">here</a>.</p>
-<p>The example code can be downloaded from GitHub. The example code uses the interrupt of the Arduino and I haven’t talked
+        <a class="reference external" href="https://longnight975551865.wordpress.com/2018/02/11/write-your-own-i%C2%B2c-library/">
+         here
+        </a>
+        .
+       </p>
+       <p>
+        The example code can be downloaded from GitHub. The example code uses the interrupt of the Arduino and I haven’t talked
 about the interrupt in this article cause it’s another story. If you are interested in the time interrupt function of
-the Arduino, please let me know.</p>
-<div class="section" id="a-brief-introduction-to-the-mpu9250">
-<h2>A brief introduction to the MPU9250<a class="headerlink" href="#a-brief-introduction-to-the-mpu9250" title="Permalink to this headline">¶</a></h2>
-<p>The MPU9250 contains a die that houses the 3-Axis gyroscope and the 3-Axis accelerometer with a AK8963 3-Axis
-magnetometer from Asahi Kasei Microdevices Corporation. The device works at a VDD range from <strong>2.4V to 3.6V</strong>.</p>
-<p>The I²C Module of the MPU9250 supports up to 400kHz clock frequency and it always acts as a slave to the Arduino. It
-also contains an auxiliary I2C master interface to talk to the external 3rd party sensor (AK8963).</p>
-<p>The MPU9250 has three 16-bit outputs gyroscope, accelerometer and magnetometer. The gyroscope module and accelerometer
-module feature a user-programmable full-scale range of <span class="math notranslate nohighlight">\(\pm 250, \pm 500, \pm 1000\)</span> and
-<span class="math notranslate nohighlight">\(\pm 2000^\circ/sec(dps)\)</span> and <span class="math notranslate nohighlight">\(\pm 2g, \pm 4g, \pm 8g\)</span> and <span class="math notranslate nohighlight">\(\pm 16g\)</span> respectively. The magnetometer
-has a fixed full-scale range of <span class="math notranslate nohighlight">\(\pm 4800 \mu T\)</span>.</p>
-<p>The MPU9250 comes with a digital low-pass filter for the gyroscope and accelerometer.</p>
-<div class="section" id="mpu9250-i2c-communication">
-<h3>MPU9250 I²C communication<a class="headerlink" href="#mpu9250-i2c-communication" title="Permalink to this headline">¶</a></h3>
-<p>The I²C Module of the MPU9250 has Single-Byte sequence mode and Burst Sequence mode. The protocol to write to it is:</p>
-<div class="figure align-default" id="id1">
-<img alt="../_images/writing_to_MPU9250.jpg" src="../_images/writing_to_MPU9250.jpg" />
-<p class="caption"><span class="caption-text">Writing to MPU9250, taken from MPU-9250 Product Specification Revision 1.0</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<p>The protocol to read from it is:</p>
-<div class="figure align-default" id="id2">
-<img alt="../_images/reading_from_MPU9250.jpg" src="../_images/reading_from_MPU9250.jpg" />
-<p class="caption"><span class="caption-text">Reading from MPU9250, taken from MPU-9250 Product Specification Revision 1.0</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>Where</p>
-<ul class="simple">
-<li><p>S - START signal</p></li>
-<li><p>AD - address bits</p></li>
-<li><p>W - WRITE</p></li>
-<li><p>R - READ</p></li>
-<li><p>ACK - acknowledge bit</p></li>
-<li><p>RA - register address</p></li>
-<li><p>DATA - data package</p></li>
-<li><p>P - STOP signal</p></li>
-<li><p>NACK - not acknowledge bit</p></li>
-</ul>
-<p>Refer to this <a class="reference external" href="https://longnight975551865.wordpress.com/2018/02/11/write-your-own-i%C2%B2c-library/">post</a> for more
-detail.</p>
-</div>
-<div class="section" id="interpret-the-raw-data">
-<h3>Interpret the raw data<a class="headerlink" href="#interpret-the-raw-data" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id3">
-<img alt="../_images/gyroscope_specifications.jpg" src="../_images/gyroscope_specifications.jpg" />
-<p class="caption"><span class="caption-text">Gyroscope Specifications, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id4">
-<img alt="../_images/accelerometer_specifications.jpg" src="../_images/accelerometer_specifications.jpg" />
-<p class="caption"><span class="caption-text">Accelerometer Specifications, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id5">
-<img alt="../_images/magnetometer_measurement_data_format.jpg" src="../_images/magnetometer_measurement_data_format.jpg" />
-<p class="caption"><span class="caption-text">Magnetometer measurement data format, taken from the AK8963 Datasheet</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
-<p>The table above shows the sensitivity scale factor, different full-scale range has different sensitivity scale factor.
-The raw data of the MPU9250 is 16-bit long, which leads to a range from -32768 to 32767 <span class="math notranslate nohighlight">\((2^{16}/2 = 32768)\)</span>. For
-example, if the range of the gyroscope is <span class="math notranslate nohighlight">\(\pm 250\)</span> (-250 to -32768 and 250 to 32767), the angular velocity in
-degrees per second of an axis is computed by:</p>
-<div class="math notranslate nohighlight">
-\[ANG_VEL = \frac{GYRO_{RAW}\times 250}{32768} = \frac{GYRO_{RAW}}{131}\]</div>
-<p>The sensitivity scale factor for the magnetometer is fix to <span class="math notranslate nohighlight">\(\frac{4912}{32760} = 0.1499\)</span>. We can directly divide
-the raw data by the corresponding sensitivity scale factor to get the angular velocity(<span class="math notranslate nohighlight">\(^\circ/s\)</span>), acceleration
-(<span class="math notranslate nohighlight">\(g\)</span>) or magnetic flux density(<span class="math notranslate nohighlight">\(\mu T\)</span>).</p>
-</div>
-</div>
-<div class="section" id="mpu9250-setup">
-<h2>MPU9250 setup<a class="headerlink" href="#mpu9250-setup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="clock-source">
-<h3>Clock source<a class="headerlink" href="#clock-source" title="Permalink to this headline">¶</a></h3>
-<p>Let’s take a look at the register 107(PWR_MGMT_1):</p>
-<div class="figure align-default" id="id6">
-<img alt="../_images/power_management_register.png" src="../_images/power_management_register.png" />
-<p class="caption"><span class="caption-text">Power management register, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
-<p>The MPU9250 allows different clock source:</p>
-<ul class="simple">
-<li><p>The internal 20MHz oscillator</p></li>
-<li><p>The X, Y or Z axis of the gyroscope.</p></li>
-</ul>
-<p>The internal oscillator consumes less power and the axis of the gyroscope leads to a more accurate clock source. For
+the Arduino, please let me know.
+       </p>
+       <div class="section" id="a-brief-introduction-to-the-mpu9250">
+        <h2>
+         A brief introduction to the MPU9250
+         <a class="headerlink" href="#a-brief-introduction-to-the-mpu9250" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         The MPU9250 contains a die that houses the 3-Axis gyroscope and the 3-Axis accelerometer with a AK8963 3-Axis
+magnetometer from Asahi Kasei Microdevices Corporation. The device works at a VDD range from
+         <strong>
+          2.4V to 3.6V
+         </strong>
+         .
+        </p>
+        <p>
+         The I²C Module of the MPU9250 supports up to 400kHz clock frequency and it always acts as a slave to the Arduino. It
+also contains an auxiliary I2C master interface to talk to the external 3rd party sensor (AK8963).
+        </p>
+        <p>
+         The MPU9250 has three 16-bit outputs gyroscope, accelerometer and magnetometer. The gyroscope module and accelerometer
+module feature a user-programmable full-scale range of
+         <span class="math notranslate nohighlight">
+          \(\pm 250, \pm 500, \pm 1000\)
+         </span>
+         and
+         <span class="math notranslate nohighlight">
+          \(\pm 2000^\circ/sec(dps)\)
+         </span>
+         and
+         <span class="math notranslate nohighlight">
+          \(\pm 2g, \pm 4g, \pm 8g\)
+         </span>
+         and
+         <span class="math notranslate nohighlight">
+          \(\pm 16g\)
+         </span>
+         respectively. The magnetometer
+has a fixed full-scale range of
+         <span class="math notranslate nohighlight">
+          \(\pm 4800 \mu T\)
+         </span>
+         .
+        </p>
+        <p>
+         The MPU9250 comes with a digital low-pass filter for the gyroscope and accelerometer.
+        </p>
+        <div class="section" id="mpu9250-i2c-communication">
+         <h3>
+          MPU9250 I²C communication
+          <a class="headerlink" href="#mpu9250-i2c-communication" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The I²C Module of the MPU9250 has Single-Byte sequence mode and Burst Sequence mode. The protocol to write to it is:
+         </p>
+         <div class="figure align-default" id="id1">
+          <img alt="../_images/writing_to_MPU9250.jpg" src="../_images/writing_to_MPU9250.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 1
+           </span>
+           <span class="caption-text">
+            Writing to MPU9250, taken from MPU-9250 Product Specification Revision 1.0
+           </span>
+           <a class="headerlink" href="#id1" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The protocol to read from it is:
+         </p>
+         <div class="figure align-default" id="id2">
+          <img alt="../_images/reading_from_MPU9250.jpg" src="../_images/reading_from_MPU9250.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 2
+           </span>
+           <span class="caption-text">
+            Reading from MPU9250, taken from MPU-9250 Product Specification Revision 1.0
+           </span>
+           <a class="headerlink" href="#id2" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          Where
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            S - START signal
+           </p>
+          </li>
+          <li>
+           <p>
+            AD - address bits
+           </p>
+          </li>
+          <li>
+           <p>
+            W - WRITE
+           </p>
+          </li>
+          <li>
+           <p>
+            R - READ
+           </p>
+          </li>
+          <li>
+           <p>
+            ACK - acknowledge bit
+           </p>
+          </li>
+          <li>
+           <p>
+            RA - register address
+           </p>
+          </li>
+          <li>
+           <p>
+            DATA - data package
+           </p>
+          </li>
+          <li>
+           <p>
+            P - STOP signal
+           </p>
+          </li>
+          <li>
+           <p>
+            NACK - not acknowledge bit
+           </p>
+          </li>
+         </ul>
+         <p>
+          Refer to this
+          <a class="reference external" href="https://longnight975551865.wordpress.com/2018/02/11/write-your-own-i%C2%B2c-library/">
+           post
+          </a>
+          for more
+detail.
+         </p>
+        </div>
+        <div class="section" id="interpret-the-raw-data">
+         <h3>
+          Interpret the raw data
+          <a class="headerlink" href="#interpret-the-raw-data" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <div class="figure align-default" id="id3">
+          <img alt="../_images/gyroscope_specifications.jpg" src="../_images/gyroscope_specifications.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 3
+           </span>
+           <span class="caption-text">
+            Gyroscope Specifications, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id3" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <div class="figure align-default" id="id4">
+          <img alt="../_images/accelerometer_specifications.jpg" src="../_images/accelerometer_specifications.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 4
+           </span>
+           <span class="caption-text">
+            Accelerometer Specifications, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id4" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <div class="figure align-default" id="id5">
+          <img alt="../_images/magnetometer_measurement_data_format.jpg" src="../_images/magnetometer_measurement_data_format.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 5
+           </span>
+           <span class="caption-text">
+            Magnetometer measurement data format, taken from the AK8963 Datasheet
+           </span>
+           <a class="headerlink" href="#id5" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The table above shows the sensitivity scale factor, different full-scale range has different sensitivity scale factor.
+The raw data of the MPU9250 is 16-bit long, which leads to a range from -32768 to 32767
+          <span class="math notranslate nohighlight">
+           \((2^{16}/2 = 32768)\)
+          </span>
+          . For
+example, if the range of the gyroscope is
+          <span class="math notranslate nohighlight">
+           \(\pm 250\)
+          </span>
+          (-250 to -32768 and 250 to 32767), the angular velocity in
+degrees per second of an axis is computed by:
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-how-to-read-data-from-mpu9250-0">
+          <span class="eqno">
+           (1)
+           <a class="headerlink" href="#equation-blog-how-to-read-data-from-mpu9250-0" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[ANG_VEL = \frac{GYRO_{RAW}\times 250}{32768} = \frac{GYRO_{RAW}}{131}\]
+         </div>
+         <p>
+          The sensitivity scale factor for the magnetometer is fix to
+          <span class="math notranslate nohighlight">
+           \(\frac{4912}{32760} = 0.1499\)
+          </span>
+          . We can directly divide
+the raw data by the corresponding sensitivity scale factor to get the angular velocity(
+          <span class="math notranslate nohighlight">
+           \(^\circ/s\)
+          </span>
+          ), acceleration
+(
+          <span class="math notranslate nohighlight">
+           \(g\)
+          </span>
+          ) or magnetic flux density(
+          <span class="math notranslate nohighlight">
+           \(\mu T\)
+          </span>
+          ).
+         </p>
+        </div>
+       </div>
+       <div class="section" id="mpu9250-setup">
+        <h2>
+         MPU9250 setup
+         <a class="headerlink" href="#mpu9250-setup" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <div class="section" id="clock-source">
+         <h3>
+          Clock source
+          <a class="headerlink" href="#clock-source" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          Let’s take a look at the register 107(PWR_MGMT_1):
+         </p>
+         <div class="figure align-default" id="id6">
+          <img alt="../_images/power_management_register.png" src="../_images/power_management_register.png"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 6
+           </span>
+           <span class="caption-text">
+            Power management register, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id6" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The MPU9250 allows different clock source:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            The internal 20MHz oscillator
+           </p>
+          </li>
+          <li>
+           <p>
+            The X, Y or Z axis of the gyroscope.
+           </p>
+          </li>
+         </ul>
+         <p>
+          The internal oscillator consumes less power and the axis of the gyroscope leads to a more accurate clock source. For
 example, the accuracy of the measurement is more important, we could tie the clock source to one of the axes of the
-gyroscope:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MPU9250_AD 0x68</span>
+gyroscope:
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define MPU9250_AD 0x68</span>
 <span class="cp">#define PWR_MGMT_1_AD 0x6B</span>
 
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="n">PWR_MGMT_1_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x01</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span> <span class="c1">//0000 0001 in binary, set the clock reference to X axis gyroscope to get a better accuracy</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="gyroscope-and-accelerometer-setup">
-<h3>Gyroscope and accelerometer setup<a class="headerlink" href="#gyroscope-and-accelerometer-setup" title="Permalink to this headline">¶</a></h3>
-<p>The gyroscope is controlled by the register 27(GYRO_CONFIG):</p>
-<div class="figure align-default" id="id7">
-<img alt="../_images/gyroscope_control_register.jpg" src="../_images/gyroscope_control_register.jpg" />
-<p class="caption"><span class="caption-text">GYRO_CONFIG, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</div>
-<p>The accelerometer is controlled by the register 28(ACCEL_CONFIG_1) and 29(ACCEL_CONFIG_2):</p>
-<div class="figure align-default" id="id8">
-<img alt="../_images/ACCEL_CONFIG_1.jpg" src="../_images/ACCEL_CONFIG_1.jpg" />
-<p class="caption"><span class="caption-text">ACCEL_CONFIG_1, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id9">
-<img alt="../_images/ACCEL_CONFIG_2.jpg" src="../_images/ACCEL_CONFIG_2.jpg" />
-<p class="caption"><span class="caption-text">ACCEL_CONFIG_2, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
-<p>We could set the full-scale range and the internal digital low-pass filter (DLPF) of the gyroscope and the
-accelerometer. The DLPF of the gyroscope is configured by the bit 2 to bit 0 of the register 26(CONFIG):</p>
-<div class="figure align-default" id="id10">
-<img alt="../_images/CONFIG_register.png" src="../_images/CONFIG_register.png" />
-<p class="caption"><span class="caption-text">CONFIG, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
-<p>The tables below show the how to set the bandwidth of the DLPF for the gyroscope and the accelerometer (<strong>the FCHOICE
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="gyroscope-and-accelerometer-setup">
+         <h3>
+          Gyroscope and accelerometer setup
+          <a class="headerlink" href="#gyroscope-and-accelerometer-setup" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The gyroscope is controlled by the register 27(GYRO_CONFIG):
+         </p>
+         <div class="figure align-default" id="id7">
+          <img alt="../_images/gyroscope_control_register.jpg" src="../_images/gyroscope_control_register.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 7
+           </span>
+           <span class="caption-text">
+            GYRO_CONFIG, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id7" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The accelerometer is controlled by the register 28(ACCEL_CONFIG_1) and 29(ACCEL_CONFIG_2):
+         </p>
+         <div class="figure align-default" id="id8">
+          <img alt="../_images/ACCEL_CONFIG_1.jpg" src="../_images/ACCEL_CONFIG_1.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 8
+           </span>
+           <span class="caption-text">
+            ACCEL_CONFIG_1, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id8" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <div class="figure align-default" id="id9">
+          <img alt="../_images/ACCEL_CONFIG_2.jpg" src="../_images/ACCEL_CONFIG_2.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 9
+           </span>
+           <span class="caption-text">
+            ACCEL_CONFIG_2, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id9" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          We could set the full-scale range and the internal digital low-pass filter (DLPF) of the gyroscope and the
+accelerometer. The DLPF of the gyroscope is configured by the bit 2 to bit 0 of the register 26(CONFIG):
+         </p>
+         <div class="figure align-default" id="id10">
+          <img alt="../_images/CONFIG_register.png" src="../_images/CONFIG_register.png"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 10
+           </span>
+           <span class="caption-text">
+            CONFIG, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id10" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The tables below show the how to set the bandwidth of the DLPF for the gyroscope and the accelerometer (
+          <strong>
+           the FCHOICE
 in table 11 and ACCEL_FCHOICE in the table 12 are the inverted value of Fchoice_b in the register 27 and
-accel_fchoice_b in the register 29</strong>):</p>
-<div class="figure align-default" id="id11">
-<img alt="../_images/DLPF_of_the_gyroscope.jpg" src="../_images/DLPF_of_the_gyroscope.jpg" />
-<p class="caption"><span class="caption-text">DLPF of the gyroscope, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id12">
-<img alt="../_images/DLPF_of_the_accelerometer.jpg" src="../_images/DLPF_of_the_accelerometer.jpg" />
-<p class="caption"><span class="caption-text">DLPF of the accelerometer, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
-</div>
-<p>As mentioned above, we need to specify the full-scale range of the gyroscope and the accelerometer. This can be done by
+accel_fchoice_b in the register 29
+          </strong>
+          ):
+         </p>
+         <div class="figure align-default" id="id11">
+          <img alt="../_images/DLPF_of_the_gyroscope.jpg" src="../_images/DLPF_of_the_gyroscope.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 11
+           </span>
+           <span class="caption-text">
+            DLPF of the gyroscope, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id11" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <div class="figure align-default" id="id12">
+          <img alt="../_images/DLPF_of_the_accelerometer.jpg" src="../_images/DLPF_of_the_accelerometer.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 12
+           </span>
+           <span class="caption-text">
+            DLPF of the accelerometer, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id12" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          As mentioned above, we need to specify the full-scale range of the gyroscope and the accelerometer. This can be done by
 setting the bit 4 to bit 3 in register 27 and register 28 to different values based on the full-scale range you want to
-use.</p>
-<p>Usually, the smaller bandwidth the DLPF has, the less noise it will contain. However, a smaller bandwidth also leads to
+use.
+         </p>
+         <p>
+          Usually, the smaller bandwidth the DLPF has, the less noise it will contain. However, a smaller bandwidth also leads to
 a slower response, which means the data converges to the true value slowly. The table 11 and 12 give the delay of each
-bandwidth, we should choose the bandwidth based on the situation.</p>
-<p><strong>Please note that enabling the DLPF makes the output rate of the gyroscope and the accelerometer drop to 1kHz (The
-gyroscope is initialized to 8kHz and the accelerometer is initialized to 4kHz)</strong>.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define GYRO_CONFIG_AD 0x1B</span>
+bandwidth, we should choose the bandwidth based on the situation.
+         </p>
+         <p>
+          <strong>
+           Please note that enabling the DLPF makes the output rate of the gyroscope and the accelerometer drop to 1kHz (The
+gyroscope is initialized to 8kHz and the accelerometer is initialized to 4kHz)
+          </strong>
+          .
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define GYRO_CONFIG_AD 0x1B</span>
 <span class="cp">#define ACCEL_CONFIG_1_AD 0x1C</span>
 <span class="cp">#define ACCEL_CONFIG_2_AD 0x1D</span>
 <span class="cp">#define CONFIG_AD 0x1A</span>
@@ -457,34 +747,82 @@ gyroscope is initialized to 8kHz and the accelerometer is initialized to 4kHz)</
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="n">CONFIG_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x05</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="c1">//0000 0101 in binary. Turn on the internal low-pass filter for gyroscope with 10Hz bandwidth</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="magnetometer-setup">
-<h3>Magnetometer setup<a class="headerlink" href="#magnetometer-setup" title="Permalink to this headline">¶</a></h3>
-<p>The magnetometer setup is a little bit complex than the gyroscope and the accelerometer.</p>
-<div class="figure align-default" id="id13">
-<img alt="../_images/block_diagram_of_the_I2C_interface.jpg" src="../_images/block_diagram_of_the_I2C_interface.jpg" />
-<p class="caption"><span class="caption-text">Block diagram of the I2C interface, taken from MPU-9250 Product Specification Revision 1.0</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
-</div>
-<p>The auxiliary I2C master interface of the MPU9250 contains an interface bypass multiplexer, which allows the system
-processor program the 3rd party sensor.</p>
-<p>The bypass multiplexer is controlled by the register 55 (INT Pin / Bypass Enable Configuration):</p>
-<div class="figure align-default" id="id14">
-<img alt="../_images/register_55.jpg" src="../_images/register_55.jpg" />
-<p class="caption"><span class="caption-text">Register 55, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
-</div>
-<p>To turn on the bypass multiplexer of the I2C master interface, we need to disable the I2C master interface first. The I2C master interface is controlled in the register 106 (User Control):</p>
-<div class="figure align-default" id="id15">
-<img alt="../_images/user_control_register.jpg" src="../_images/user_control_register.jpg" />
-<p class="caption"><span class="caption-text">Register 106, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
-</div>
-<p>We need to write 0 to the I2C_MST_EN bit to disable the I2C master interface and write 1 to the BYPASS_EN bit to turn
-on the bypass multiplexer.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define USER_CTRL_AD 0x6A</span>
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="magnetometer-setup">
+         <h3>
+          Magnetometer setup
+          <a class="headerlink" href="#magnetometer-setup" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The magnetometer setup is a little bit complex than the gyroscope and the accelerometer.
+         </p>
+         <div class="figure align-default" id="id13">
+          <img alt="../_images/block_diagram_of_the_I2C_interface.jpg" src="../_images/block_diagram_of_the_I2C_interface.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 13
+           </span>
+           <span class="caption-text">
+            Block diagram of the I2C interface, taken from MPU-9250 Product Specification Revision 1.0
+           </span>
+           <a class="headerlink" href="#id13" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The auxiliary I2C master interface of the MPU9250 contains an interface bypass multiplexer, which allows the system
+processor program the 3rd party sensor.
+         </p>
+         <p>
+          The bypass multiplexer is controlled by the register 55 (INT Pin / Bypass Enable Configuration):
+         </p>
+         <div class="figure align-default" id="id14">
+          <img alt="../_images/register_55.jpg" src="../_images/register_55.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 14
+           </span>
+           <span class="caption-text">
+            Register 55, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id14" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          To turn on the bypass multiplexer of the I2C master interface, we need to disable the I2C master interface first. The I2C master interface is controlled in the register 106 (User Control):
+         </p>
+         <div class="figure align-default" id="id15">
+          <img alt="../_images/user_control_register.jpg" src="../_images/user_control_register.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 15
+           </span>
+           <span class="caption-text">
+            Register 106, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id15" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          We need to write 0 to the I2C_MST_EN bit to disable the I2C master interface and write 1 to the BYPASS_EN bit to turn
+on the bypass multiplexer.
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define USER_CTRL_AD 0x6A</span>
 <span class="cp">#define INT_BYPASS_CONFIG_AD 0x37</span>
 
-<span class="c1">// Actually we don&#39;t need this step cause the reset value of the register 106 is 0x00</span>
+<span class="c1">// Actually we don't need this step cause the reset value of the register 106 is 0x00</span>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="n">USER_CTRL_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
@@ -492,27 +830,88 @@ on the bypass multiplexer.</p>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="n">INT_BYPASS_CONFIG_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x02</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>   <span class="c1">//0000 0010 in binary, turn on the bypass multiplexer</span>
-</pre></div>
-</div>
-<p>The AK8963 has a <strong>read-only</strong> Fuse ROM Access mode that allows the access to the Fuse ROM data. The Fuse ROM contains
-the <strong>sensitivity adjustment data for each axis</strong>. The Control 1 register of the AK8963 controls the operation mode:</p>
-<div class="figure align-default" id="id16">
-<img alt="../_images/control_1_register.jpg" src="../_images/control_1_register.jpg" />
-<p class="caption"><span class="caption-text">Control 1 register, taken from MPU-9250 Register Map and Descriptions Revision 1.6</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
-</div>
-<p>The operation mode is configured by the bit 3 to bit 0 (<strong>other code settings are prohibited</strong>). The bit 4 of this
-register controls the output bit, “0” is 14-bit output and “1” is 16-bit output. <strong>Note that we has to wait for some
-time to let the mode change complete</strong>:</p>
-<ul class="simple">
-<li><p>“0000” - Power-down mode</p></li>
-<li><p>“0001” - Single measurement mode</p></li>
-<li><p>“0010” - Continuous measurement mode 1 (Sensor is measured at 8Hz)</p></li>
-<li><p>“0110” - Continuous measurement mode 2 (Sensor is measured at 100Hz)</p></li>
-<li><p>“0100” - External trigger measurement mode</p></li>
-<li><p>“1000” - Self-test mode</p></li>
-<li><p>“1111” - Fuse ROM access mode</p></li>
-</ul>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define CNTL1_AD 0x0A   </span><span class="c1">//control 1 register address</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          The AK8963 has a
+          <strong>
+           read-only
+          </strong>
+          Fuse ROM Access mode that allows the access to the Fuse ROM data. The Fuse ROM contains
+the
+          <strong>
+           sensitivity adjustment data for each axis
+          </strong>
+          . The Control 1 register of the AK8963 controls the operation mode:
+         </p>
+         <div class="figure align-default" id="id16">
+          <img alt="../_images/control_1_register.jpg" src="../_images/control_1_register.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 16
+           </span>
+           <span class="caption-text">
+            Control 1 register, taken from MPU-9250 Register Map and Descriptions Revision 1.6
+           </span>
+           <a class="headerlink" href="#id16" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The operation mode is configured by the bit 3 to bit 0 (
+          <strong>
+           other code settings are prohibited
+          </strong>
+          ). The bit 4 of this
+register controls the output bit, “0” is 14-bit output and “1” is 16-bit output.
+          <strong>
+           Note that we has to wait for some
+time to let the mode change complete
+          </strong>
+          :
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            “0000” - Power-down mode
+           </p>
+          </li>
+          <li>
+           <p>
+            “0001” - Single measurement mode
+           </p>
+          </li>
+          <li>
+           <p>
+            “0010” - Continuous measurement mode 1 (Sensor is measured at 8Hz)
+           </p>
+          </li>
+          <li>
+           <p>
+            “0110” - Continuous measurement mode 2 (Sensor is measured at 100Hz)
+           </p>
+          </li>
+          <li>
+           <p>
+            “0100” - External trigger measurement mode
+           </p>
+          </li>
+          <li>
+           <p>
+            “1000” - Self-test mode
+           </p>
+          </li>
+          <li>
+           <p>
+            “1111” - Fuse ROM access mode
+           </p>
+          </li>
+         </ul>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define CNTL1_AD 0x0A   </span><span class="c1">//control 1 register address</span>
 
 <span class="c1">// setup the Magnetometer to fuse ROM access mode to get the Sensitivity Adjustment values and 16-bit output</span>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
@@ -520,20 +919,46 @@ time to let the mode change complete</strong>:</p>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x1F</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">//0001 1111 in binary</span>
 
 <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>  <span class="c1">//wait for the mode changes</span>
-</pre></div>
-</div>
-<p>After setting the AK8963 to the Fuse ROM Access mode, we need to read from the Fuse ROM: ASAX (Magnetic sensor X-axis
+</pre>
+          </div>
+         </div>
+         <p>
+          After setting the AK8963 to the Fuse ROM Access mode, we need to read from the Fuse ROM: ASAX (Magnetic sensor X-axis
 sensitivity adjustment value), ASAY (Magnetic sensor Y-axis sensitivity adjustment value) and ASAZ (Magnetic sensor
-Z-axis sensitivity adjustment value) register. The formula to adjust the sensitivity is</p>
-<div class="math notranslate nohighlight">
-\[Hadj = H \times (\frac{(ASA-128)\times 0.5}{128}+1)\]</div>
-<p>Where:</p>
-<ul class="simple">
-<li><p>H - output data</p></li>
-<li><p>ASA - sensitivity adjustment value</p></li>
-<li><p>Hadj - adjusted measurement data</p></li>
-</ul>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define ASAX_AD 0x10</span>
+Z-axis sensitivity adjustment value) register. The formula to adjust the sensitivity is
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-how-to-read-data-from-mpu9250-1">
+          <span class="eqno">
+           (2)
+           <a class="headerlink" href="#equation-blog-how-to-read-data-from-mpu9250-1" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[Hadj = H \times (\frac{(ASA-128)\times 0.5}{128}+1)\]
+         </div>
+         <p>
+          Where:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            H - output data
+           </p>
+          </li>
+          <li>
+           <p>
+            ASA - sensitivity adjustment value
+           </p>
+          </li>
+          <li>
+           <p>
+            Hadj - adjusted measurement data
+           </p>
+          </li>
+         </ul>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define ASAX_AD 0x10</span>
 
 <span class="c1">//read the Sensitivit Adjustment values</span>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
@@ -542,56 +967,131 @@ Z-axis sensitivity adjustment value) register. The formula to adjust the sensiti
 <span class="n">asax</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
 <span class="n">asay</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
 <span class="n">asaz</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>Please note that we <strong>has to change the chip to power-down mode first then switch it to another mode</strong>:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//reset the Magnetometer to power down mode</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          Please note that we
+          <strong>
+           has to change the chip to power-down mode first then switch it to another mode
+          </strong>
+          :
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="c1">//reset the Magnetometer to power down mode</span>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
 
 <span class="c1">//wait for the mode changes</span>
 <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Then we could set the chip to continuous mode 2 and 16-bit output:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//set the Magnetometer to continuous mode 2（100Hz) and 16-bit output</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          Then we could set the chip to continuous mode 2 and 16-bit output:
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="c1">//set the Magnetometer to continuous mode 2（100Hz) and 16-bit output</span>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x16</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>   <span class="c1">//0001 0110 in binary</span>
 
 <span class="c1">//wait for the mode changes</span>
 <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="read-from-the-mpu9250">
-<h2>Read from the MPU9250<a class="headerlink" href="#read-from-the-mpu9250" title="Permalink to this headline">¶</a></h2>
-<p>The MPU9250 contains a FIFO read write register. Data is written to this register in order of register number (from
+</pre>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="section" id="read-from-the-mpu9250">
+        <h2>
+         Read from the MPU9250
+         <a class="headerlink" href="#read-from-the-mpu9250" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         The MPU9250 contains a FIFO read write register. Data is written to this register in order of register number (from
 lowest to highest). The problem is that we have to read the oldest data in the FIFO buffer first which is not we want.
 For example, we can compute the attitude of the aircraft based on these readings and we want to know the attitude of
 the aircraft at a specific time. Reading the oldest data first adds a delay in the process. Therefore, we won’t use the
-FIFO buffer.</p>
-<blockquote>
-<div><p>Register Names ending in _H and _L contain the high and low bytes, respectively, of an <strong>internal register value</strong>.</p>
-</div></blockquote>
-<p>This means the <strong>accelerometer</strong> and the <strong>gyroscope</strong> measurement registers are made up of two sets of registers: an
+FIFO buffer.
+        </p>
+        <blockquote>
+         <div>
+          <p>
+           Register Names ending in _H and _L contain the high and low bytes, respectively, of an
+           <strong>
+            internal register value
+           </strong>
+           .
+          </p>
+         </div>
+        </blockquote>
+        <p>
+         This means the
+         <strong>
+          accelerometer
+         </strong>
+         and the
+         <strong>
+          gyroscope
+         </strong>
+         measurement registers are made up of two sets of registers: an
 internal register set and a user-facing read register set. The internal register set is updated at the sample rate and
 the user-facing register set is updated when the serial interface is idle. This mechanism ensures the data is correct
 while reading from the user-facing read register and the set of single byte reads correspond to the same sampling
-instant when the burst read mode is used.</p>
-<p>The AK8963 also allows us to read the measurement data registers even in a measurement period.</p>
-<div class="section" id="read-the-gyroscope">
-<h3>Read the gyroscope<a class="headerlink" href="#read-the-gyroscope" title="Permalink to this headline">¶</a></h3>
-<p>The latest gyroscope data is stored in the register 67 to 72:</p>
-<div class="figure align-default" id="id17">
-<img alt="../_images/Gyroscope_measurement_data_registers.jpg" src="../_images/Gyroscope_measurement_data_registers.jpg" />
-<p class="caption"><span class="caption-text">Gyroscope measurement data registers</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
-</div>
-<p>To assemble the tow bytes into the correct data, we could shift the high byte to the left 8 bits and or it with the low
-byte: <code class="docutils literal notranslate"><span class="pre">(highByte&lt;&lt;8)</span> <span class="pre">|</span> <span class="pre">lowByte</span></code>.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define GYRO_XOUT_H_AD 0x43</span>
+instant when the burst read mode is used.
+        </p>
+        <p>
+         The AK8963 also allows us to read the measurement data registers even in a measurement period.
+        </p>
+        <div class="section" id="read-the-gyroscope">
+         <h3>
+          Read the gyroscope
+          <a class="headerlink" href="#read-the-gyroscope" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The latest gyroscope data is stored in the register 67 to 72:
+         </p>
+         <div class="figure align-default" id="id17">
+          <img alt="../_images/Gyroscope_measurement_data_registers.jpg" src="../_images/Gyroscope_measurement_data_registers.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 17
+           </span>
+           <span class="caption-text">
+            Gyroscope measurement data registers
+           </span>
+           <a class="headerlink" href="#id17" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          To assemble the tow bytes into the correct data, we could shift the high byte to the left 8 bits and or it with the low
+byte:
+          <code class="docutils literal notranslate">
+           <span class="pre">
+            (highByte&lt;&lt;8)
+           </span>
+           <span class="pre">
+            |
+           </span>
+           <span class="pre">
+            lowByte
+           </span>
+          </code>
+          .
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define GYRO_XOUT_H_AD 0x43</span>
 
 <span class="c1">//read the gyro</span>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
@@ -600,17 +1100,37 @@ byte: <code class="docutils literal notranslate"><span class="pre">(highByte&lt;
 <span class="n">gyroX</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
 <span class="n">gyroY</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
 <span class="n">gyroZ</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="read-the-accelerometer">
-<h3>Read the accelerometer<a class="headerlink" href="#read-the-accelerometer" title="Permalink to this headline">¶</a></h3>
-<p>The latest gyroscope data is stored in the register 59 to 64:</p>
-<div class="figure align-default" id="id18">
-<img alt="../_images/accelerometer_measurement_data_registers.jpg" src="../_images/accelerometer_measurement_data_registers.jpg" />
-<p class="caption"><span class="caption-text">Accelerometer measurement data registers</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
-</div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define ACCEL_XOUT_H_AD 0x3B</span>
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="read-the-accelerometer">
+         <h3>
+          Read the accelerometer
+          <a class="headerlink" href="#read-the-accelerometer" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The latest gyroscope data is stored in the register 59 to 64:
+         </p>
+         <div class="figure align-default" id="id18">
+          <img alt="../_images/accelerometer_measurement_data_registers.jpg" src="../_images/accelerometer_measurement_data_registers.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 18
+           </span>
+           <span class="caption-text">
+            Accelerometer measurement data registers
+           </span>
+           <a class="headerlink" href="#id18" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define ACCEL_XOUT_H_AD 0x3B</span>
 
 <span class="c1">//read the accelerate</span>
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
@@ -619,23 +1139,51 @@ byte: <code class="docutils literal notranslate"><span class="pre">(highByte&lt;
 <span class="n">accelX</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
 <span class="n">accelY</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
 <span class="n">accelZ</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="read-the-magnetometer">
-<h3>Read the magnetometer<a class="headerlink" href="#read-the-magnetometer" title="Permalink to this headline">¶</a></h3>
-<p>First we need to pull the DRDY bit in the Status 1 register of the AK8963 to check whether the data is ready. “1” means
-it’s ready, “0” means it’s not ready.</p>
-<p>If the data is ready, we could start reading the measurement data registers. When this process is started, the DRDY bit
-is set to “0” by hardware automatically.</p>
-<div class="figure align-default" id="id19">
-<img alt="../_images/magnetometer_measurement_data_registers.jpg" src="../_images/magnetometer_measurement_data_registers.jpg" />
-<p class="caption"><span class="caption-text">Magnetometer measurement data registers</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
-</div>
-<p>After reading the measurement data registers, the Status 2 register has to be read to inform the AK8963 that the
-reading is finished. <strong>The HOFL bit in the Status 2 register should be check to know whether the magnetic sensor is
-overflown. “0” is not overflown, “1” means overflown and the data read should be discarded</strong>.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DATA_READY_MASK 0x01</span>
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="read-the-magnetometer">
+         <h3>
+          Read the magnetometer
+          <a class="headerlink" href="#read-the-magnetometer" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          First we need to pull the DRDY bit in the Status 1 register of the AK8963 to check whether the data is ready. “1” means
+it’s ready, “0” means it’s not ready.
+         </p>
+         <p>
+          If the data is ready, we could start reading the measurement data registers. When this process is started, the DRDY bit
+is set to “0” by hardware automatically.
+         </p>
+         <div class="figure align-default" id="id19">
+          <img alt="../_images/magnetometer_measurement_data_registers.jpg" src="../_images/magnetometer_measurement_data_registers.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 19
+           </span>
+           <span class="caption-text">
+            Magnetometer measurement data registers
+           </span>
+           <a class="headerlink" href="#id19" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          After reading the measurement data registers, the Status 2 register has to be read to inform the AK8963 that the
+reading is finished.
+          <strong>
+           The HOFL bit in the Status 2 register should be check to know whether the magnetic sensor is
+overflown. “0” is not overflown, “1” means overflown and the data read should be discarded
+          </strong>
+          .
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define DATA_READY_MASK 0x01</span>
 <span class="cp">#define MAGIC_OVERFLOW_MASK 0x8</span>
 
 <span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
@@ -652,80 +1200,86 @@ overflown. “0” is not overflown, “1” means overflown and the data read s
                         <span class="n">magneZ</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">|</span> <span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
                 <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="print-the-data">
-<h2>Print the data<a class="headerlink" href="#print-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Print the data is simple. Just remember to interpret the raw data.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;GYRO_X: &quot;</span><span class="p">);</span>
+</pre>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="section" id="print-the-data">
+        <h2>
+         Print the data
+         <a class="headerlink" href="#print-the-data" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         Print the data is simple. Just remember to interpret the raw data.
+        </p>
+        <div class="highlight-c notranslate">
+         <div class="highlight">
+          <pre><span></span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"GYRO_X: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroX</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; GYRO_Y: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" GYRO_Y: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroY</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; GYRO_Z: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" GYRO_Z: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroZ</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; ACCEL_X: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_X: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelX</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; ACCEL_Y: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_Y: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelY</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; ACCEL_Z: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_Z: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelZ</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; MAGNE_X: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_X: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneX</span><span class="o">*</span><span class="n">asax</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; MAGNE_Y: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_Y: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneY</span><span class="o">*</span><span class="n">asay</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; MAGNE_Z: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_Z: "</span><span class="p">);</span>
 <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneZ</span><span class="o">*</span><span class="n">asaz</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-
-<div class="section">
-     
-<div class="section">
-  <span style="float: left">
-     
-    <a href="write_your_own_i2c_library.html">
-      <i class="fa fa-arrow-circle-left"></i> Write your own I²C library
-    </a>
-    
-  </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
-    
-  </span>
-</div>
-  
-</div>
-
-              </div>
-              
-              
-          </main>
-          
-
+</pre>
+         </div>
+        </div>
+       </div>
       </div>
-    </div>
-  
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
-<footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <p class="copyright">
-    &copy; Copyright 2022, Earsuit.<br>
-</p>
-    </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.1.<br>
-</p>
-    </div>
-    
+      <div class="section">
+       <div class="section">
+        <span style="float: left">
+         <a href="write_your_own_i2c_library.html">
+          <i class="fa fa-arrow-circle-left">
+          </i>
+          Write your own I²C library
+         </a>
+        </span>
+        <span>
+        </span>
+        <span style="float: right">
+        </span>
+       </div>
+      </div>
+     </div>
+    </main>
+   </div>
   </div>
-</footer>
-  </body>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  </script>
+  <footer class="footer mt-5 mt-md-0">
+   <div class="container">
+    <div class="footer-item">
+     <p class="copyright">
+      © Copyright 2022, Earsuit.
+      <br/>
+     </p>
+    </div>
+    <div class="footer-item">
+     <p class="sphinx-version">
+      Created using
+      <a href="http://sphinx-doc.org/">
+       Sphinx
+      </a>
+      4.1.1.
+      <br/>
+     </p>
+    </div>
+   </div>
+  </footer>
+ </body>
 </html>

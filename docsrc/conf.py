@@ -40,6 +40,13 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+numfig = True
+numfig_secnum_depth = 0
+numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Code Block %s'}
+
+math_number_all = True
+math_eqref_format = 'Eq.{number}'
+math_numfig = True
 
 # -- Options for HTML output -------------------------------------------------
 

@@ -1,53 +1,42 @@
-
 <!DOCTYPE html>
-
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Write your own I²C library &#8212; XIANYU  documentation</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
-
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    
-      
-
-    
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to read data from MPU9250" href="how_to_read_data_from_mpu9250.html" />
-    <link rel="prev" title="Blogs" href="../blogs.html" /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-      
-<style type="text/css">
-  ul.ablog-archive {
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Write your own I²C library — XIANYU  documentation
+  </title>
+  <link href="../_static/css/theme.css" rel="stylesheet"/>
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet"/>
+  <link href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+  <link href="../_static/pygments.css" rel="stylesheet" type="text/css">
+   <link href="../_static/css/blank.css" rel="stylesheet" type="text/css">
+    <link href="../_static/custom.css" rel="stylesheet" type="text/css">
+     <link href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" rel="stylesheet" type="text/css">
+      <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+       <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css"/>
+       <link as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js" rel="preload"/>
+       <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
+       </script>
+       <script src="../_static/jquery.js">
+       </script>
+       <script src="../_static/underscore.js">
+       </script>
+       <script src="../_static/doctools.js">
+       </script>
+       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <link href="../genindex.html" rel="index" title="Index">
+        <link href="../search.html" rel="search" title="Search"/>
+        <link href="how_to_read_data_from_mpu9250.html" rel="next" title="How to read data from MPU9250"/>
+        <link href="../blogs.html" rel="prev" title="Blogs"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="None" name="docsearch:language"/>
+        <!-- Google Analytics -->
+        <style type="text/css">
+         ul.ablog-archive {
     list-style: none;
     overflow: auto;
     margin-left: 0px;
@@ -69,517 +58,937 @@
   ul.postlist-style-circle {
     list-style-type: circle;
   }
-</style>
-
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-<a class="navbar-brand" href="../index.html">
-<p class="title">XIANYU</p>
-</a>
-
-    
+        </style>
+       </link>
+      </link>
+     </link>
+    </link>
+   </link>
+  </link>
+ </head>
+ <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+  <div class="container-fluid" id="banner">
   </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  
-  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
-      
+  <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+    <div id="navbar-start">
+     <a class="navbar-brand" href="../index.html">
+      <p class="title">
+       XIANYU
+      </p>
+     </a>
+    </div>
+    <button aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar-collapsible" data-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    <div class="col-lg-9 collapse navbar-collapse" id="navbar-collapsible">
+     <div class="mr-auto" id="navbar-center">
       <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="../index.html">
-  Recent Posts
- </a>
-</li>
-
-<li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="../blogs.html">
-  Blogs
- </a>
-</li>
-
-    
-</ul>
-      </div>
-      
-    </div>
-
-    <div id="navbar-end">
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/Earsuit/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+       <ul class="navbar-nav" id="navbar-main-elements">
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../index.html">
+          Recent Posts
+         </a>
         </li>
-      </ul>
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../blogs.html">
+          Blogs
+         </a>
+        </li>
+       </ul>
       </div>
-      
+     </div>
+     <div id="navbar-end">
       <div class="navbar-end-item">
-        <form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search for treasure..." aria-label="Search for treasure..." autocomplete="off" >
-</form>
+       <ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+        <li class="nav-item">
+         <a class="nav-link" href="https://github.com/Earsuit/" rel="noopener" target="_blank" title="GitHub">
+          <span>
+           <i class="fab fa-github-square">
+           </i>
+          </span>
+          <label class="sr-only">
+           GitHub
+          </label>
+         </a>
+        </li>
+       </ul>
       </div>
-      
+      <div class="navbar-end-item">
+       <form action="../search.html" class="bd-search d-flex align-items-center" method="get">
+        <i class="icon fas fa-search">
+        </i>
+        <input aria-label="Search for treasure..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search for treasure..." type="search"/>
+       </form>
+      </div>
+     </div>
     </div>
-  </div>
-</div>
-    </nav>
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  01 February 2018 
-</h2>
-
-<ul>
-   
-<li id="author">
-  <span
-    ><i class="fa-fw fa fa-user"></i></span
-  >
-   
-  <a href="author/earsuit.html">Earsuit</a>  
-</li>
-   
-<li id="category">
-  <span
-    ><i class="fa-fw fa fa-folder-open"></i></span
-  >
-   
-  <a href="category/microcontroller.html">Microcontroller</a>  
-</li>
- 
-<li id="tags">
-  <span
-    ><i class="fa-fw fa fa-tags"></i> </span
-  >
-   
-  <a href="tag/i2c.html">I2C</a>   
-  <a href="tag/microcontroller.html">Microcontroller</a>   
-  <a href="tag/mpu9250.html">MPU9250</a>  
-</li>
- 
-</ul>
-
-<h3>
-  <a href="archive.html">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="2018.html">2018 (2)</a>
-  </li>
-   
-</ul>
-
-            </div>
-            
-          
-
-          
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-brief-introduction-to-i2c-protocol">
-   A brief introduction to I²C protocol
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transferring-bits">
-   Transferring Bits
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#address-packet-format">
-   Address Packet Format
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-packet-format">
-   Data Packet Format
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#common-transmission">
-   Common transmission
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#master-transmitter-mode">
-     Master Transmitter mode
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#master-receiver-mode">
-     Master receiver mode
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#combined-transmission-mode">
-     Combined transmission mode
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multi-master-bus-systems">
-   Multi-master Bus Systems
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clock-synchronization">
-     Clock Synchronization
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#arbitration">
-     Arbitration
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#atmega328p-arduino-nano-i2c-module">
-   ATmega328P (Arduino Nano) I²C module
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialize-the-i2c-module">
-     Initialize the I²C module
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transmit-the-start-signal">
-     Transmit the START signal
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transmit-a-stop-signal">
-     Transmit a STOP signal
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transmit-the-address-and-write-read-bit-or-data">
-     Transmit the address and WRITE/READ bit or data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#request-messages-from-a-slave">
-     Request messages from a slave
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#receive-messages-from-a-salve">
-     Receive messages from a salve
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-</nav>
-              </div>
-              
-              <div class="toc-item">
-                
-              </div>
-              
-            
-          </div>
-          
-
-          
-          
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
-              
-              <div>
-                 <div class="section" id="write-your-own-i2c-library">
-<h1>Write your own I²C library<a class="headerlink" href="#write-your-own-i2c-library" title="Permalink to this headline">¶</a></h1>
-<p>I was learning to build a drone recently, which requires me to know how to use I²C protocol. I decided to write my
-experience down and hope it can help others.</p>
-<p>I used this library to read the data from the MPU9250 and built a Kalman filter to get a more reliable reading. I will
-write that down later. The code for the I²C library could be found on <a class="reference external" href="https://github.com/Earsuit/I2C">GitHub</a> .</p>
-<div class="section" id="a-brief-introduction-to-i2c-protocol">
-<h2>A brief introduction to I²C protocol<a class="headerlink" href="#a-brief-introduction-to-i2c-protocol" title="Permalink to this headline">¶</a></h2>
-<p>I²C stands for Inter-Integrated Circuit, which is invented by Philips Semiconductor in 1982. It uses two bidirectional
+   </div>
+  </nav>
+  <div class="container-xl">
+   <div class="row">
+    <!-- Only show if we have sidebars configured, else just a small margin  -->
+    <div class="col-12 col-md-3 bd-sidebar">
+     <h2>
+      <i class="fa fa-calendar">
+      </i>
+      01 February 2018
+     </h2>
+     <ul>
+      <li id="author">
+       <span>
+        <i class="fa-fw fa fa-user">
+        </i>
+       </span>
+       <a href="author/earsuit.html">
+        Earsuit
+       </a>
+      </li>
+      <li id="category">
+       <span>
+        <i class="fa-fw fa fa-folder-open">
+        </i>
+       </span>
+       <a href="category/microcontroller.html">
+        Microcontroller
+       </a>
+      </li>
+      <li id="tags">
+       <span>
+        <i class="fa-fw fa fa-tags">
+        </i>
+       </span>
+       <a href="tag/i2c.html">
+        I2C
+       </a>
+       <a href="tag/microcontroller.html">
+        Microcontroller
+       </a>
+       <a href="tag/mpu9250.html">
+        MPU9250
+       </a>
+      </li>
+     </ul>
+     <h3>
+      <a href="archive.html">
+       Archives
+      </a>
+     </h3>
+     <ul>
+      <li>
+       <a href="2018.html">
+        2018 (2)
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="d-none d-xl-block col-xl-2 bd-toc">
+     <div class="toc-item">
+      <div class="tocsection onthispage pt-5 pb-3">
+       <i class="fas fa-list">
+       </i>
+       On this page
+      </div>
+      <nav id="bd-toc-nav">
+       <ul class="visible nav section-nav flex-column">
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#a-brief-introduction-to-i2c-protocol">
+          A brief introduction to I²C protocol
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#transferring-bits">
+          Transferring Bits
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#address-packet-format">
+          Address Packet Format
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#data-packet-format">
+          Data Packet Format
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#common-transmission">
+          Common transmission
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#master-transmitter-mode">
+            Master Transmitter mode
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#master-receiver-mode">
+            Master receiver mode
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#combined-transmission-mode">
+            Combined transmission mode
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#multi-master-bus-systems">
+          Multi-master Bus Systems
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#clock-synchronization">
+            Clock Synchronization
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#arbitration">
+            Arbitration
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#atmega328p-arduino-nano-i2c-module">
+          ATmega328P (Arduino Nano) I²C module
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#initialize-the-i2c-module">
+            Initialize the I²C module
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#transmit-the-start-signal">
+            Transmit the START signal
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#transmit-a-stop-signal">
+            Transmit a STOP signal
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#transmit-the-address-and-write-read-bit-or-data">
+            Transmit the address and WRITE/READ bit or data
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#request-messages-from-a-slave">
+            Request messages from a slave
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#receive-messages-from-a-salve">
+            Receive messages from a salve
+           </a>
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </nav>
+     </div>
+     <div class="toc-item">
+     </div>
+    </div>
+    <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+     <div>
+      <div class="section" id="write-your-own-i2c-library">
+       <h1>
+        Write your own I²C library
+        <a class="headerlink" href="#write-your-own-i2c-library" title="Permalink to this headline">
+         ¶
+        </a>
+       </h1>
+       <p>
+        I was learning to build a drone recently, which requires me to know how to use I²C protocol. I decided to write my
+experience down and hope it can help others.
+       </p>
+       <p>
+        I used this library to read the data from the MPU9250 and built a Kalman filter to get a more reliable reading. I will
+write that down later. The code for the I²C library could be found on
+        <a class="reference external" href="https://github.com/Earsuit/I2C">
+         GitHub
+        </a>
+        .
+       </p>
+       <div class="section" id="a-brief-introduction-to-i2c-protocol">
+        <h2>
+         A brief introduction to I²C protocol
+         <a class="headerlink" href="#a-brief-introduction-to-i2c-protocol" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         I²C stands for Inter-Integrated Circuit, which is invented by Philips Semiconductor in 1982. It uses two bidirectional
 open-drain lines and requires the pull-up resistor: Serial Data line (SDA) and Serial Clock Line (SCL). An open-drain
 line means it can only drive the line low or be in high impedance. When the lines are idle, they are in high voltage
-due to the pull-up resistor.</p>
-<p>An I²C device usually have a 7-bit address, but some devices have 10-bit address. One feature of I²C bus is that it
-supports multi-master mode and master-slave switch.</p>
-<p>Typically, I²C bus works in the following transmission modes:</p>
-<ul class="simple">
-<li><p>Master Transmitter Mode</p></li>
-<li><p>Master Receiver Mode</p></li>
-<li><p>Slave Receiver Mode</p></li>
-<li><p>Slave Transmitter Mode</p></li>
-</ul>
-<p>Common I²C bus speeds are stander mode (100 Kbit/s) and low speed mode (10 Kbit/s). The latest version of I²C bus
-supports fast mode (400 Kbit/s) and high speed mode (3.4 Mbit/s).</p>
-<p>The implementation of I²C bus is generally harder than UART and SPI, fortunately, most chips hide the complexity for us
-which let we <strong>program towards registers</strong>. There are many libraries in the internet, however, writing our own
-libraries leads to a better understanding of the I²C bus.</p>
-</div>
-<div class="section" id="transferring-bits">
-<h2>Transferring Bits<a class="headerlink" href="#transferring-bits" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="id1">
-<img alt="../_images/i2c_data_validity.jpg" src="../_images/i2c_data_validity.jpg" />
-<p class="caption"><span class="caption-text">Data Validity, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<p>As shown above, the SDA line has to remain stable when the SCL line is high, unless the signal is a START condition or
+due to the pull-up resistor.
+        </p>
+        <p>
+         An I²C device usually have a 7-bit address, but some devices have 10-bit address. One feature of I²C bus is that it
+supports multi-master mode and master-slave switch.
+        </p>
+        <p>
+         Typically, I²C bus works in the following transmission modes:
+        </p>
+        <ul class="simple">
+         <li>
+          <p>
+           Master Transmitter Mode
+          </p>
+         </li>
+         <li>
+          <p>
+           Master Receiver Mode
+          </p>
+         </li>
+         <li>
+          <p>
+           Slave Receiver Mode
+          </p>
+         </li>
+         <li>
+          <p>
+           Slave Transmitter Mode
+          </p>
+         </li>
+        </ul>
+        <p>
+         Common I²C bus speeds are stander mode (100 Kbit/s) and low speed mode (10 Kbit/s). The latest version of I²C bus
+supports fast mode (400 Kbit/s) and high speed mode (3.4 Mbit/s).
+        </p>
+        <p>
+         The implementation of I²C bus is generally harder than UART and SPI, fortunately, most chips hide the complexity for us
+which let we
+         <strong>
+          program towards registers
+         </strong>
+         . There are many libraries in the internet, however, writing our own
+libraries leads to a better understanding of the I²C bus.
+        </p>
+       </div>
+       <div class="section" id="transferring-bits">
+        <h2>
+         Transferring Bits
+         <a class="headerlink" href="#transferring-bits" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <div class="figure align-default" id="id1">
+         <img alt="../_images/i2c_data_validity.jpg" src="../_images/i2c_data_validity.jpg"/>
+         <p class="caption">
+          <span class="caption-number">
+           Figure 1
+          </span>
+          <span class="caption-text">
+           Data Validity, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+          </span>
+          <a class="headerlink" href="#id1" title="Permalink to this image">
+           ¶
+          </a>
+         </p>
+        </div>
+        <p>
+         As shown above, the SDA line has to remain stable when the SCL line is high, unless the signal is a START condition or
 a STOP condition: the chip changes the voltage level of the SDA line when the SCL line is high. Each package is 8-bit
-long and the MSB bit is transmitted first.</p>
-<div class="figure align-default" id="id2">
-<img alt="../_images/i2c_conditions.jpg" src="../_images/i2c_conditions.jpg" />
-<p class="caption"><span class="caption-text">START, REPEATED START and STOP conditions, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>Only the master has the authority to start or stop a transmission. The line is busy after a START signal and the no
+long and the MSB bit is transmitted first.
+        </p>
+        <div class="figure align-default" id="id2">
+         <img alt="../_images/i2c_conditions.jpg" src="../_images/i2c_conditions.jpg"/>
+         <p class="caption">
+          <span class="caption-number">
+           Figure 2
+          </span>
+          <span class="caption-text">
+           START, REPEATED START and STOP conditions, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+          </span>
+          <a class="headerlink" href="#id2" title="Permalink to this image">
+           ¶
+          </a>
+         </p>
+        </div>
+        <p>
+         Only the master has the authority to start or stop a transmission. The line is busy after a START signal and the no
 other masters should try to talk over the bus. One special condition is that between a START and STOP signal, the
 master can issue another START signal (repeat START), which allows it to start a new communication to the same slave
-without losing control of the bus.</p>
-</div>
-<div class="section" id="address-packet-format">
-<h2>Address Packet Format<a class="headerlink" href="#address-packet-format" title="Permalink to this headline">¶</a></h2>
-<p>The I²C interface of the ATmega328P has 7-bit address. The first 7-bit of the package is for the address and the last
+without losing control of the bus.
+        </p>
+       </div>
+       <div class="section" id="address-packet-format">
+        <h2>
+         Address Packet Format
+         <a class="headerlink" href="#address-packet-format" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         The I²C interface of the ATmega328P has 7-bit address. The first 7-bit of the package is for the address and the last
 bit is for READ/WRITE (READ is 0 and WRITE is 1). When the slave receives a package contains its address, it should
 pull the SCL line high at the 9th clock, which is referred as a ACK signal. Otherwise, it’s a NACK signal and the
-master should stop the communication or send a repeat START signal.</p>
-<p>Usually, developers could allocate the address for the I²C device, but the address 0000 000 is reserved for a general
+master should stop the communication or send a repeat START signal.
+        </p>
+        <p>
+         Usually, developers could allocate the address for the I²C device, but the address 0000 000 is reserved for a general
 call, which is used when a master wants to talk to all devices. If a general call is issued, salves can decide whether
-to respond to it.</p>
-<div class="figure align-default" id="id3">
-<img alt="../_images/i2c_address_packet_format.jpg" src="../_images/i2c_address_packet_format.jpg" />
-<p class="caption"><span class="caption-text">Address Packet Format, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH
-DATASHEET</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="data-packet-format">
-<h2>Data Packet Format<a class="headerlink" href="#data-packet-format" title="Permalink to this headline">¶</a></h2>
-<p>After receiving the 8-bit data package from a master, the slave has to generate an Acknowledge signal by pulling the
+to respond to it.
+        </p>
+        <div class="figure align-default" id="id3">
+         <img alt="../_images/i2c_address_packet_format.jpg" src="../_images/i2c_address_packet_format.jpg"/>
+         <p class="caption">
+          <span class="caption-number">
+           Figure 3
+          </span>
+          <span class="caption-text">
+           Address Packet Format, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH
+DATASHEET
+          </span>
+          <a class="headerlink" href="#id3" title="Permalink to this image">
+           ¶
+          </a>
+         </p>
+        </div>
+       </div>
+       <div class="section" id="data-packet-format">
+        <h2>
+         Data Packet Format
+         <a class="headerlink" href="#data-packet-format" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         After receiving the 8-bit data package from a master, the slave has to generate an Acknowledge signal by pulling the
 SCL line low at the ninth clock. If the slave could not process more packages, it should leave the SCL line high at the
-ninth clock: a NACK signal.</p>
-<div class="figure align-default" id="id4">
-<img alt="../_images/i2c_data_packet_format.jpg" src="../_images/i2c_data_packet_format.jpg" />
-<p class="caption"><span class="caption-text">Data Packet Format, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="common-transmission">
-<h2>Common transmission<a class="headerlink" href="#common-transmission" title="Permalink to this headline">¶</a></h2>
-<p>A common transmission consist of a START signal, address bits and a WRITE/READ bit, one or more data package and a STOP
+ninth clock: a NACK signal.
+        </p>
+        <div class="figure align-default" id="id4">
+         <img alt="../_images/i2c_data_packet_format.jpg" src="../_images/i2c_data_packet_format.jpg"/>
+         <p class="caption">
+          <span class="caption-number">
+           Figure 4
+          </span>
+          <span class="caption-text">
+           Data Packet Format, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+          </span>
+          <a class="headerlink" href="#id4" title="Permalink to this image">
+           ¶
+          </a>
+         </p>
+        </div>
+       </div>
+       <div class="section" id="common-transmission">
+        <h2>
+         Common transmission
+         <a class="headerlink" href="#common-transmission" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         A common transmission consist of a START signal, address bits and a WRITE/READ bit, one or more data package and a STOP
 signal. An empty message contains only a START signal and a STOP signal is illegal. In one transmission, the slave
-could pull the SCL line low if it needs more time to process the data.</p>
-<p>For convenience, we will use the following abbreviations:</p>
-<ul class="simple">
-<li><p>S - START signal</p></li>
-<li><p>AD - address bits</p></li>
-<li><p>W - WRITE</p></li>
-<li><p>R - READ</p></li>
-<li><p>ACK - acknowledge bit</p></li>
-<li><p>RA - register address</p></li>
-<li><p>DATA - data package</p></li>
-<li><p>P - STOP signal</p></li>
-<li><p>NACK - not acknowledge bit</p></li>
-</ul>
-<div class="section" id="master-transmitter-mode">
-<h3>Master Transmitter mode<a class="headerlink" href="#master-transmitter-mode" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id5">
-<img alt="../_images/i2c_master_transmitter_mode.jpg" src="../_images/i2c_master_transmitter_mode.jpg" />
-<p class="caption"><span class="caption-text">Master Transmitter mode</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
-<p>The master sends a START signal followed by the slave address and WRITE bit. After receiving the ACK signal issued by
-the slave, the master starts to transmit the data packages until a STOP is singled.</p>
-</div>
-<div class="section" id="master-receiver-mode">
-<h3>Master receiver mode<a class="headerlink" href="#master-receiver-mode" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id6">
-<img alt="../_images/i2c_master_receiver_mode.jpg" src="../_images/i2c_master_receiver_mode.jpg" />
-<p class="caption"><span class="caption-text">Master receiver mode</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
-<p>After receiving the address and READ bit, the slave generates a ACK signal followed by a data package. If the master
+could pull the SCL line low if it needs more time to process the data.
+        </p>
+        <p>
+         For convenience, we will use the following abbreviations:
+        </p>
+        <ul class="simple">
+         <li>
+          <p>
+           S - START signal
+          </p>
+         </li>
+         <li>
+          <p>
+           AD - address bits
+          </p>
+         </li>
+         <li>
+          <p>
+           W - WRITE
+          </p>
+         </li>
+         <li>
+          <p>
+           R - READ
+          </p>
+         </li>
+         <li>
+          <p>
+           ACK - acknowledge bit
+          </p>
+         </li>
+         <li>
+          <p>
+           RA - register address
+          </p>
+         </li>
+         <li>
+          <p>
+           DATA - data package
+          </p>
+         </li>
+         <li>
+          <p>
+           P - STOP signal
+          </p>
+         </li>
+         <li>
+          <p>
+           NACK - not acknowledge bit
+          </p>
+         </li>
+        </ul>
+        <div class="section" id="master-transmitter-mode">
+         <h3>
+          Master Transmitter mode
+          <a class="headerlink" href="#master-transmitter-mode" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <div class="figure align-default" id="id5">
+          <img alt="../_images/i2c_master_transmitter_mode.jpg" src="../_images/i2c_master_transmitter_mode.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 5
+           </span>
+           <span class="caption-text">
+            Master Transmitter mode
+           </span>
+           <a class="headerlink" href="#id5" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The master sends a START signal followed by the slave address and WRITE bit. After receiving the ACK signal issued by
+the slave, the master starts to transmit the data packages until a STOP is singled.
+         </p>
+        </div>
+        <div class="section" id="master-receiver-mode">
+         <h3>
+          Master receiver mode
+          <a class="headerlink" href="#master-receiver-mode" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <div class="figure align-default" id="id6">
+          <img alt="../_images/i2c_master_receiver_mode.jpg" src="../_images/i2c_master_receiver_mode.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 6
+           </span>
+           <span class="caption-text">
+            Master receiver mode
+           </span>
+           <a class="headerlink" href="#id6" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          After receiving the address and READ bit, the slave generates a ACK signal followed by a data package. If the master
 receives the data package, it has to acknowledge it to allow the slave to send more packages. The master sends a NACK
-signal followed by a STOP signal after receiving the last package.</p>
-</div>
-<div class="section" id="combined-transmission-mode">
-<h3>Combined transmission mode<a class="headerlink" href="#combined-transmission-mode" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id7">
-<img alt="../_images/i2c_combined_transmission_mode.jpg" src="../_images/i2c_combined_transmission_mode.jpg" />
-<p class="caption"><span class="caption-text">Combined transmission mode, taken from MPU-9250 Product Specification Revision 1.0</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</div>
-<p>The combined transmission mode allows us to change the direction of the message. The master still needs to send the
-NACK signal before the STOP signal.</p>
-</div>
-</div>
-<div class="section" id="multi-master-bus-systems">
-<h2>Multi-master Bus Systems<a class="headerlink" href="#multi-master-bus-systems" title="Permalink to this headline">¶</a></h2>
-<p>One feature of the I²C bus is the ability to have multi masters in the bus, however, it requires a mechanism to ensure
+signal followed by a STOP signal after receiving the last package.
+         </p>
+        </div>
+        <div class="section" id="combined-transmission-mode">
+         <h3>
+          Combined transmission mode
+          <a class="headerlink" href="#combined-transmission-mode" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <div class="figure align-default" id="id7">
+          <img alt="../_images/i2c_combined_transmission_mode.jpg" src="../_images/i2c_combined_transmission_mode.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 7
+           </span>
+           <span class="caption-text">
+            Combined transmission mode, taken from MPU-9250 Product Specification Revision 1.0
+           </span>
+           <a class="headerlink" href="#id7" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The combined transmission mode allows us to change the direction of the message. The master still needs to send the
+NACK signal before the STOP signal.
+         </p>
+        </div>
+       </div>
+       <div class="section" id="multi-master-bus-systems">
+        <h2>
+         Multi-master Bus Systems
+         <a class="headerlink" href="#multi-master-bus-systems" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         One feature of the I²C bus is the ability to have multi masters in the bus, however, it requires a mechanism to ensure
 that only one master takes control of the bus at a time and the synchronization of the clock generated by different
-masters.</p>
-<div class="section" id="clock-synchronization">
-<h3>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline">¶</a></h3>
-<p>The wired-ANDing of the I²C interface is used to synchronize the clock. Every I²C interface has two counters counting
-the high and low time-out periods:</p>
-<ul class="simple">
-<li><p>When the SCL goes from high to low, all masters start counting the low period of the SCL line.</p></li>
-<li><p>When the SCL goes from low to high, all masters start counting the high period of the SCL line.</p></li>
-</ul>
-<p>Due to the property of the open-drain line, the SCL line is high if and only all SCL ports are high, thus the low
+masters.
+        </p>
+        <div class="section" id="clock-synchronization">
+         <h3>
+          Clock Synchronization
+          <a class="headerlink" href="#clock-synchronization" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The wired-ANDing of the I²C interface is used to synchronize the clock. Every I²C interface has two counters counting
+the high and low time-out periods:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            When the SCL goes from high to low, all masters start counting the low period of the SCL line.
+           </p>
+          </li>
+          <li>
+           <p>
+            When the SCL goes from low to high, all masters start counting the high period of the SCL line.
+           </p>
+          </li>
+         </ul>
+         <p>
+          Due to the property of the open-drain line, the SCL line is high if and only all SCL ports are high, thus the low
 period of the SCL line depends on the master with the longest low period, the rest masters goes to waiting mode. The
 first master that jumps from high to low pulls the SCL line to low, which means the high period of the SCL line equal
-to the high period of the master with the shortest high period.</p>
-<div class="figure align-default" id="id8">
-<img alt="../_images/i2c_wired_ANDing.jpg" src="../_images/i2c_wired_ANDing.jpg" />
-<p class="caption"><span class="caption-text">wired-ANDing, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="arbitration">
-<h3>Arbitration<a class="headerlink" href="#arbitration" title="Permalink to this headline">¶</a></h3>
-<p>Arbitration decides which master should take control of the I²C bus.</p>
-<p>When a master sends a data package, it continuously monitors the SDA line to see whether data is the same as what it
+to the high period of the master with the shortest high period.
+         </p>
+         <div class="figure align-default" id="id8">
+          <img alt="../_images/i2c_wired_ANDing.jpg" src="../_images/i2c_wired_ANDing.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 8
+           </span>
+           <span class="caption-text">
+            wired-ANDing, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+           </span>
+           <a class="headerlink" href="#id8" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+        </div>
+        <div class="section" id="arbitration">
+         <h3>
+          Arbitration
+          <a class="headerlink" href="#arbitration" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          Arbitration decides which master should take control of the I²C bus.
+         </p>
+         <p>
+          When a master sends a data package, it continuously monitors the SDA line to see whether data is the same as what it
 transmitted. If it’s different, it has lost the arbitration and then becomes a slave (if it is allowed) to check
 whether it’s being addressed. Only when a bit in the data package transmitted from a master is high and that bit on the
-bus is low, the master loses the arbitration.</p>
-<p>Arbitration will continue until there is only one master.</p>
-<blockquote>
-<div><p>Note that arbitration is not allowed between:</p>
-<ul class="simple">
-<li><p>A REPEATED START condition and a data bit.</p></li>
-<li><p>A STOP condition and a data bit.</p></li>
-<li><p>A REPEATED START and a STOP condition.</p></li>
-</ul>
-</div></blockquote>
-<div class="figure align-default" id="id9">
-<img alt="../_images/i2c_arbitration.jpg" src="../_images/i2c_arbitration.jpg" />
-<p class="caption"><span class="caption-text">Arbitration, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="atmega328p-arduino-nano-i2c-module">
-<h2>ATmega328P (Arduino Nano) I²C module<a class="headerlink" href="#atmega328p-arduino-nano-i2c-module" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="id10">
-<img alt="../_images/i2c_ATmega328P_i2c_module.jpg" src="../_images/i2c_ATmega328P_i2c_module.jpg" />
-<p class="caption"><span class="caption-text">ATmega328P I²C Module, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
-<p>Figure 9 shows that the ATmega328P I²C Module contains a START/STOP control unit, an Arbitration detection unit, an
-Address Match unit, a Bit Rate Generator and an ACK unit. Therefore, we could “program towards registers”.</p>
-<p>When an ATmega328P serves as a master, the SCL clock frequency can be computed by:</p>
-<div class="math notranslate nohighlight">
-\[f = \frac{CPU Clock frequency}{16+2(TWBR)(PrescalerValue)}\]</div>
-<p>Where</p>
-<ul class="simple">
-<li><p>TWBR = the value of the TWBR register (TWI Bit Rate Register)</p></li>
-<li><p>PrescalerValue = the TWPS1 and TWPS0 bits in the TWSR register (TWI Status Register)</p></li>
-<li><p>CPU Clock frequency = 16 MHz for ATmega328P</p></li>
-</ul>
-<p>When the I²C Module is working, it continuously detects the bus to see whether it loses the arbitration. The status is
-stored in the bit 7 to bit 3 of TWSR register.</p>
-<p>The I²C Module is based on interrupt, after finishing one operation, the TWSR register will record the current status
+bus is low, the master loses the arbitration.
+         </p>
+         <p>
+          Arbitration will continue until there is only one master.
+         </p>
+         <blockquote>
+          <div>
+           <p>
+            Note that arbitration is not allowed between:
+           </p>
+           <ul class="simple">
+            <li>
+             <p>
+              A REPEATED START condition and a data bit.
+             </p>
+            </li>
+            <li>
+             <p>
+              A STOP condition and a data bit.
+             </p>
+            </li>
+            <li>
+             <p>
+              A REPEATED START and a STOP condition.
+             </p>
+            </li>
+           </ul>
+          </div>
+         </blockquote>
+         <div class="figure align-default" id="id9">
+          <img alt="../_images/i2c_arbitration.jpg" src="../_images/i2c_arbitration.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 9
+           </span>
+           <span class="caption-text">
+            Arbitration, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+           </span>
+           <a class="headerlink" href="#id9" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+        </div>
+       </div>
+       <div class="section" id="atmega328p-arduino-nano-i2c-module">
+        <h2>
+         ATmega328P (Arduino Nano) I²C module
+         <a class="headerlink" href="#atmega328p-arduino-nano-i2c-module" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <div class="figure align-default" id="id10">
+         <img alt="../_images/i2c_ATmega328P_i2c_module.jpg" src="../_images/i2c_ATmega328P_i2c_module.jpg"/>
+         <p class="caption">
+          <span class="caption-number">
+           Figure 10
+          </span>
+          <span class="caption-text">
+           ATmega328P I²C Module, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+          </span>
+          <a class="headerlink" href="#id10" title="Permalink to this image">
+           ¶
+          </a>
+         </p>
+        </div>
+        <p>
+         The above shows that the ATmega328P I²C Module contains a START/STOP control unit, an Arbitration detection unit, an
+Address Match unit, a Bit Rate Generator and an ACK unit. Therefore, we could “program towards registers”.
+        </p>
+        <p>
+         When an ATmega328P serves as a master, the SCL clock frequency can be computed by:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-write-your-own-i2c-library-0">
+         <span class="eqno">
+          (1)
+          <a class="headerlink" href="#equation-blog-write-your-own-i2c-library-0" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[f = \frac{CPU Clock frequency}{16+2(TWBR)(PrescalerValue)}\]
+        </div>
+        <p>
+         Where
+        </p>
+        <ul class="simple">
+         <li>
+          <p>
+           TWBR = the value of the TWBR register (TWI Bit Rate Register)
+          </p>
+         </li>
+         <li>
+          <p>
+           PrescalerValue = the TWPS1 and TWPS0 bits in the TWSR register (TWI Status Register)
+          </p>
+         </li>
+         <li>
+          <p>
+           CPU Clock frequency = 16 MHz for ATmega328P
+          </p>
+         </li>
+        </ul>
+        <p>
+         When the I²C Module is working, it continuously detects the bus to see whether it loses the arbitration. The status is
+stored in the bit 7 to bit 3 of TWSR register.
+        </p>
+        <p>
+         The I²C Module is based on interrupt, after finishing one operation, the TWSR register will record the current status
 and the TWINT bit in the TWCR register (TWI Control Register) will be set to 0 automatically. If the TWIE bit in the
 TWCR and the I bit in the SREG register are set to 1, the I²C Module will issue an interrupt request. By the way, we
-could know whether an operation is finished by checking the value of the TWINT bit.</p>
-<blockquote>
-<div><p>The TWINT Flag is set in the following situations:</p>
-<ul class="simple">
-<li><p>After the TWI has transmitted a START/REPEATED START condition.</p></li>
-<li><p>After the TWI has transmitted SLA+R/W.</p></li>
-<li><p>After the TWI has transmitted an address byte.</p></li>
-<li><p>After the TWI has lost arbitration.</p></li>
-<li><p>After the TWI has been addressed by own slave address or general call.</p></li>
-<li><p>After the TWI has received a data byte.</p></li>
-<li><p>After a STOP or REPEATED START has been received while still addressed as a Slave.</p></li>
-<li><p>When a bus error has occurred due to an illegal START or STOP condition.</p></li>
-</ul>
-</div></blockquote>
-<div class="section" id="initialize-the-i2c-module">
-<h3>Initialize the I²C module<a class="headerlink" href="#initialize-the-i2c-module" title="Permalink to this headline">¶</a></h3>
-<p>If we don’t want to use an external pull-up resistor, we could turn on the internal pull-up resistor:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDA</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
+could know whether an operation is finished by checking the value of the TWINT bit.
+        </p>
+        <blockquote>
+         <div>
+          <p>
+           The TWINT Flag is set in the following situations:
+          </p>
+          <ul class="simple">
+           <li>
+            <p>
+             After the TWI has transmitted a START/REPEATED START condition.
+            </p>
+           </li>
+           <li>
+            <p>
+             After the TWI has transmitted SLA+R/W.
+            </p>
+           </li>
+           <li>
+            <p>
+             After the TWI has transmitted an address byte.
+            </p>
+           </li>
+           <li>
+            <p>
+             After the TWI has lost arbitration.
+            </p>
+           </li>
+           <li>
+            <p>
+             After the TWI has been addressed by own slave address or general call.
+            </p>
+           </li>
+           <li>
+            <p>
+             After the TWI has received a data byte.
+            </p>
+           </li>
+           <li>
+            <p>
+             After a STOP or REPEATED START has been received while still addressed as a Slave.
+            </p>
+           </li>
+           <li>
+            <p>
+             When a bus error has occurred due to an illegal START or STOP condition.
+            </p>
+           </li>
+          </ul>
+         </div>
+        </blockquote>
+        <div class="section" id="initialize-the-i2c-module">
+         <h3>
+          Initialize the I²C module
+          <a class="headerlink" href="#initialize-the-i2c-module" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          If we don’t want to use an external pull-up resistor, we could turn on the internal pull-up resistor:
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDA</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
 <span class="n">pinMode</span><span class="p">(</span><span class="n">SCL</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Based on the SCL clock and PrescalerValue, the TWBR can be computed by:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TWBR</span> <span class="o">=</span> <span class="p">(</span><span class="n">CPU_freq</span><span class="o">/</span><span class="n">I2C_freq</span><span class="o">/</span><span class="mi">1000-16</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>If we want it work as a slave, the address has to be assigned and stored in the TWAR register:</p>
-<div class="figure align-default" id="id11">
-<img alt="../_images/i2c_TWAR_register.jpg" src="../_images/i2c_TWAR_register.jpg" />
-<p class="caption"><span class="caption-text">TWAR register, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
-</div>
-<p>The bit 7 to bit 1 is for the address. The device will respond to a general call if the bit 0 is set. Because the
+</pre>
+          </div>
+         </div>
+         <p>
+          Based on the SCL clock and PrescalerValue, the TWBR can be computed by:
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="n">TWBR</span> <span class="o">=</span> <span class="p">(</span><span class="n">CPU_freq</span><span class="o">/</span><span class="n">I2C_freq</span><span class="o">/</span><span class="mi">1000-16</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          If we want it work as a slave, the address has to be assigned and stored in the TWAR register:
+         </p>
+         <div class="figure align-default" id="id11">
+          <img alt="../_images/i2c_TWAR_register.jpg" src="../_images/i2c_TWAR_register.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 11
+           </span>
+           <span class="caption-text">
+            TWAR register, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+           </span>
+           <a class="headerlink" href="#id11" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          The bit 7 to bit 1 is for the address. The device will respond to a general call if the bit 0 is set. Because the
 address is 7-bit long and a byte is 8-bit long, we could use the bit 6 to bit 0 of a byte to represent the address and
-shift left by 1 bit. For example, the address is 1101000, we could use #define ADDRESS 0x68（0x86 = 01101000）:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define RESPOND_GC 0x00</span>
+shift left by 1 bit. For example, the address is 1101000, we could use #define ADDRESS 0x68（0x86 = 01101000）:
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define RESPOND_GC 0x00</span>
 <span class="cp">#define NOT_RESPOND_GC 0x01</span>
 
 <span class="k">if</span><span class="p">(</span><span class="n">generalCall</span><span class="p">)</span>
     <span class="n">TWAR</span> <span class="o">=</span> <span class="p">(</span><span class="n">selfAddress</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">RESPOND_GC</span><span class="p">;</span>
 <span class="k">else</span>
     <span class="n">TWAR</span> <span class="o">=</span> <span class="p">(</span><span class="n">selfAddress</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">NOT_RESPOND_GC</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>As a slave, the I²C module has to be enabled to monitor the I²C bus by setting TWEA and TWEN bit in the TWCR register
+</pre>
+          </div>
+         </div>
+         <p>
+          As a slave, the I²C module has to be enabled to monitor the I²C bus by setting TWEA and TWEN bit in the TWCR register
 to 1. The I²C module will generate an ACK signal when needed if the TWEA bit is 1. The TWEN bit is used to enable the
-I²C module. We could set TWIE bit in the TWCR register to 1 to enable the interrupt:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define _BV(bit) (1 &lt;&lt; (bit))</span>
+I²C module. We could set TWIE bit in the TWCR register to 1 to enable the interrupt:
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define _BV(bit) (1 &lt;&lt; (bit))</span>
 
 <span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="n">_BV</span><span class="p">(</span><span class="n">TWIE</span><span class="p">);</span>
 <span class="n">sei</span><span class="p">();</span>  <span class="c1">//enable the global interrupt</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="transmit-the-start-signal">
-<h3>Transmit the START signal<a class="headerlink" href="#transmit-the-start-signal" title="Permalink to this headline">¶</a></h3>
-<p>AS mentioned above, the I²C module contains the START and STOP control unit, which could be accessed from TWCR register:</p>
-<div class="figure align-default" id="id12">
-<img alt="../_images/i2c_TWCR_register.jpg" src="../_images/i2c_TWCR_register.jpg" />
-<p class="caption"><span class="caption-text">TWCR register, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
-</div>
-<p>When we write 1 to TWSTA bit, the I²C module will check whether the bus is idle, and transmits a START signal if it’s
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="transmit-the-start-signal">
+         <h3>
+          Transmit the START signal
+          <a class="headerlink" href="#transmit-the-start-signal" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          AS mentioned above, the I²C module contains the START and STOP control unit, which could be accessed from TWCR register:
+         </p>
+         <div class="figure align-default" id="id12">
+          <img alt="../_images/i2c_TWCR_register.jpg" src="../_images/i2c_TWCR_register.jpg"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 12
+           </span>
+           <span class="caption-text">
+            TWCR register, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+           </span>
+           <a class="headerlink" href="#id12" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          When we write 1 to TWSTA bit, the I²C module will check whether the bus is idle, and transmits a START signal if it’s
 idle, otherwise, it goes to waiting mode unless a STOP signal is monitored. We need to write 0 to TWSTA bit if we don’t
-want to generate the ACK signal.</p>
-<p>After this, the I²C module is enabled when 1 is written to TWEN bit and takes control of the SDA and SCL pin. If 0 is
-written to this bit, the I²C module is switched off immediately, discarding any ongoing operation.</p>
-<p>To let the I²C module start transmitting, the I²C interrupt flag has to be cleaned by writing 1 to TWINT bit. The TWINT
+want to generate the ACK signal.
+         </p>
+         <p>
+          After this, the I²C module is enabled when 1 is written to TWEN bit and takes control of the SDA and SCL pin. If 0 is
+written to this bit, the I²C module is switched off immediately, discarding any ongoing operation.
+         </p>
+         <p>
+          To let the I²C module start transmitting, the I²C interrupt flag has to be cleaned by writing 1 to TWINT bit. The TWINT
 bit is set automatically if an operation is complete by hardware, which means we could pull the value of TWINT bit to
-know whether an operation is complete: <code class="docutils literal notranslate"><span class="pre">while(!(TWCR</span> <span class="pre">&amp;</span> <span class="pre">(_BV(TWINT))))</span></code>;.</p>
-<p>After an operation, we has to read the status stored in the TWSR register to know whether an operation is successful.
-The status code could be found in Table 22-2, Table 22-3, Table 22-4 and Table 22-5 of <em>ATMEL 8-BIT MICROCONTROLLER
-WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</em>.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define STATUS_CODE_MASK 0xF8</span>
+know whether an operation is complete:
+          <code class="docutils literal notranslate">
+           <span class="pre">
+            while(!(TWCR
+           </span>
+           <span class="pre">
+            &amp;
+           </span>
+           <span class="pre">
+            (_BV(TWINT))))
+           </span>
+          </code>
+          ;.
+         </p>
+         <p>
+          After an operation, we has to read the status stored in the TWSR register to know whether an operation is successful.
+The status code could be found in Table 22-2, Table 22-3, Table 22-4 and Table 22-5 of
+          <em>
+           ATMEL 8-BIT MICROCONTROLLER
+WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
+          </em>
+          .
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define STATUS_CODE_MASK 0xF8</span>
 <span class="cp">#define START 0x08</span>
 
 <span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTA</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span>
@@ -587,23 +996,43 @@ WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET</em>.</p>
 <span class="k">if</span><span class="p">((</span><span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="n">START</span><span class="p">){</span>
     <span class="c1">//code to do some operations when the transmission is unsuccessful</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="transmit-a-stop-signal">
-<h3>Transmit a STOP signal<a class="headerlink" href="#transmit-a-stop-signal" title="Permalink to this headline">¶</a></h3>
-<p>The code to generate a STOP signal is simple:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="o">|</span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">));</span>
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="transmit-a-stop-signal">
+         <h3>
+          Transmit a STOP signal
+          <a class="headerlink" href="#transmit-a-stop-signal" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The code to generate a STOP signal is simple:
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="o">|</span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">));</span>
 <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">))));</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="transmit-the-address-and-write-read-bit-or-data">
-<h3>Transmit the address and WRITE/READ bit or data<a class="headerlink" href="#transmit-the-address-and-write-read-bit-or-data" title="Permalink to this headline">¶</a></h3>
-<p>The data is stored in TWDR register. We can only write to TWDR register when the TWINT bit is 1. And we don’t have
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="transmit-the-address-and-write-read-bit-or-data">
+         <h3>
+          Transmit the address and WRITE/READ bit or data
+          <a class="headerlink" href="#transmit-the-address-and-write-read-bit-or-data" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The data is stored in TWDR register. We can only write to TWDR register when the TWINT bit is 1. And we don’t have
 access to the TWDR register before the first interrupt flag. When the data is ready, the TWINT and TWEN bit should be
-written to 1 to start transmitting.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MT_SLA_W_ACK 0x18</span>
+written to 1 to start transmitting.
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define MT_SLA_W_ACK 0x18</span>
 <span class="cp">#define WRITE 0x00</span>
 <span class="cp">#define READ 0x01</span>
 
@@ -613,18 +1042,34 @@ written to 1 to start transmitting.</p>
 <span class="k">if</span><span class="p">((</span><span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="n">MT_SLA_W_ACK</span><span class="p">){</span>
     <span class="c1">//code to do some operations when the transmission is unsuccessful</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="request-messages-from-a-slave">
-<h3>Request messages from a slave<a class="headerlink" href="#request-messages-from-a-slave" title="Permalink to this headline">¶</a></h3>
-<p>As mentioned above, the I²C module has three transmitter modes: Master receiver mode, Master transmitter mode and
+</pre>
+          </div>
+         </div>
+        </div>
+        <div class="section" id="request-messages-from-a-slave">
+         <h3>
+          Request messages from a slave
+          <a class="headerlink" href="#request-messages-from-a-slave" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          As mentioned above, the I²C module has three transmitter modes: Master receiver mode, Master transmitter mode and
 Combined transmission mode. The Combined transmission mode is a combination of Master transmitter mode and Master
-receiver mode, here we focus on the burst read sequence in the Master receiver mode.</p>
-<p>The master sends a START signal to start the transmission followed by the salve address and a READ bit. We could use a
-for loop to read the bytes, but a <strong>NACK</strong> is issued by the master after reading the last byte. The TWEA bit is written
-to 1 to issue an ACK signal, otherwise a NACK signal is issued.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define RX_BUFFER_SIZE 32</span>
+receiver mode, here we focus on the burst read sequence in the Master receiver mode.
+         </p>
+         <p>
+          The master sends a START signal to start the transmission followed by the salve address and a READ bit. We could use a
+for loop to read the bytes, but a
+          <strong>
+           NACK
+          </strong>
+          is issued by the master after reading the last byte. The TWEA bit is written
+to 1 to issue an ACK signal, otherwise a NACK signal is issued.
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define RX_BUFFER_SIZE 32</span>
 <span class="cp">#define MR_DATA_ACK 0x50</span>
 <span class="cp">#define MR_DATA_NACK 0x58</span>
 
@@ -655,20 +1100,36 @@ to 1 to issue an ACK signal, otherwise a NACK signal is issued.</p>
 <span class="k">if</span><span class="p">((</span><span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="n">MR_DATA_NACK</span><span class="p">)</span>
     <span class="n">error</span><span class="p">(</span><span class="n">MR_DATA_NACK</span><span class="p">);</span>
 <span class="n">rxBuffer</span><span class="p">[</span><span class="n">num</span><span class="mi">-1</span><span class="p">]</span> <span class="o">=</span> <span class="n">TWDR</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>The master should send a STOP signal after this.</p>
-</div>
-<div class="section" id="receive-messages-from-a-salve">
-<h3>Receive messages from a salve<a class="headerlink" href="#receive-messages-from-a-salve" title="Permalink to this headline">¶</a></h3>
-<p>As a slave, the I²C module is initialized differently and we need to back up the TWCR register: uint8_t backup = TWCR;.
+</pre>
+          </div>
+         </div>
+         <p>
+          The master should send a STOP signal after this.
+         </p>
+        </div>
+        <div class="section" id="receive-messages-from-a-salve">
+         <h3>
+          Receive messages from a salve
+          <a class="headerlink" href="#receive-messages-from-a-salve" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          As a slave, the I²C module is initialized differently and we need to back up the TWCR register: uint8_t backup = TWCR;.
 Then we should check the status of the I²C module to make sure the master is calling the device. If the device is
-addressed, the buffer array is initialized, switch off the interrupt request (<strong>The I²C module will generate an
+addressed, the buffer array is initialized, switch off the interrupt request (
+          <strong>
+           The I²C module will generate an
 interrupt request every time it completes an operation if the interrupt request function isn’t switched off, and the
-chip will store these requests and process them after this interrupt routing</strong>) and turn on the acknowledge generator.
+chip will store these requests and process them after this interrupt routing
+          </strong>
+          ) and turn on the acknowledge generator.
 Usually, we put the following code in the ISR function to allow the device do other tasks while waiting for the request
-from a master.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define SR_AD_RECEIVED 0x60</span>
+from a master.
+         </p>
+         <div class="highlight-c notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="cp">#define SR_AD_RECEIVED 0x60</span>
 <span class="cp">#define GENERAL_CALL 0x70</span>
 <span class="cp">#define SR_PRE_AD_DATA_ACK 0x80</span>
 <span class="cp">#define SR_PRE_GC_DATA_ACK 0x90</span>
@@ -698,60 +1159,55 @@ from a master.</p>
 <span class="p">}</span><span class="k">else</span><span class="p">{</span>
 <span class="c1">//code to do some operations when the transmission is unsuccessful</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-<p>Don’t forget to restore the TECR register: TWCR = backup;.</p>
-</div>
-</div>
-</div>
-
-<div class="section">
-     
-<div class="section">
-  <span style="float: left">
-    
-  </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
-     
-    <a href="how_to_read_data_from_mpu9250.html">
-      How to read data from MPU9250 <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
-    </a>
-    
-  </span>
-</div>
-  
-</div>
-
-              </div>
-              
-              
-          </main>
-          
-
+</pre>
+          </div>
+         </div>
+         <p>
+          Don’t forget to restore the TECR register: TWCR = backup;.
+         </p>
+        </div>
+       </div>
       </div>
-    </div>
-  
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
-<footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <p class="copyright">
-    &copy; Copyright 2022, Earsuit.<br>
-</p>
-    </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.1.<br>
-</p>
-    </div>
-    
+      <div class="section">
+       <div class="section">
+        <span style="float: left">
+        </span>
+        <span>
+        </span>
+        <span style="float: right">
+         <a href="how_to_read_data_from_mpu9250.html">
+          How to read data from MPU9250
+          <i class="fa fa-arrow-circle-right">
+          </i>
+         </a>
+        </span>
+       </div>
+      </div>
+     </div>
+    </main>
+   </div>
   </div>
-</footer>
-  </body>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  </script>
+  <footer class="footer mt-5 mt-md-0">
+   <div class="container">
+    <div class="footer-item">
+     <p class="copyright">
+      © Copyright 2022, Earsuit.
+      <br/>
+     </p>
+    </div>
+    <div class="footer-item">
+     <p class="sphinx-version">
+      Created using
+      <a href="http://sphinx-doc.org/">
+       Sphinx
+      </a>
+      4.1.1.
+      <br/>
+     </p>
+    </div>
+   </div>
+  </footer>
+ </body>
 </html>

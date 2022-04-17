@@ -189,7 +189,7 @@ ATmega328P (Arduino Nano) I²C module
 
   ATmega328P I²C Module, taken from ATMEL 8-BIT MICROCONTROLLER WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
 
-Figure 9 shows that the ATmega328P I²C Module contains a START/STOP control unit, an Arbitration detection unit, an 
+The above shows that the ATmega328P I²C Module contains a START/STOP control unit, an Arbitration detection unit, an 
 Address Match unit, a Bit Rate Generator and an ACK unit. Therefore, we could "program towards registers".
 
 When an ATmega328P serves as a master, the SCL clock frequency can be computed by:
