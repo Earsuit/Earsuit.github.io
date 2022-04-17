@@ -304,8 +304,8 @@ Firstly, take a look at the first part :math:`(\boldsymbol{\Psi}_{N+1}^T\boldsym
 
 	\begin{equation}\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1} = \sum_{k=0}^{N+1}\boldsymbol{r}_k^T\boldsymbol{r}_k = \sum_{k=0}^{N} \boldsymbol{r}_k^T\boldsymbol{r}_k + \boldsymbol{r}_{N+1}^T\boldsymbol{r}_{N+1} = \boldsymbol{\Psi}_N^T\boldsymbol{\Psi}_N + \boldsymbol{r}_{N+1}^T\boldsymbol{r}_{N+1} \label{eq:first_part}\end{equation}
 
-Then, let's define :math:`\boldsymbol{P}_{N+1} = (\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}`, the  
-:ref:`equation <eq:first_part>` can be written as
+Then, let's define :math:`\boldsymbol{P}_{N+1} = (\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}`, the equation
+:math:numref:`eq:first_part` can be written as
 
 .. math::
 
