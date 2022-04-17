@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Kalman Filter for orientation estimation with MPU9250 — XIANYU  documentation
+  </title>
+  <link href="../_static/css/theme.css" rel="stylesheet"/>
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet"/>
+  <link href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+  <link href="../_static/pygments.css" rel="stylesheet" type="text/css">
+   <link href="../_static/css/blank.css" rel="stylesheet" type="text/css">
+    <link href="../_static/custom.css" rel="stylesheet" type="text/css">
+     <link href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" rel="stylesheet" type="text/css">
+      <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+       <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css"/>
+       <link as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js" rel="preload"/>
+       <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
+       </script>
+       <script src="../_static/jquery.js">
+       </script>
+       <script src="../_static/underscore.js">
+       </script>
+       <script src="../_static/doctools.js">
+       </script>
+       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <link href="../genindex.html" rel="index" title="Index">
+        <link href="../search.html" rel="search" title="Search"/>
+        <link href="how_to_calibriate_a_magnetometer_and_accelerometer.html" rel="next" title="How to calibrate a magnetometer &amp; accelerometer (MPU9250)"/>
+        <link href="../blogs.html" rel="prev" title="Blogs"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="None" name="docsearch:language"/>
+        <!-- Google Analytics -->
+        <style type="text/css">
+         ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+        </style>
+       </link>
+      </link>
+     </link>
+    </link>
+   </link>
+  </link>
+ </head>
+ <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+  <div class="container-fluid" id="banner">
+  </div>
+  <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+    <div id="navbar-start">
+     <a class="navbar-brand" href="../index.html">
+      <p class="title">
+       XIANYU
+      </p>
+     </a>
+    </div>
+    <button aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar-collapsible" data-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    <div class="col-lg-9 collapse navbar-collapse" id="navbar-collapsible">
+     <div class="mr-auto" id="navbar-center">
+      <div class="navbar-center-item">
+       <ul class="navbar-nav" id="navbar-main-elements">
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../index.html">
+          Recent Posts
+         </a>
+        </li>
+        <li class="toctree-l1 current active nav-item">
+         <a class="reference internal nav-link" href="../blogs.html">
+          Blogs
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div id="navbar-end">
+      <div class="navbar-end-item">
+       <ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+        <li class="nav-item">
+         <a class="nav-link" href="https://github.com/Earsuit/" rel="noopener" target="_blank" title="GitHub">
+          <span>
+           <i class="fab fa-github-square">
+           </i>
+          </span>
+          <label class="sr-only">
+           GitHub
+          </label>
+         </a>
+        </li>
+       </ul>
+      </div>
+      <div class="navbar-end-item">
+       <form action="../search.html" class="bd-search d-flex align-items-center" method="get">
+        <i class="icon fas fa-search">
+        </i>
+        <input aria-label="Search for treasure..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search for treasure..." type="search"/>
+       </form>
+      </div>
+     </div>
+    </div>
+   </div>
+  </nav>
+  <div class="container-xl">
+   <div class="row">
+    <!-- Only show if we have sidebars configured, else just a small margin  -->
+    <div class="col-12 col-md-3 bd-sidebar">
+     <h2>
+      <i class="fa fa-calendar">
+      </i>
+      07 March 2020
+     </h2>
+     <ul>
+      <li id="author">
+       <span>
+        <i class="fa-fw fa fa-user">
+        </i>
+       </span>
+       <a href="author/earsuit.html">
+        Earsuit
+       </a>
+      </li>
+      <li id="category">
+       <span>
+        <i class="fa-fw fa fa-folder-open">
+        </i>
+       </span>
+       <a href="category/microcontroller.html">
+        Microcontroller
+       </a>
+      </li>
+      <li id="tags">
+       <span>
+        <i class="fa-fw fa fa-tags">
+        </i>
+       </span>
+       <a href="tag/microcontroller.html">
+        Microcontroller
+       </a>
+       <a href="tag/mpu9250.html">
+        MPU9250
+       </a>
+      </li>
+     </ul>
+     <h3>
+      <a href="archive.html">
+       Archives
+      </a>
+     </h3>
+     <ul>
+      <li>
+       <a href="2020.html">
+        2020 (1)
+       </a>
+      </li>
+      <li>
+       <a href="2019.html">
+        2019 (1)
+       </a>
+      </li>
+      <li>
+       <a href="2018.html">
+        2018 (2)
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="d-none d-xl-block col-xl-2 bd-toc">
+     <div class="toc-item">
+      <div class="tocsection onthispage pt-5 pb-3">
+       <i class="fas fa-list">
+       </i>
+       On this page
+      </div>
+      <nav id="bd-toc-nav">
+       <ul class="visible nav section-nav flex-column">
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#a-brief-intro-to-discrete-kalman-filter">
+          A brief intro to discrete Kalman Filter
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#kalman-filter">
+            Kalman Filter
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#extended-kalman-filter">
+            Extended Kalman Filter
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#a-brief-intro-to-quaternion">
+          A brief intro to quaternion
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#system-modeling">
+          System modeling
+         </a>
+        </li>
+        <li class="toc-h2 nav-item toc-entry">
+         <a class="reference internal nav-link" href="#filtering">
+          Filtering
+         </a>
+         <ul class="nav section-nav flex-column">
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#step-1">
+            Step 1
+           </a>
+          </li>
+          <li class="toc-h3 nav-item toc-entry">
+           <a class="reference internal nav-link" href="#step-2">
+            Step 2
+           </a>
+           <ul class="nav section-nav flex-column">
+            <li class="toc-h4 nav-item toc-entry">
+             <a class="reference internal nav-link" href="#stage-1">
+              Stage 1
+             </a>
+            </li>
+            <li class="toc-h4 nav-item toc-entry">
+             <a class="reference internal nav-link" href="#stage-2">
+              Stage 2
+             </a>
+            </li>
+           </ul>
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </nav>
+     </div>
+     <div class="toc-item">
+     </div>
+    </div>
+    <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+     <div>
+      <div class="section" id="kalman-filter-for-orientation-estimation-with-mpu9250">
+       <h1>
+        Kalman Filter for orientation estimation with MPU9250
+        <a class="headerlink" href="#kalman-filter-for-orientation-estimation-with-mpu9250" title="Permalink to this headline">
+         ¶
+        </a>
+       </h1>
+       <p>
+        Kalman Filter was proposed by Rudolph E.Kalman in 1960, it is the optimal estimator (linear systems) for a
+large class of problems. It produces estimates of unknown variables given a sequence of previous
+measurements, even if these measurements contain noise.
+       </p>
+       <div class="section" id="a-brief-intro-to-discrete-kalman-filter">
+        <h2>
+         A brief intro to discrete Kalman Filter
+         <a class="headerlink" href="#a-brief-intro-to-discrete-kalman-filter" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <div class="section" id="kalman-filter">
+         <h3>
+          Kalman Filter
+          <a class="headerlink" href="#kalman-filter" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          Consider the following linear system and observation model with known initial optimal estimate
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{x}_0^a\)
+          </span>
+          and error covariance
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{P}_0 = E[(\boldsymbol{x}_0 - \boldsymbol{x}_0^a)(\boldsymbol{x}_0 - \boldsymbol{x}_0^a)^T]\)
+          </span>
+          :
+         </p>
+         <div class="math notranslate nohighlight" id="equation-eq-con-state-kf">
+          <span class="eqno">
+           (1)
+           <a class="headerlink" href="#equation-eq-con-state-kf" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{x}_k = \boldsymbol{A}\boldsymbol{x}_{k-1}+\boldsymbol{B}\boldsymbol{u}_{k-1}+\boldsymbol{w} \label{eqn:con_state_kf}\end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-0">
+          <span class="eqno">
+           (2)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-0" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{z}_k = \boldsymbol{H}\boldsymbol{x}_{k}+\boldsymbol{v} \end{equation}\]
+         </div>
+         <p>
+          Where the input
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{u}\)
+          </span>
+          is a know nonrandom vector. We assume that
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{w}\)
+          </span>
+          captures the uncertainties in the system model and
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{v}\)
+          </span>
+          denotes the measurement noise.
+The
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{w}\)
+          </span>
+          and
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{v}\)
+          </span>
+          are white noise with known covariances and are both
+uncorrelated with the initial state
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{x}_0\)
+          </span>
+          .
+         </p>
+         <p>
+          Let’s define
+          <span class="math notranslate nohighlight">
+           \(E[\boldsymbol{w}\boldsymbol{w}^T] = \boldsymbol{Q},\ E[\boldsymbol{v}\boldsymbol{v}^T] = \boldsymbol{R}\)
+          </span>
+          .
+         </p>
+         <p>
+          The Kalman filter has two steps, first is to obtain “a priori” state through the system model, then correct
+that state with the measurement:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            Step 1:
+           </p>
+          </li>
+         </ul>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-1">
+          <span class="eqno">
+           (3)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-1" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{x}_k^f = \boldsymbol{A}\boldsymbol{x}_{k-1}^a + \boldsymbol{B}_{k-1}\boldsymbol{u}_{k-1}\end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-2">
+          <span class="eqno">
+           (4)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-2" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{P}_k^f = \boldsymbol{A}\boldsymbol{P}_{k-1}\boldsymbol{A}_{k-1}^T + \boldsymbol{Q} \end{equation}\]
+         </div>
+         <ul class="simple">
+          <li>
+           <p>
+            Step 2:
+           </p>
+          </li>
+         </ul>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-3">
+          <span class="eqno">
+           (5)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-3" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{x}_k^a = \boldsymbol{x}_{k}^f + \boldsymbol{K}_{k}(\boldsymbol{z}_k-\boldsymbol{H}\boldsymbol{x}_k^f)\end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-eq-kalman-gain">
+          <span class="eqno">
+           (6)
+           <a class="headerlink" href="#equation-eq-kalman-gain" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{K}_k = \boldsymbol{P}_k^f\boldsymbol{H}^T(\boldsymbol{H}\boldsymbol{P}_k^f\boldsymbol{H}^T + \boldsymbol{R})^{-1} \end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-4">
+          <span class="eqno">
+           (7)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-4" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{P}_k = (\boldsymbol{I} - \boldsymbol{K}_k\boldsymbol{H})\boldsymbol{P}_k^f \end{equation}\]
+         </div>
+        </div>
+        <div class="section" id="extended-kalman-filter">
+         <h3>
+          Extended Kalman Filter
+          <a class="headerlink" href="#extended-kalman-filter" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          The original Kalman Filter can only deal with linear systems, but most systems in reality are nonlinear.
+Luckily, we can extend it to the nonlinear world with Taylor Series expansions.
+         </p>
+         <p>
+          Assume we have the following nonlinear system:
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-5">
+          <span class="eqno">
+           (8)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-5" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{x}_k = \boldsymbol{f}(\boldsymbol{x}_{k-1}) + \boldsymbol{w} \end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-6">
+          <span class="eqno">
+           (9)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-6" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{z}_k = \boldsymbol{h}(\boldsymbol{x}_k) + \boldsymbol{v}\end{equation}\]
+         </div>
+         <p>
+          Where
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{f(.)}\)
+          </span>
+          and
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{h(.)}\)
+          </span>
+          are the nonlinear process function and
+nonlinear observation function respectively.
+         </p>
+         <p>
+          The initial state
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{x}_0^a\)
+          </span>
+          and covariance
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{P}_0\)
+          </span>
+          are known, and we have
+          <span class="math notranslate nohighlight">
+           \(E[\boldsymbol{w}\boldsymbol{w}^T] = \boldsymbol{Q}\), \(E[\boldsymbol{v}\boldsymbol{v}^T] = \boldsymbol{R}\)
+          </span>
+          .
+         </p>
+         <p>
+          The Extended Kalman Filter also has two steps:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            Step 1:
+           </p>
+          </li>
+         </ul>
+         <div class="math notranslate nohighlight" id="equation-eq-step1-1">
+          <span class="eqno">
+           (10)
+           <a class="headerlink" href="#equation-eq-step1-1" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{x}_k^f \approx \boldsymbol{f}(\boldsymbol{x}_{k-1}^a) \label{eqn:step1}\end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-eq-step1-2">
+          <span class="eqno">
+           (11)
+           <a class="headerlink" href="#equation-eq-step1-2" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{P}_k^f = \boldsymbol{J_f}(\boldsymbol{x}_{k-1}^a)\boldsymbol{P}_{k-1}\boldsymbol{J_f}^T(\boldsymbol{x}_{k-1}^a)+ \boldsymbol{Q} \label{eqn:step2}\end{equation}\]
+         </div>
+         <ul class="simple">
+          <li>
+           <p>
+            Step 2:
+           </p>
+          </li>
+         </ul>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-7">
+          <span class="eqno">
+           (12)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-7" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{x}_k^a \approx \boldsymbol{x}_k^f + \boldsymbol{K}_k\left(\boldsymbol{z}_k - \boldsymbol{h}(\boldsymbol{x}_k^f)\right) \end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-8">
+          <span class="eqno">
+           (13)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-8" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{K}_k = \boldsymbol{P}_k^f\boldsymbol{J_h}^T(\boldsymbol{x}_k^f) \left(\boldsymbol{J_h}(\boldsymbol{x}_k^f)\boldsymbol{P}_k^f\boldsymbol{J_h}^T(\boldsymbol{x}_k^f) + \boldsymbol{R}\right ) ^{-1} \label{eqn:kalman_gain}\end{equation}\]
+         </div>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-9">
+          <span class="eqno">
+           (14)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-9" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{P}_k = \left(\boldsymbol{I} - \boldsymbol{K}_k\boldsymbol{J_h}(\boldsymbol{x}_k^f)\right) \boldsymbol{P}_k^f\end{equation}\]
+         </div>
+         <p>
+          Where
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-10">
+          <span class="eqno">
+           (15)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-10" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{split}\boldsymbol{J_f}(\boldsymbol{x}) = \begin{bmatrix} \frac{\partial{f}_1}{\partial{x}_1} &amp; \frac{\partial{f}_1}{\partial{x}_2} &amp; \dots &amp; \frac{\partial{f}_1}{\partial{x}_n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \frac{\partial{f}_n}{\partial{x}_1} &amp; \frac{\partial{f}_n}{\partial{x}_2} &amp; \dots &amp; \frac{\partial{f}_n}{\partial{x}_n}\end{bmatrix} \
+\boldsymbol{J_h}(\boldsymbol{x}) = \begin{bmatrix} \frac{\partial{h}_1}{\partial{x}_1} &amp; \frac{\partial{h}_1}{\partial{x}_2} &amp; \dots &amp; \frac{\partial{h}_1}{\partial{x}_n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \frac{\partial{h}_n}{\partial{x}_1} &amp; \frac{\partial{h}_n}{\partial{x}_2} &amp; \dots &amp; \frac{\partial{h}_n}{\partial{x}_n}\end{bmatrix}\end{split}\]
+         </div>
+         <p>
+          With these equations, we can apply it on nonlinear systems. However, there ain’t no such thing as a free
+lunch. The extended Kalman filter is not an optimal estimator (it may reach a locally optimal), and it may
+diverge quickly if the initial state or the process model is incerrect.
+         </p>
+        </div>
+       </div>
+       <div class="section" id="a-brief-intro-to-quaternion">
+        <h2>
+         A brief intro to quaternion
+         <a class="headerlink" href="#a-brief-intro-to-quaternion" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         Here we will use quaternions to represent angular position instead of Euler angles as quaternion will not
+cause gimbal lock.
+        </p>
+        <p>
+         Let quaternion
+         <span class="math notranslate nohighlight">
+          \(q\)
+         </span>
+         represent an angular position:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-eq-quaternion">
+         <span class="eqno">
+          (16)
+          <a class="headerlink" href="#equation-eq-quaternion" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol{q} = \begin{bmatrix} q_0 &amp; q_1 &amp; q_2 &amp; q_3 \end{bmatrix}^T = q_0 + q_1\boldsymbol{i} + q_2\boldsymbol{j} + q_3\boldsymbol{k} \label{eqn:quaternion} \end{equation}\]
+        </div>
+        <p>
+         where
+         <span class="math notranslate nohighlight">
+          \(\hat{\boldsymbol{i}},\hat{\boldsymbol{j}},\hat{\boldsymbol{k}}\)
+         </span>
+         satisify
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-11">
+         <span class="eqno">
+          (17)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-11" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation*}\begin{aligned}\hat{\boldsymbol{i}}^2 &amp; = \hat{\boldsymbol{j}}^2 = \hat{\boldsymbol{k}}^2 = \hat{\boldsymbol{i}}\hat{\boldsymbol{j}}\hat{\boldsymbol{k}} = -1 \\
+\hat{\boldsymbol{i}}\hat{\boldsymbol{j}} &amp; = \hat{\boldsymbol{k}} = -\hat{\boldsymbol{j}}\hat{\boldsymbol{i}}\\
+\hat{\boldsymbol{j}}\hat{\boldsymbol{k}} &amp; = \hat{\boldsymbol{i}} = -\hat{\boldsymbol{k}}\hat{\boldsymbol{j}}\\
+\hat{\boldsymbol{k}}\hat{\boldsymbol{i}} &amp; = \hat{\boldsymbol{j}} = -\hat{\boldsymbol{i}}\hat{\boldsymbol{k}}\end{aligned}\end{equation*}\end{split}\]
+        </div>
+        <p>
+         The addition of quaternions is component-wise, but this is not the case for multiplication. The product of
+two quaternion is given by:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-12">
+         <span class="eqno">
+          (18)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-12" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation*} \begin{aligned} \boldsymbol{q}_1\boldsymbol{q}_2 &amp; = (a+b\hat{\boldsymbol{i}}+c\hat{\boldsymbol{j}} + d\hat{\boldsymbol{k}})(e+f\hat{\boldsymbol{i}}+g\hat{\boldsymbol{j}} + h\hat{\boldsymbol{k}})\\
+&amp; = (ae-bf-cg-df) + \\
+&amp; (be+af-dg+ch)\hat{\boldsymbol{i}} + \\
+&amp; (ce+df+ag-bh)\hat{\boldsymbol{j}} + \\
+&amp; (de-cf+bg+ah))\hat{\boldsymbol{k}}
+\end{aligned}\end{equation*}\end{split}\]
+        </div>
+        <p>
+         This looks a bit messy, luckily, here is a more elegant way to represent quaternion multiplication which is
+called
+         <em>
+          Graßmann Product
+         </em>
+         if let
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{u} = \begin{bmatrix}b\\c\\d \end{bmatrix}, \boldsymbol{v} = \begin{bmatrix}f\\g\\h \end{bmatrix}\)
+         </span>
+         :
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-13">
+         <span class="eqno">
+          (19)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-13" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol{q}_1\boldsymbol{q}_2 \end{equation} = [ae - \boldsymbol{u}\cdot\boldsymbol{v},a\boldsymbol{v} + e\boldsymbol{u} + \boldsymbol{u}\times\boldsymbol{v}]\]
+        </div>
+        <p>
+         We can also express the multiplication in matrix form:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-14">
+         <span class="eqno">
+          (20)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-14" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation} \boldsymbol{q}_1\boldsymbol{q}_2 = \begin{bmatrix}a &amp;-b&amp;-c&amp;-d\\b &amp; a &amp; -d &amp; c\\c &amp;d &amp; a&amp; -b \\d &amp; -c&amp; b &amp; a\end{bmatrix}\begin{bmatrix}e\\f\\g\\h \end{bmatrix} \end{equation}\end{split}\]
+        </div>
+        <p>
+         Equation
+         <a class="reference internal" href="#equation-eq-quaternion">
+          (16)
+         </a>
+         is the general form of a quaternion, we can write it in another form
+which exposes the axis of rotation and angle of rotation:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-15">
+         <span class="eqno">
+          (21)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-15" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\boldsymbol{q} = (cos(\frac{\theta}{2}), sin(\frac{\theta}{2})\boldsymbol{u})\]
+        </div>
+        <p>
+         Where
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{u} = \begin{bmatrix}x&amp;y&amp;z\end{bmatrix}\)
+         </span>
+         is the axis of rotation. One important thing
+is that the quaternion has to be a unit quaternion (
+         <span class="math notranslate nohighlight">
+          \(|q| = \sqrt{q_0^2+q_1^2+q_2^2+q_3^2} = 1\)
+         </span>
+         ) if it
+represents an angle of rotation, otherwise it will stretch the vector to be rotated.
+        </p>
+        <p>
+         The formula for rotating a vector
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{v}\)
+         </span>
+         around axis
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{u}\)
+         </span>
+         through angle
+         <span class="math notranslate nohighlight">
+          \(\theta\)
+         </span>
+         is given by:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-16">
+         <span class="eqno">
+          (22)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-16" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol{v}' = \boldsymbol{q}\boldsymbol{v}\boldsymbol{q}^* \end{equation}\]
+        </div>
+        <p>
+         where
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{q}^* = (cos(\frac{\theta}{2}), -sin(\frac{\theta}{2})\boldsymbol{u})\)
+         </span>
+         is the conjugate pair.
+        </p>
+        <p>
+         Like multiplication, it’s also easy to write quaternion rotation in matrix format:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-17">
+         <span class="eqno">
+          (23)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-17" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\boldsymbol{v}' = \boldsymbol{q}\boldsymbol{v}\boldsymbol{q}^* = \begin{bmatrix}1 - 2c^2-2d^2&amp; 2bc-2ad&amp; 2ac+2bd\\2bc+2ad&amp;1-2b^2-2d^2&amp;2cd-2ab\\2bd-2ac&amp;2ab+2cd&amp;1-2b^2-2c^2\end{bmatrix}\boldsymbol{v}\end{split}\]
+        </div>
+        <p>
+         given
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{q} = [a,b,c,d]\)
+         </span>
+         .
+        </p>
+        <p>
+         Let’s take a look at quaternion differentiation. Assume at time
+         <span class="math notranslate nohighlight">
+          \(t+\Delta t\)
+         </span>
+         , a rotation is described
+by
+         <span class="math notranslate nohighlight">
+          \(q(t+\Delta t)\)
+         </span>
+         , i.e.
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{q}(t) \rightarrow \boldsymbol{q}(t+\Delta t)\)
+         </span>
+         after time
+         <span class="math notranslate nohighlight">
+          \(\Delta t\)
+         </span>
+         . The extra rotation performed during
+         <span class="math notranslate nohighlight">
+          \(\Delta t\)
+         </span>
+         is around an instantaneous axis
+         <span class="math notranslate nohighlight">
+          \(\hat{\boldsymbol{\omega}} = \boldsymbol{\omega}/|\boldsymbol{\omega}|\)
+         </span>
+         through the angle
+         <span class="math notranslate nohighlight">
+          \(\Delta \theta = |\boldsymbol{\omega}|\Delta t\)
+         </span>
+         , where
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\omega}\)
+         </span>
+         is the angular
+velocity.
+        </p>
+        <p>
+         The change of quaternion is given by
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-18">
+         <span class="eqno">
+          (24)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-18" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation*} \begin{aligned} \Delta \boldsymbol{q} &amp; = cos(\frac{\Delta\theta}{2}) + \hat{\boldsymbol{\omega}}sin(\frac{\Delta\theta}{2}) \\
+&amp; = cos(\frac{|\boldsymbol{\omega}|\Delta t}{2}) + \hat{\boldsymbol{\omega}}sin(\frac{|\boldsymbol{\omega}|\Delta t}{2})\end{aligned}\end{equation*}\end{split}\]
+        </div>
+        <p>
+         Then
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{q}(t+\Delta t) = \Delta \boldsymbol{q} \boldsymbol{q}(t)\)
+         </span>
+         . Let’s first write down the difference:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-19">
+         <span class="eqno">
+          (25)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-19" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation*} \begin{aligned} \boldsymbol{q}(t+\Delta t) - \boldsymbol{q}(t) &amp; = \left(cos(\frac{|\boldsymbol{\omega}|\Delta t}{2}) +\hat{\boldsymbol{\omega}}sin(\frac{|\boldsymbol{\omega}|\Delta t}{2})\right)\boldsymbol{q}(t) - \boldsymbol{q}(t) \\
+&amp; = -2sin^2(\frac{|\boldsymbol{\omega}|\Delta t}{4})\boldsymbol{q}(t) + \hat{\boldsymbol{\omega}}sin(\frac{|\boldsymbol{\omega}|\Delta t}{2})\boldsymbol{q}(t)
+\end{aligned}\end{equation*}\end{split}\]
+        </div>
+        <p>
+         With the definition of differentiation, we can have
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-20">
+         <span class="eqno">
+          (26)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-20" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{equation*} \begin{aligned} \dot{\boldsymbol{q}}(t) &amp; = \lim_{\Delta t \rightarrow 0}(\frac{\boldsymbol{q}(t+\Delta t) - \boldsymbol{q}(t)}{\Delta t})\\
+&amp; = \lim_{\Delta t \rightarrow 0}\left(-\frac{2sin^2(\frac{|\boldsymbol{\omega}|\Delta t}{4})\boldsymbol{q}(t)}{\Delta t} + \hat{\boldsymbol{\omega}}\frac{sin(\frac{|\boldsymbol{\omega}|\Delta t}{2})\boldsymbol{q}(t)}{\Delta t} \right) \\
+&amp; = -\lim_{\Delta t \rightarrow 0}\frac{2sin^2(\frac{|\boldsymbol{\omega}|\Delta t}{4})\boldsymbol{q}(t)}{\Delta t} +\lim_{\Delta t \rightarrow 0}\hat{\boldsymbol{\omega}}\frac{sin(\frac{|\boldsymbol{\omega}|\Delta t}{2})\boldsymbol{q}(t)}{\Delta t} \\
+&amp; = -\lim_{\Delta t \rightarrow 0}\frac{|\boldsymbol{\omega}|sin(\frac{|\boldsymbol{\omega}|\Delta t}{4})cos(\frac{|\boldsymbol{\omega}|\Delta t}{4})}{1} + \lim_{\Delta t \rightarrow 0}\hat{\boldsymbol{\omega}}|\boldsymbol{\omega}|\frac{\frac{1}{2}cos(\frac{|\boldsymbol{\omega}|\Delta t}{2})\boldsymbol{q}(t)}{1} \\
+&amp; = \hat{\boldsymbol{\omega}}|\boldsymbol{\omega}|\frac{1}{2}\boldsymbol{q}(t) \\
+&amp; = \frac{1}{2}\boldsymbol{\omega}\boldsymbol{q}(t)
+\end{aligned}\end{equation*}\end{split}\]
+        </div>
+        <p>
+         To compute
+         <span class="math notranslate nohighlight">
+          \(\dot{q}(t)\)
+         </span>
+         , the vector
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\omega}\)
+         </span>
+         can be extended to a quaternion
+         <span class="math notranslate nohighlight">
+          \(\Omega = [0, \boldsymbol{\omega}]\)
+         </span>
+         .
+        </p>
+       </div>
+       <div class="section" id="system-modeling">
+        <h2>
+         System modeling
+         <a class="headerlink" href="#system-modeling" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         Let a quaternion
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{q}\)
+         </span>
+         represent the relative orientation of a system with respect to the
+inertial frame, the initial orientation is
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{q} = [1,0,0,0]^T\)
+         </span>
+         .
+        </p>
+        <p>
+         Assume the orientation at time
+         <span class="math notranslate nohighlight">
+          \(t\)
+         </span>
+         is
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{q}(t)\)
+         </span>
+         , and the angular velocity is
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{\omega} = [\omega_x, \omega_y, \omega_z]\)
+         </span>
+         . We known that the continuous-time state
+equation for quaternion is given by
+        </p>
+        <div class="math notranslate nohighlight" id="equation-eq-con-state">
+         <span class="eqno">
+          (27)
+          <a class="headerlink" href="#equation-eq-con-state" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \dot{q}(t) = \frac{1}{2}\boldsymbol{\Omega}q(t) \label{eqn:con_state} \end{equation}\]
+        </div>
+        <p>
+         where
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-21">
+         <span class="eqno">
+          (28)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-21" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\boldsymbol{\Omega} = \begin{bmatrix}0&amp;-\omega_x&amp;-\omega_y &amp; -\omega_z\\\omega_x &amp; 0 &amp; \omega_z &amp; -\omega_y\\ \omega_y&amp; -\omega_z &amp; 0 &amp; \omega_x \\\omega_z&amp;\omega_y&amp; -\omega_x &amp; 0\end{bmatrix}\end{split}\]
+        </div>
+        <p>
+         Comparing equation
+         <a class="reference internal" href="#equation-eq-con-state">
+          (27)
+         </a>
+         with equation
+         <a class="reference internal" href="#equation-eq-con-state-kf">
+          (1)
+         </a>
+         ,there is no
+explicit external input
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{u}\)
+         </span>
+         . All inputs are contained in the state matrix
+         <span class="math notranslate nohighlight">
+          \(\frac{1}{2}\boldsymbol{\Omega}\)
+         </span>
+         , which can be treated as a time-variant state matrix.
+        </p>
+        <p>
+         The next step is to discretise it to fit the discrete Kalman Filter. Here we use the Euler method to
+approximately discretise it, however, the properties of the continues system only hold in the discretised
+system for small
+         <span class="math notranslate nohighlight">
+          \(\Delta t\)
+         </span>
+         :
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-22">
+         <span class="eqno">
+          (29)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-22" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\begin{aligned}\dot{\boldsymbol{q}} = \lim_{\Delta t \rightarrow 0}\frac{\boldsymbol{q}(t+\Delta t) - \boldsymbol{q}(t)}{\Delta t} &amp; = \frac{1}{2}\boldsymbol{\Omega}\boldsymbol{q}(t)\\
+\boldsymbol{q}(t+\Delta t) &amp; = \boldsymbol{q}(t) + \frac{1}{2}\boldsymbol{\Omega}\boldsymbol{q}(t)\Delta t\\
+\boldsymbol{q}(t+\Delta t)&amp; = (\boldsymbol{I} + \frac{1}{2}\boldsymbol{\Omega}\Delta t)\boldsymbol{q}(t)
+\end{aligned}\end{split}\]
+        </div>
+        <p>
+         Let
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{A} = (\boldsymbol{I} + \frac{1}{2}\boldsymbol{\Omega}\Delta t)\)
+         </span>
+         represet the discrete
+state matrix. The discrete time equation of state is given by:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-23">
+         <span class="eqno">
+          (30)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-23" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{equation} \boldsymbol{q}[k] = (\boldsymbol{I} + \frac{1}{2}\boldsymbol{\Omega}_k\Delta t) = \boldsymbol{A}_k\boldsymbol{q}[k-1] \label{eqn:dis_state_eqn}\end{equation}\]
+        </div>
+        <p>
+         with this equation of state, we could define two system outputs - the estimated gravity and magnetic ﬁeld in
+the body frame, which can be expressed by
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{h}_1\)
+         </span>
+         and
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{h}_2\)
+         </span>
+         respectively.
+The gravity and magnetic field in body frame after rotating from the inertial frame are given below:
+        </p>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-24">
+         <span class="eqno">
+          (31)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-24" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\boldsymbol{h}_{1k} = \boldsymbol{R}_i^b \begin{bmatrix}0\\0\\g\end{bmatrix} = \begin{bmatrix}2q_1[k]q_3[k]-2q_0[k]q_2[k]\\2q_0[k]q_1[k]+2q_2[k]q_3[k]\\q_0^2[k]-q_1^2[k]-q_2^2[k]+q_3^2[k]\end{bmatrix}\end{split}\]
+        </div>
+        <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-25">
+         <span class="eqno">
+          (32)
+          <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-25" title="Permalink to this equation">
+           ¶
+          </a>
+         </span>
+         \[\begin{split}\boldsymbol{h}_{2k} = \boldsymbol{R}_i^b \begin{bmatrix}0\\1\\0\end{bmatrix} = \begin{bmatrix}2q_1[k]q_2[k]+2q_0[k]q_3[k]\\q_0^2[k]-q_1^2[k]-q_2^2[k]-q_3^2[k]\\2q_2[k]q_3[k]-2q_0[k]q_1[k]\end{bmatrix}\end{split}\]
+        </div>
+        <p>
+         where
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{R}_i^b = \begin{bmatrix}1-2q_2^2-2q_3^2&amp;2q_1q_2+2q_0q_3&amp;2q_1q_3-2q_0q_2\\2q_1q_2-2q_0q_3&amp;1-2q_1^2-2q_3^2&amp;2q_2q_3+2q_0q_1\\2q_1q_3+2q_0q_2 &amp; 2q_2q_3-2q_0q_1 &amp; 1-2q_1^2-2q_2^2\end{bmatrix}\)
+         </span>
+         is the rotation matrix. The magnetic field in inertial frame
+         <span class="math notranslate nohighlight">
+          \(\boldsymbol{B}_i = [0,1,0]^T\)
+         </span>
+         , normalise to one, is what we assume that the direction of the magnetic
+filed is along the y axis. You can also assume it has a different direction, like x axis, the consequence of
+these assumptions is that the initial yaw estimation from the Kalman Filter is usually none zero.
+        </p>
+       </div>
+       <div class="section" id="filtering">
+        <h2>
+         Filtering
+         <a class="headerlink" href="#filtering" title="Permalink to this headline">
+          ¶
+         </a>
+        </h2>
+        <p>
+         The orientation estimation algorithm is based on A Double-Stage Kalman Filter for Orientation Tracking With
+an Integrated Processor in 9-D IMU. For more details, please refer to this paper.
+        </p>
+        <p>
+         As the output equations are nonlinear, the extended Kalman Filter comes into play.
+        </p>
+        <p>
+         The code can be downloaded
+         <a class="reference external" href="https://github.com/Earsuit/kalman_filter_mpu9250">
+          here
+         </a>
+         . Please note that the
+raw gyro, acceleration &amp; magnetic field readings have
+to be calibrated before filtering. The calibration procedure can be found on one of my
+         <a class="reference external" href="https://github.com/Earsuit/kalman_filter_mpu9250">
+          blog
+         </a>
+         . A recursive
+least-squares method is implemented to perform online ellipsoid fitting in the code.
+        </p>
+        <div class="section" id="step-1">
+         <h3>
+          Step 1
+          <a class="headerlink" href="#step-1" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          Let’s first go through the Step 1 in extended Kalman Filter. Compute the forcast position
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{q}^-\)
+          </span>
+          through equation
+          <a class="reference internal" href="#equation-eq-step1-1">
+           (10)
+          </a>
+          with angular velocities measured from the
+gyroscope and the last best estimation
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{q}^a\)
+          </span>
+          :
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-26">
+          <span class="eqno">
+           (33)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-26" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation} \boldsymbol{q}_k^f = \boldsymbol{A}_{k-1}\boldsymbol{q}_{k-1}^a\end{equation}\]
+         </div>
+         <p>
+          Then compute the forecast noise covariance matrix through equation
+          <a class="reference internal" href="#equation-eq-step1-2">
+           (11)
+          </a>
+          . Luckily, the
+state equation is linear, gives:
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-27">
+          <span class="eqno">
+           (34)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-27" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{equation}\boldsymbol{P}_k^f = \boldsymbol{A}_{k-1}\boldsymbol{P}_{k-1}\boldsymbol{A}_{k-1}^T + \boldsymbol{Q} \end{equation}\]
+         </div>
+         <p>
+          These are what we can do with the previous best estimation and system input.
+         </p>
+        </div>
+        <div class="section" id="step-2">
+         <h3>
+          Step 2
+          <a class="headerlink" href="#step-2" title="Permalink to this headline">
+           ¶
+          </a>
+         </h3>
+         <p>
+          With measurements, we could correct what we forecasted in the previous step.
+         </p>
+         <p>
+          Let’s take a look at what the gravity measurement can bring to us.
+         </p>
+         <div class="figure align-default" id="id2">
+          <img alt="../_images/roll-pitch-yaw.png" src="../_images/roll-pitch-yaw.png"/>
+          <p class="caption">
+           <span class="caption-number">
+            Figure 1
+           </span>
+           <span class="caption-text">
+            Roll-Pitch-Yaw
+           </span>
+           <a class="headerlink" href="#id2" title="Permalink to this image">
+            ¶
+           </a>
+          </p>
+         </div>
+         <p>
+          Let
+          <span class="math notranslate nohighlight">
+           \(x,y,z\)
+          </span>
+          axes align with roll(
+          <span class="math notranslate nohighlight">
+           \(\alpha\)
+          </span>
+          ), pitch(
+          <span class="math notranslate nohighlight">
+           \(\beta\)
+          </span>
+          ), yaw(
+          <span class="math notranslate nohighlight">
+           \(\gamma\)
+          </span>
+          )
+respectively. The rotation matrix that rotates from inertial frame to body frame with rotation sequence z-x-y
+is given by:
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-28">
+          <span class="eqno">
+           (35)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-28" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{split}\small\boldsymbol{R} = \begin{bmatrix}cos(\beta)cos(\gamma)-sin(\alpha)sin(\beta)sin(\gamma)&amp; cos(\beta)sin(\gamma)+sin(\alpha)sin(\beta)cos(\gamma) &amp; -cos(\alpha)sin(\beta) \\-cos(\alpha)sin(\gamma) &amp; cos(\alpha)cos(\gamma) &amp; sin(\alpha) \\ sin(\beta)cos(\gamma)+cos(\beta)sin(\alpha)sin(\gamma)&amp;sin(\beta)sin(\gamma)-cos(\beta)sin(\gamma)cos(\gamma) &amp; cops(\alpha)cos(\beta)\end{bmatrix}\end{split}\]
+         </div>
+         <p>
+          The gravity in inertial frame is
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{g}_i = [0,0,|g|]^T\)
+          </span>
+          , with
+          <span class="math notranslate nohighlight">
+           \(\boldsymbol{R}\)
+          </span>
+          we can express it in body frame:
+         </p>
+         <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-29">
+          <span class="eqno">
+           (36)
+           <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-29" title="Permalink to this equation">
+            ¶
+           </a>
+          </span>
+          \[\begin{split}\boldsymbol{g}_b = \boldsymbol{R}\boldsymbol{g}_i = |g|\begin{bmatrix}-cos(\alpha)sin(\beta)\\sin(\alpha)\\cos(\alpha)cos(\beta) \end{bmatrix}\end{split}\]
+         </div>
+         <p>
+          It shows that the we can only compute roll and pitch from gravity measurement as there is no (gamma) in
+the above equation. That’s why we need a 9-axis IMU sensor as the yaw can be obtained through computing the
+angle between two consecutive magnetic filed readings in inertial frame.
+         </p>
+         <p>
+          As two measurements are needed to correct the forecasted state, the correction is composed of two stages,
+first correct the roll and pitch with gravity measurement, then yaw with magnetometer reading.
+         </p>
+         <div class="section" id="stage-1">
+          <span id="id1">
+          </span>
+          <h4>
+           Stage 1
+           <a class="headerlink" href="#stage-1" title="Permalink to this headline">
+            ¶
+           </a>
+          </h4>
+          <p>
+           According to equation
+           <a class="reference internal" href="#equation-eq-kalman-gain">
+            (6)
+           </a>
+           , the Jacobian matrix
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{J}_{\boldsymbol{y}_1k}\)
+           </span>
+           is required to compute the Kalman gain:
+          </p>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-30">
+           <span class="eqno">
+            (37)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-30" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\begin{split}\boldsymbol{J}_{\boldsymbol{h}_1k} = \frac{\partial{\boldsymbol{h}_{1k}}}{\partial{\boldsymbol{q}_k}} = \begin{bmatrix} -2q_0 &amp; 2q_3 &amp; -2q_0 &amp; 2q_1\\ 2q_1 &amp; 2q_0 &amp; 2q_3 &amp; 2q_2 \\ 2q_0 &amp; -2q_1 &amp; -2q_2 &amp; 2q_3 \end{bmatrix}\end{split}\]
+          </div>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-31">
+           <span class="eqno">
+            (38)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-31" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\boldsymbol{K}_{1k} = \boldsymbol{P}_k^f\boldsymbol{J}_{\boldsymbol{h}_1k}(\boldsymbol{J}_{\boldsymbol{h}_1k}\boldsymbol{P}_k^f\boldsymbol{J}_{\boldsymbol{h}_1k}^T + \boldsymbol{R})^{-1}\]
+          </div>
+          <p>
+           Then compute the correction factor
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{q}_{\epsilon1k} = \boldsymbol{K}_{1k}(\boldsymbol{z}_{1k} - \boldsymbol{h}_{1k})\)
+           </span>
+           , where
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{z}_{1k}\)
+           </span>
+           is the accelerometer reading. Because we don’t want the gravity measurement
+affect the yaw estimation, the fourth element of
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{q}_{\epsilon1k}\)
+           </span>
+           needs to be set to zero,
+which means the rotation axis is
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{u}=[x,y,0]^T\)
+           </span>
+           .
+          </p>
+          <p>
+           The post error covariance matrix and corrected state are
+          </p>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-32">
+           <span class="eqno">
+            (39)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-32" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\boldsymbol{P}_{1k} = (\boldsymbol{I} - \boldsymbol{K}_{1k}\boldsymbol{J}_{\boldsymbol{h}_1k})\boldsymbol{P}_k^f\]
+          </div>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-33">
+           <span class="eqno">
+            (40)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-33" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\boldsymbol{q}_{1k}^a = \boldsymbol{q}_k^f + \boldsymbol{q}_{\epsilon1k}\]
+          </div>
+         </div>
+         <div class="section" id="stage-2">
+          <h4>
+           Stage 2
+           <a class="headerlink" href="#stage-2" title="Permalink to this headline">
+            ¶
+           </a>
+          </h4>
+          <p>
+           Stage 2 utilises the magnetometer reading to correct the
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{q}_{1k}^a\)
+           </span>
+           obtained in
+           <a class="reference internal" href="#stage-1">
+            <span class="std std-ref">
+             Stage 1
+            </span>
+           </a>
+           . First compute the Jacobian matrix and Kalman gain:
+          </p>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-34">
+           <span class="eqno">
+            (41)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-34" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\begin{split}\boldsymbol{J}_{\boldsymbol{h}_2k} = \frac{\partial{\boldsymbol{h}_{2k}}}{\partial{\boldsymbol{q}_k}} = \begin{bmatrix} 2q_3 &amp; 2q_2 &amp; 2q_1 &amp; 2q_0\\ 2q_0 &amp; -2q_1 &amp; -2q_2 &amp; -2q_3 \\ -2q_1 &amp; -2q_0 &amp; 2q_3 &amp; 2q_2 \end{bmatrix}\end{split}\]
+          </div>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-35">
+           <span class="eqno">
+            (42)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-35" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\boldsymbol{K}_{2k} = \boldsymbol{P}_k^f\boldsymbol{J}_{\boldsymbol{h}_2k}(\boldsymbol{J}_{\boldsymbol{h}_2k}\boldsymbol{P}_k^f\boldsymbol{J}_{\boldsymbol{h}_2k}^T + \boldsymbol{R})^{-1}\]
+          </div>
+          <p>
+           Then compute the correction factor with magnetometer reading
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{z}_{2k}\)
+           </span>
+           ,
+           <span class="math notranslate nohighlight">
+            \(\boldsymbol{q}_{\epsilon2k} = \boldsymbol{K}_{2k}(\boldsymbol{z}_{2k} - \boldsymbol{h}_{2k})\)
+           </span>
+           , and set
+the second and third element to zero to eliminate the effect on roll and pitch.
+          </p>
+          <p>
+           Finally update the post error covariance and corrected state:
+          </p>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-36">
+           <span class="eqno">
+            (43)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-36" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\boldsymbol{P}_{2k} = (\boldsymbol{I} - \boldsymbol{K}_{2k}\boldsymbol{J}_{\boldsymbol{h}_2k})\boldsymbol{P}_{1k}\]
+          </div>
+          <div class="math notranslate nohighlight" id="equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-37">
+           <span class="eqno">
+            (44)
+            <a class="headerlink" href="#equation-blog-kalman-filter-for-orientation-estimation-with-mpu9250-37" title="Permalink to this equation">
+             ¶
+            </a>
+           </span>
+           \[\boldsymbol{q}_{k}^a = \boldsymbol{q}_{1k}^a + \boldsymbol{q}_{\epsilon2k}\]
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="section">
+       <div class="section">
+        <span style="float: left">
+         <a href="how_to_calibriate_a_magnetometer_and_accelerometer.html">
+          <i class="fa fa-arrow-circle-left">
+          </i>
+          How to calibrate a magnetometer &amp; accelerometer (MPU9250)
+         </a>
+        </span>
+        <span>
+        </span>
+        <span style="float: right">
+        </span>
+       </div>
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  </script>
+  <footer class="footer mt-5 mt-md-0">
+   <div class="container">
+    <div class="footer-item">
+     <p class="copyright">
+      © Copyright 2022, Earsuit.
+      <br/>
+     </p>
+    </div>
+    <div class="footer-item">
+     <p class="sphinx-version">
+      Created using
+      <a href="http://sphinx-doc.org/">
+       Sphinx
+      </a>
+      4.1.1.
+      <br/>
+     </p>
+    </div>
+   </div>
+  </footer>
+ </body>
+</html>
