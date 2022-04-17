@@ -41,13 +41,15 @@ Simply modifying the above equation gives the locus of the magnetometer measurem
 	\begin{equation} (\boldsymbol B_m^s)^T\boldsymbol B_m^s = (\boldsymbol RB\begin{bmatrix}cos(\delta)\\0\\sin(\delta)\end{bmatrix})^T \boldsymbol RB\begin{bmatrix}cos(\delta)\\0\\sin(\delta)\end{bmatrix} \end{equation}
 
 .. math::
-	:name: eq:locus_ideal
+	:label: eq:locus_ideal
 
 	\begin{equation} (\boldsymbol B_m^s)^T\boldsymbol B_m^s = B^2 \end{equation} \label{eq:locus_ideal}
 
-As :math:`\boldsymbol R` is a rotation matrix, the transpose of it is identical to rotation by the inverse angle, given :math:`(\boldsymbol R)^T \boldsymbol R = \boldsymbol I`. Where we define :math:`\boldsymbol R = \boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)`.
+As :math:`\boldsymbol R` is a rotation matrix, the transpose of it is identical to rotation by the inverse angle, given 
+:math:`(\boldsymbol R)^T \boldsymbol R = \boldsymbol I`. Where we define 
+:math:`\boldsymbol R = \boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)`.
 
-:ref:`Equation <eq:locus_ideal>` defines the locus of the magnetometer measurements lying on the surface of a sphere centered at origin with radius equal to :math:`B`.
+Equation :math:numref:`eq:locus_ideal` defines the locus of the magnetometer measurements lying on the surface of a sphere centered at origin with radius equal to :math:`B`.
 
 .. figure:: ../assets/how_to_calibriate_a_magnetometer_and_accelerometer/locus_of_the_magnetometer_measurements_in_ideal_case.jpg
 
@@ -124,14 +126,14 @@ leads to the value of :math:`\boldsymbol V`:
 For the soft-iron interference, we need map an ellipsoid to a sphere. We know that an ellipsoid is given in the form of
 
 .. math::
-	:name: eq:ellipsoid
+	:label: eq:ellipsoid
 
 	\begin{equation} (\boldsymbol x - \boldsymbol x)^T \boldsymbol A (\boldsymbol x - \boldsymbol v) = 1 \end{equation} \label{eq:ellipsoid}
 
 given that A must be diagonalized by :math:`\boldsymbol A = \boldsymbol R^T \boldsymbol D \boldsymbol R`, where 
 :math:`\boldsymbol R`is an orthonormal matrix and :math:`\boldsymbol D` is a diagonal matrix.
 
-A sphere can be obtained by simply modify :ref:`this equation <eq:ellipsoid>`:
+A sphere can be obtained by simply modify equation :math:numref:`eq:ellipsoid`:
 
 .. math::
 
@@ -221,7 +223,7 @@ To simplify the process, let us define:
 which gives
 
 .. math::
-	:name: eq:quadratic
+	:label: eq:quadratic
 
 	\begin{equation} ay^2 + bz^2 + cx + dy + ez + f = -x^2 \end{equation} \label{eq:quadratic}
 
@@ -280,7 +282,7 @@ change of the environment. The draw back of the online method is that it's compu
 
 The purpose is to update the estimatation as each new data point becomes available.
 
-With :ref:`equation <eq:quadratic>`, we define :math:`\boldsymbol{r} = \begin{bmatrix} y^2 & z^2 & x & y & z & 1\end{bmatrix}`.
+With equation :math:numref:`eq:quadratic`, we define :math:`\boldsymbol{r} = \begin{bmatrix} y^2 & z^2 & x & y & z & 1\end{bmatrix}`.
 
 Assume we already have N sets of data:
 
@@ -291,14 +293,14 @@ Assume we already have N sets of data:
 Let's see how it will change when we add an extra data point:
 
 .. math::
-	:name: eq:extra_data
+	:label: eq:extra_data
 
 	\begin{equation}\boldsymbol{\Theta}_{N+1} = (\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y} _{N+1} \label{eq:extra_data}\end{equation}
 
 Firstly, take a look at the first part :math:`(\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}`. We know that
 
 .. math::
-	:name: eq:first_part
+	:label: eq:first_part
 
 	\begin{equation}\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1} = \sum_{k=0}^{N+1}\boldsymbol{r}_k^T\boldsymbol{r}_k = \sum_{k=0}^{N} \boldsymbol{r}_k^T\boldsymbol{r}_k + \boldsymbol{r}_{N+1}^T\boldsymbol{r}_{N+1} = \boldsymbol{\Psi}_N^T\boldsymbol{\Psi}_N + \boldsymbol{r}_{N+1}^T\boldsymbol{r}_{N+1} \label{eq:first_part}\end{equation}
 
@@ -318,18 +320,18 @@ According to the matrix inversion lemma:
 then we have
 
 .. math::
-	:name: eq:term1
+	:label: eq:term1
 
 	\begin{equation} \boldsymbol{P}_{N+1} = \boldsymbol{P}_N - \boldsymbol{P}_N\boldsymbol{r}^T_{N+1}(1+\boldsymbol{r}_{N+1}\boldsymbol{P}_N\boldsymbol{r}_{N+1}^T)^{-1}\boldsymbol{r}_{N+1}\boldsymbol{P}_N = \boldsymbol{P}_N - \frac{\boldsymbol{P}_N\boldsymbol{r}^T_{N+1}\boldsymbol{r}_{N+1}\boldsymbol{P}_N}{1+\boldsymbol{r}_{N+1}\boldsymbol{P}_N\boldsymbol{r}_{N+1}^T} \label{eq:term1} \end{equation}
 
 We can see that this gives us a recursive way to update the first part without any matrix inversion! Secondly, let's consider :math:`\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y}_{N+1}`.
 
 .. math::
-	:name: eq:term2
+	:label: eq:term2
 
 	\begin{equation}\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y}_{N+1} = \boldsymbol{\Psi}^T_N\boldsymbol{Y}_N + \boldsymbol{r}^T_{N+1}y_{N+1} \label{eq:term2}\end{equation}
 
-Now substitute :ref:`equation <eq:term1>` and :ref:`equation <eq:term2>` into equation :ref:`equation <eq:extra_data>`
+Now substitute equation :math:numref:`eq:term1` and :math:numref:`eq:term2` into equation :math:numref:`eq:extra_data>`
 
 .. math::
 

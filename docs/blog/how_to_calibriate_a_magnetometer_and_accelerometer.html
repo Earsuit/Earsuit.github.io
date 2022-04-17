@@ -330,12 +330,10 @@ y,z axes. The bold version means it’s a vector or matrix.
          </span>
          \[\begin{split}\begin{equation} (\boldsymbol B_m^s)^T\boldsymbol B_m^s = (\boldsymbol RB\begin{bmatrix}cos(\delta)\\0\\sin(\delta)\end{bmatrix})^T \boldsymbol RB\begin{bmatrix}cos(\delta)\\0\\sin(\delta)\end{bmatrix} \end{equation}\end{split}\]
         </div>
-        <div class="math notranslate nohighlight" id="eq-locus-ideal">
-         <span id="equation-eq-locus-ideal">
-         </span>
+        <div class="math notranslate nohighlight" id="equation-eq-locus-ideal">
          <span class="eqno">
           (4)
-          <a class="headerlink" href="#eq-locus-ideal" title="Permalink to this equation">
+          <a class="headerlink" href="#equation-eq-locus-ideal" title="Permalink to this equation">
            ¶
           </a>
          </span>
@@ -357,10 +355,9 @@ y,z axes. The bold version means it’s a vector or matrix.
          .
         </p>
         <p>
-         <a class="reference internal" href="#eq-locus-ideal">
-          <span class="std std-ref">
-           Equation
-          </span>
+         Equation
+         <a class="reference internal" href="#equation-eq-locus-ideal">
+          (4)
          </a>
          defines the locus of the magnetometer measurements lying on the surface of a sphere centered at origin with radius equal to
          <span class="math notranslate nohighlight">
@@ -540,12 +537,10 @@ leads to the value of
         <p>
          For the soft-iron interference, we need map an ellipsoid to a sphere. We know that an ellipsoid is given in the form of
         </p>
-        <div class="math notranslate nohighlight" id="eq-ellipsoid">
-         <span id="equation-eq-ellipsoid">
-         </span>
+        <div class="math notranslate nohighlight" id="equation-eq-ellipsoid">
          <span class="eqno">
           (12)
-          <a class="headerlink" href="#eq-ellipsoid" title="Permalink to this equation">
+          <a class="headerlink" href="#equation-eq-ellipsoid" title="Permalink to this equation">
            ¶
           </a>
          </span>
@@ -563,11 +558,9 @@ leads to the value of
          boldsymbol D` is a diagonal matrix.
         </p>
         <p>
-         A sphere can be obtained by simply modify
-         <a class="reference internal" href="#eq-ellipsoid">
-          <span class="std std-ref">
-           this equation
-          </span>
+         A sphere can be obtained by simply modify equation
+         <a class="reference internal" href="#equation-eq-ellipsoid">
+          (12)
          </a>
          :
         </p>
@@ -767,12 +760,10 @@ estimation comes into play. Again, the general equation for a non-rotated ellips
         <p>
          which gives
         </p>
-        <div class="math notranslate nohighlight" id="eq-quadratic">
-         <span id="equation-eq-quadratic">
-         </span>
+        <div class="math notranslate nohighlight" id="equation-eq-quadratic">
          <span class="eqno">
           (22)
-          <a class="headerlink" href="#eq-quadratic" title="Permalink to this equation">
+          <a class="headerlink" href="#equation-eq-quadratic" title="Permalink to this equation">
            ¶
           </a>
          </span>
@@ -912,11 +903,9 @@ change of the environment. The draw back of the online method is that it’s com
          The purpose is to update the estimatation as each new data point becomes available.
         </p>
         <p>
-         With
-         <a class="reference internal" href="#eq-quadratic">
-          <span class="std std-ref">
-           equation
-          </span>
+         With equation
+         <a class="reference internal" href="#equation-eq-quadratic">
+          (22)
          </a>
          , we define
          <span class="math notranslate nohighlight">
@@ -939,12 +928,10 @@ change of the environment. The draw back of the online method is that it’s com
         <p>
          Let’s see how it will change when we add an extra data point:
         </p>
-        <div class="math notranslate nohighlight" id="eq-extra-data">
-         <span id="equation-eq-extra-data">
-         </span>
+        <div class="math notranslate nohighlight" id="equation-eq-extra-data">
          <span class="eqno">
           (28)
-          <a class="headerlink" href="#eq-extra-data" title="Permalink to this equation">
+          <a class="headerlink" href="#equation-eq-extra-data" title="Permalink to this equation">
            ¶
           </a>
          </span>
@@ -957,12 +944,10 @@ change of the environment. The draw back of the online method is that it’s com
          </span>
          . We know that
         </p>
-        <div class="math notranslate nohighlight" id="eq-first-part">
-         <span id="equation-eq-first-part">
-         </span>
+        <div class="math notranslate nohighlight" id="equation-eq-first-part">
          <span class="eqno">
           (29)
-          <a class="headerlink" href="#eq-first-part" title="Permalink to this equation">
+          <a class="headerlink" href="#equation-eq-first-part" title="Permalink to this equation">
            ¶
           </a>
          </span>
@@ -974,11 +959,9 @@ change of the environment. The draw back of the online method is that it’s com
           \(\boldsymbol{P}_{N+1} = (\boldsymbol{\Psi}_{N+1}^T\boldsymbol{\Psi}_{N+1})^{-1}\)
          </span>
          , the
-         <a class="reference internal" href="#eq-first-part">
-          <span class="std std-ref">
-           equation
-          </span>
-         </a>
+         <span class="xref std std-ref">
+          equation
+         </span>
          can be written as
         </p>
         <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-24">
@@ -1005,12 +988,10 @@ change of the environment. The draw back of the online method is that it’s com
         <p>
          then we have
         </p>
-        <div class="math notranslate nohighlight" id="eq-term1">
-         <span id="equation-eq-term1">
-         </span>
+        <div class="math notranslate nohighlight" id="equation-eq-term1">
          <span class="eqno">
           (32)
-          <a class="headerlink" href="#eq-term1" title="Permalink to this equation">
+          <a class="headerlink" href="#equation-eq-term1" title="Permalink to this equation">
            ¶
           </a>
          </span>
@@ -1023,36 +1004,30 @@ change of the environment. The draw back of the online method is that it’s com
          </span>
          .
         </p>
-        <div class="math notranslate nohighlight" id="eq-term2">
-         <span id="equation-eq-term2">
-         </span>
+        <div class="math notranslate nohighlight" id="equation-eq-term2">
          <span class="eqno">
           (33)
-          <a class="headerlink" href="#eq-term2" title="Permalink to this equation">
+          <a class="headerlink" href="#equation-eq-term2" title="Permalink to this equation">
            ¶
           </a>
          </span>
          \[\begin{equation}\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y}_{N+1} = \boldsymbol{\Psi}^T_N\boldsymbol{Y}_N + \boldsymbol{r}^T_{N+1}y_{N+1} \label{eq:term2}\end{equation}\]
         </div>
         <p>
-         Now substitute
-         <a class="reference internal" href="#eq-term1">
-          <span class="std std-ref">
-           equation
-          </span>
+         Now substitute equation
+         <a class="reference internal" href="#equation-eq-term1">
+          (32)
          </a>
          and
-         <a class="reference internal" href="#eq-term2">
-          <span class="std std-ref">
-           equation
-          </span>
+         <a class="reference internal" href="#equation-eq-term2">
+          (33)
          </a>
          into equation
-         <a class="reference internal" href="#eq-extra-data">
-          <span class="std std-ref">
-           equation
+         <code class="xref math math-numref docutils literal notranslate">
+          <span class="pre">
+           eq:extra_data&gt;
           </span>
-         </a>
+         </code>
         </p>
         <div class="math notranslate nohighlight" id="equation-blog-how-to-calibriate-a-magnetometer-and-accelerometer-26">
          <span class="eqno">

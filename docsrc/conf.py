@@ -45,7 +45,7 @@ numfig_secnum_depth = 0
 numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Code Block %s'}
 
 math_number_all = True
-math_eqref_format = 'Eq.{number}'
+math_eqref_format = '({number})'
 math_numfig = True
 
 # -- Options for HTML output -------------------------------------------------
