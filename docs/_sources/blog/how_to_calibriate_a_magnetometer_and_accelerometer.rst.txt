@@ -331,7 +331,7 @@ We can see that this gives us a recursive way to update the first part without a
 
 	\begin{equation}\boldsymbol{\Psi}^T_{N+1}\boldsymbol{Y}_{N+1} = \boldsymbol{\Psi}^T_N\boldsymbol{Y}_N + \boldsymbol{r}^T_{N+1}y_{N+1} \label{eq:term2}\end{equation}
 
-Now substitute equation :math:numref:`eq:term1` and :math:numref:`eq:term2` into equation :math:numref:`eq:extra_data>`
+Now substitute equation :math:numref:`eq:term1` and :math:numref:`eq:term2` into equation :math:numref:`eq:extra_data`
 
 .. math::
 
