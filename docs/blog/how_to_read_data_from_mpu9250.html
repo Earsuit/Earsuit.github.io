@@ -134,7 +134,7 @@
      <h2>
       <i class="fa fa-calendar">
       </i>
-      11 February 2018
+      11 二月 2018
      </h2>
      <ul>
       <li id="author">
@@ -600,9 +600,9 @@ gyroscope:
            <pre><span></span><span class="cp">#define MPU9250_AD 0x68</span>
 <span class="cp">#define PWR_MGMT_1_AD 0x6B</span>
 
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">PWR_MGMT_1_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x01</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span> <span class="c1">//0000 0001 in binary, set the clock reference to X axis gyroscope to get a better accuracy</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">PWR_MGMT_1_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x01</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"> </span><span class="c1">//0000 0001 in binary, set the clock reference to X axis gyroscope to get a better accuracy</span>
 </pre>
           </div>
          </div>
@@ -741,20 +741,20 @@ gyroscope is initialized to 8kHz and the accelerometer is initialized to 4kHz)
 <span class="cp">#define ACCEL_CONFIG_2_AD 0x1D</span>
 <span class="cp">#define CONFIG_AD 0x1A</span>
 
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">ACCEL_CONFIG_1_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x08</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span> <span class="c1">//0000 1000 in binary. Set the accel scale to 4g</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">ACCEL_CONFIG_1_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x08</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"> </span><span class="c1">//0000 1000 in binary. Set the accel scale to 4g</span>
 
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">GYRO_CONFIG_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x08</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span> <span class="c1">//0000 1000 in binary. Set the gyro scale to 500 °/s and FCHOICE_B</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">GYRO_CONFIG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x08</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"> </span><span class="c1">//0000 1000 in binary. Set the gyro scale to 500 °/s and FCHOICE_B</span>
 
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">ACCEL_CONFIG_2_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x05</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">//0000 0101 in binary. Turn on the internal low-pass filter for accelerometer with 10.2Hz bandwidth</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">ACCEL_CONFIG_2_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x05</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w">  </span><span class="c1">//0000 0101 in binary. Turn on the internal low-pass filter for accelerometer with 10.2Hz bandwidth</span>
 
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">CONFIG_AD</span><span class="p">);</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">CONFIG_AD</span><span class="p">);</span><span class="w"></span>
 <span class="n">write</span><span class="p">(</span><span class="mh">0x05</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="c1">//0000 0101 in binary. Turn on the internal low-pass filter for gyroscope with 10Hz bandwidth</span>
 </pre>
           </div>
@@ -832,13 +832,13 @@ on the bypass multiplexer.
 <span class="cp">#define INT_BYPASS_CONFIG_AD 0x37</span>
 
 <span class="c1">// Actually we don't need this step cause the reset value of the register 106 is 0x00</span>
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">USER_CTRL_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">USER_CTRL_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">INT_BYPASS_CONFIG_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x02</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>   <span class="c1">//0000 0010 in binary, turn on the bypass multiplexer</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">INT_BYPASS_CONFIG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x02</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w">   </span><span class="c1">//0000 0010 in binary, turn on the bypass multiplexer</span>
 </pre>
           </div>
          </div>
@@ -923,11 +923,11 @@ time to let the mode change complete
            <pre><span></span><span class="cp">#define CNTL1_AD 0x0A   </span><span class="c1">//control 1 register address</span>
 
 <span class="c1">// setup the Magnetometer to fuse ROM access mode to get the Sensitivity Adjustment values and 16-bit output</span>
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x1F</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">//0001 1111 in binary</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x1F</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w">  </span><span class="c1">//0001 1111 in binary</span>
 
-<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>  <span class="c1">//wait for the mode changes</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">  </span><span class="c1">//wait for the mode changes</span>
 </pre>
           </div>
          </div>
@@ -970,12 +970,12 @@ Z-axis sensitivity adjustment value) register. The formula to adjust the sensiti
            <pre><span></span><span class="cp">#define ASAX_AD 0x10</span>
 
 <span class="c1">//read the Sensitivit Adjustment values</span>
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">ASAX_AD</span><span class="p">);</span>
-<span class="n">requestFrom</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
-<span class="n">asax</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-<span class="n">asay</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-<span class="n">asaz</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">ASAX_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">requestFrom</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="n">asax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">asay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">asaz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="mi">-128</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">128</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -989,12 +989,12 @@ Z-axis sensitivity adjustment value) register. The formula to adjust the sensiti
          <div class="highlight-c notranslate">
           <div class="highlight">
            <pre><span></span><span class="c1">//reset the Magnetometer to power down mode</span>
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">//wait for the mode changes</span>
-<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1004,12 +1004,12 @@ Z-axis sensitivity adjustment value) register. The formula to adjust the sensiti
          <div class="highlight-c notranslate">
           <div class="highlight">
            <pre><span></span><span class="c1">//set the Magnetometer to continuous mode 2（100Hz) and 16-bit output</span>
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="mh">0x16</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>   <span class="c1">//0001 0110 in binary</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">CNTL1_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="mh">0x16</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w">   </span><span class="c1">//0001 0110 in binary</span>
 
 <span class="c1">//wait for the mode changes</span>
-<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1103,12 +1103,12 @@ byte:
            <pre><span></span><span class="cp">#define GYRO_XOUT_H_AD 0x43</span>
 
 <span class="c1">//read the gyro</span>
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">GYRO_XOUT_H_AD</span><span class="p">);</span>
-<span class="n">requestFrom</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
-<span class="n">gyroX</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
-<span class="n">gyroY</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
-<span class="n">gyroZ</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">GYRO_XOUT_H_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">requestFrom</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="n">gyroX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">readBuffer</span><span class="p">();</span><span class="w"></span>
+<span class="n">gyroY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">readBuffer</span><span class="p">();</span><span class="w"></span>
+<span class="n">gyroZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">readBuffer</span><span class="p">();</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1142,12 +1142,12 @@ byte:
            <pre><span></span><span class="cp">#define ACCEL_XOUT_H_AD 0x3B</span>
 
 <span class="c1">//read the accelerate</span>
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">ACCEL_XOUT_H_AD</span><span class="p">);</span>
-<span class="n">requestFrom</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
-<span class="n">accelX</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
-<span class="n">accelY</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
-<span class="n">accelZ</span> <span class="o">=</span> <span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">readBuffer</span><span class="p">();</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">ACCEL_XOUT_H_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">requestFrom</span><span class="p">(</span><span class="n">MPU9250_AD</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="n">accelX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">readBuffer</span><span class="p">();</span><span class="w"></span>
+<span class="n">accelY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">readBuffer</span><span class="p">();</span><span class="w"></span>
+<span class="n">accelZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">readBuffer</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">readBuffer</span><span class="p">();</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1195,20 +1195,20 @@ overflown. “0” is not overflown, “1” means overflown and the data read s
            <pre><span></span><span class="cp">#define DATA_READY_MASK 0x01</span>
 <span class="cp">#define MAGIC_OVERFLOW_MASK 0x8</span>
 
-<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
-<span class="n">write</span><span class="p">(</span><span class="n">STATUS_1_AD</span><span class="p">);</span>
-<span class="n">requestFrom</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">//pull the DRDY bit</span>
-<span class="k">if</span><span class="p">((</span><span class="n">readBuffer</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">DATA_READY</span><span class="p">)</span> <span class="o">==</span> <span class="n">DATA_READY</span><span class="p">){</span>
-                <span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span>
-                <span class="n">write</span><span class="p">(</span><span class="n">HXL_AD</span><span class="p">);</span>
-                <span class="n">requestFrom</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
-                <span class="n">byte</span><span class="o">*</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">getBuffer</span><span class="p">();</span>
-                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">MAGIC_OVERFLOW</span><span class="p">)){</span>     <span class="c1">//check whether the magnetic sensor is overflown</span>
-                        <span class="n">magneX</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">|</span> <span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
-                        <span class="n">magneY</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">|</span> <span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
-                        <span class="n">magneZ</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">|</span> <span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
-                <span class="p">}</span>
-<span class="p">}</span>
+<span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">STATUS_1_AD</span><span class="p">);</span><span class="w"></span>
+<span class="n">requestFrom</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w">  </span><span class="c1">//pull the DRDY bit</span>
+<span class="k">if</span><span class="p">((</span><span class="n">readBuffer</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">DATA_READY</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DATA_READY</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="n">startTrans</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">write</span><span class="p">(</span><span class="n">HXL_AD</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">requestFrom</span><span class="p">(</span><span class="n">MAG_AD</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">byte</span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getBuffer</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">MAGIC_OVERFLOW</span><span class="p">)){</span><span class="w">     </span><span class="c1">//check whether the magnetic sensor is overflown</span>
+<span class="w">                        </span><span class="n">magneX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="n">magneY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="n">magneZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1226,24 +1226,24 @@ overflown. “0” is not overflown, “1” means overflown and the data read s
         </p>
         <div class="highlight-c notranslate">
          <div class="highlight">
-          <pre><span></span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"GYRO_X: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroX</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" GYRO_Y: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroY</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" GYRO_Z: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroZ</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_X: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelX</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_Y: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelY</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_Z: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelZ</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_X: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneX</span><span class="o">*</span><span class="n">asax</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_Y: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneY</span><span class="o">*</span><span class="n">asay</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_Z: "</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneZ</span><span class="o">*</span><span class="n">asaz</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span>
+          <pre><span></span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"GYRO_X: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroX</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" GYRO_Y: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroY</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" GYRO_Z: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">gyroZ</span><span class="o">/</span><span class="n">GYRO_SENS</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_X: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelX</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_Y: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelY</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" ACCEL_Z: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">accelZ</span><span class="o">/</span><span class="n">ACCEL_SENS</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_X: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneX</span><span class="o">*</span><span class="n">asax</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_Y: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneY</span><span class="o">*</span><span class="n">asay</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">" MAGNE_Z: "</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">magneZ</span><span class="o">*</span><span class="n">asaz</span><span class="o">*</span><span class="n">SCALE</span><span class="p">);</span><span class="w"></span>
 </pre>
          </div>
         </div>
@@ -1289,7 +1289,7 @@ overflown. “0” is not overflown, “1” means overflown and the data read s
       <a href="http://sphinx-doc.org/">
        Sphinx
       </a>
-      4.1.1.
+      4.2.0.
       <br/>
      </p>
     </div>

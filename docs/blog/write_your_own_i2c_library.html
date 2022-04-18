@@ -133,7 +133,7 @@
      <h2>
       <i class="fa fa-calendar">
       </i>
-      01 February 2018
+      01 二月 2018
      </h2>
      <ul>
       <li id="author">
@@ -874,8 +874,8 @@ could know whether an operation is finished by checking the value of the TWINT b
          </p>
          <div class="highlight-c notranslate">
           <div class="highlight">
-           <pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDA</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
-<span class="n">pinMode</span><span class="p">(</span><span class="n">SCL</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
+           <pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDA</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span><span class="w"></span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">SCL</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -884,7 +884,7 @@ could know whether an operation is finished by checking the value of the TWINT b
          </p>
          <div class="highlight-c notranslate">
           <div class="highlight">
-           <pre><span></span><span class="n">TWBR</span> <span class="o">=</span> <span class="p">(</span><span class="n">CPU_freq</span><span class="o">/</span><span class="n">I2C_freq</span><span class="o">/</span><span class="mi">1000-16</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+           <pre><span></span><span class="n">TWBR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">CPU_freq</span><span class="o">/</span><span class="n">I2C_freq</span><span class="o">/</span><span class="mi">1000-16</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -915,10 +915,10 @@ shift left by 1 bit. For example, the address is 1101000, we could use #define A
            <pre><span></span><span class="cp">#define RESPOND_GC 0x00</span>
 <span class="cp">#define NOT_RESPOND_GC 0x01</span>
 
-<span class="k">if</span><span class="p">(</span><span class="n">generalCall</span><span class="p">)</span>
-    <span class="n">TWAR</span> <span class="o">=</span> <span class="p">(</span><span class="n">selfAddress</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">RESPOND_GC</span><span class="p">;</span>
-<span class="k">else</span>
-    <span class="n">TWAR</span> <span class="o">=</span> <span class="p">(</span><span class="n">selfAddress</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">NOT_RESPOND_GC</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">generalCall</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TWAR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">selfAddress</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RESPOND_GC</span><span class="p">;</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">TWAR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">selfAddress</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">NOT_RESPOND_GC</span><span class="p">;</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -931,8 +931,8 @@ I²C module. We could set TWIE bit in the TWCR register to 1 to enable the inter
           <div class="highlight">
            <pre><span></span><span class="cp">#define _BV(bit) (1 &lt;&lt; (bit))</span>
 
-<span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="n">_BV</span><span class="p">(</span><span class="n">TWIE</span><span class="p">);</span>
-<span class="n">sei</span><span class="p">();</span>  <span class="c1">//enable the global interrupt</span>
+<span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">TWIE</span><span class="p">);</span><span class="w"></span>
+<span class="n">sei</span><span class="p">();</span><span class="w">  </span><span class="c1">//enable the global interrupt</span>
 </pre>
           </div>
          </div>
@@ -1001,11 +1001,11 @@ WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
            <pre><span></span><span class="cp">#define STATUS_CODE_MASK 0xF8</span>
 <span class="cp">#define START 0x08</span>
 
-<span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTA</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span>
-<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span>  <span class="c1">//wait for the transmission finish</span>
-<span class="k">if</span><span class="p">((</span><span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="n">START</span><span class="p">){</span>
-    <span class="c1">//code to do some operations when the transmission is unsuccessful</span>
-<span class="p">}</span>
+<span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTA</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span><span class="w"></span>
+<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span><span class="w">  </span><span class="c1">//wait for the transmission finish</span>
+<span class="k">if</span><span class="p">((</span><span class="n">TWSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STATUS_CODE_MASK</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">START</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//code to do some operations when the transmission is unsuccessful</span>
+<span class="p">}</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1022,8 +1022,8 @@ WITH 4/8/16/32KBYTES IN-SYSTEM PROGRAMMABLE FLASH DATASHEET
          </p>
          <div class="highlight-c notranslate">
           <div class="highlight">
-           <pre><span></span><span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="o">|</span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">));</span>
-<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">))));</span>
+           <pre><span></span><span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="o">|</span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">));</span><span class="w"></span>
+<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWSTO</span><span class="p">))));</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1046,12 +1046,12 @@ written to 1 to start transmitting.
 <span class="cp">#define WRITE 0x00</span>
 <span class="cp">#define READ 0x01</span>
 
-<span class="n">TWDR</span> <span class="o">=</span> <span class="p">(</span><span class="n">address</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">WRITE</span><span class="p">;</span>   <span class="c1">//or  TWDR = (address&lt;&lt;1) | READ;</span>
-<span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span>
-<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span>
-<span class="k">if</span><span class="p">((</span><span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="n">MT_SLA_W_ACK</span><span class="p">){</span>
-    <span class="c1">//code to do some operations when the transmission is unsuccessful</span>
-<span class="p">}</span>
+<span class="n">TWDR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">WRITE</span><span class="p">;</span><span class="w">   </span><span class="c1">//or  TWDR = (address&lt;&lt;1) | READ;</span>
+<span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span><span class="w"></span>
+<span class="k">if</span><span class="p">((</span><span class="n">TWSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STATUS_CODE_MASK</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MT_SLA_W_ACK</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//code to do some operations when the transmission is unsuccessful</span>
+<span class="p">}</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1083,33 +1083,33 @@ to 1 to issue an ACK signal, otherwise a NACK signal is issued.
 <span class="cp">#define MR_DATA_ACK 0x50</span>
 <span class="cp">#define MR_DATA_NACK 0x58</span>
 
-<span class="kt">uint8_t</span> <span class="n">rxBuffer</span><span class="p">[</span><span class="n">RX_BUFFER_SIZE</span><span class="p">];</span>
-<span class="kt">uint8_t</span> <span class="n">rxBufferIndex</span><span class="p">;</span>
-<span class="kt">uint8_t</span> <span class="n">rxBufferLength</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">rxBuffer</span><span class="p">[</span><span class="n">RX_BUFFER_SIZE</span><span class="p">];</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">rxBufferIndex</span><span class="p">;</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">rxBufferLength</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">//initialise the buffer</span>
-<span class="n">rxBufferLength</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
-<span class="n">rxBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">rxBufferLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num</span><span class="p">;</span><span class="w"></span>
+<span class="n">rxBufferIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">//if the requested number of bytes is larger than RX_BUFFER_SIZE,</span>
 <span class="c1">//truncate it to RX_BUFFER_SIZE</span>
-<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="o">&gt;</span><span class="n">RX_BUFFER_SIZE</span><span class="p">)</span>
-    <span class="n">num</span> <span class="o">=</span> <span class="n">RX_BUFFER_SIZE</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="o">&gt;</span><span class="n">RX_BUFFER_SIZE</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RX_BUFFER_SIZE</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">for</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">n</span><span class="o">&lt;</span><span class="n">num</span><span class="mi">-1</span><span class="p">;</span><span class="n">n</span><span class="o">++</span><span class="p">){</span>
-    <span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span>
-    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span>
-    <span class="k">if</span><span class="p">((</span><span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="n">MR_DATA_ACK</span><span class="p">)</span>
-        <span class="n">error</span><span class="p">(</span><span class="n">MR_DATA_ACK</span><span class="p">);</span>
-    <span class="n">rxBuffer</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">TWDR</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">n</span><span class="o">&lt;</span><span class="n">num</span><span class="mi">-1</span><span class="p">;</span><span class="n">n</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">TWSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STATUS_CODE_MASK</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MR_DATA_ACK</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">error</span><span class="p">(</span><span class="n">MR_DATA_ACK</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">rxBuffer</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWDR</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">//after reading the last byte, the I²C bus needs to generate a NACK signal</span>
-<span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span>
-<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span>
-<span class="k">if</span><span class="p">((</span><span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="n">MR_DATA_NACK</span><span class="p">)</span>
-    <span class="n">error</span><span class="p">(</span><span class="n">MR_DATA_NACK</span><span class="p">);</span>
-<span class="n">rxBuffer</span><span class="p">[</span><span class="n">num</span><span class="mi">-1</span><span class="p">]</span> <span class="o">=</span> <span class="n">TWDR</span><span class="p">;</span>
+<span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">));</span><span class="w"></span>
+<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span><span class="w"></span>
+<span class="k">if</span><span class="p">((</span><span class="n">TWSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STATUS_CODE_MASK</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MR_DATA_NACK</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="p">(</span><span class="n">MR_DATA_NACK</span><span class="p">);</span><span class="w"></span>
+<span class="n">rxBuffer</span><span class="p">[</span><span class="n">num</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWDR</span><span class="p">;</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1144,31 +1144,31 @@ from a master.
 <span class="cp">#define SR_PRE_AD_DATA_ACK 0x80</span>
 <span class="cp">#define SR_PRE_GC_DATA_ACK 0x90</span>
 
-<span class="kt">uint8_t</span> <span class="n">status</span> <span class="o">=</span> <span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">;</span>
-<span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">SR_AD_RECEIVED</span> <span class="o">||</span> <span class="n">status</span> <span class="o">==</span> <span class="n">GENERAL_CALL</span><span class="p">){</span>
-    <span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">));</span>
-    <span class="c1">//initialize the buffer</span>
-    <span class="n">rxBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">rxBufferLength</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span>
-<span class="p">}</span>
-<span class="n">The</span> <span class="n">reading</span> <span class="n">code</span> <span class="n">below</span> <span class="n">should</span> <span class="n">be</span> <span class="n">put</span> <span class="n">in</span> <span class="n">the</span> <span class="k">if</span> <span class="n">statement</span> <span class="n">shown</span> <span class="n">above</span><span class="p">.</span> <span class="n">The</span> <span class="n">program</span> <span class="n">jumps</span> <span class="n">out</span> <span class="n">from</span> <span class="n">the</span> <span class="k">while</span> <span class="n">loop</span> <span class="k">if</span> <span class="n">the</span> <span class="n">received</span> <span class="n">byte</span> <span class="n">is</span> <span class="n">not</span> <span class="n">a</span> <span class="n">data</span> <span class="n">or</span> <span class="n">something</span> <span class="n">goes</span> <span class="n">wrong</span><span class="p">.</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STATUS_CODE_MASK</span><span class="p">;</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SR_AD_RECEIVED</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GENERAL_CALL</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//initialize the buffer</span>
+<span class="w">    </span><span class="n">rxBufferIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rxBufferLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">The</span><span class="w"> </span><span class="n">reading</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">below</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">put</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="n">shown</span><span class="w"> </span><span class="n">above</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="n">jumps</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="n">loop</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">received</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="n">goes</span><span class="w"> </span><span class="n">wrong</span><span class="p">.</span><span class="w"></span>
 
-<span class="n">status</span> <span class="o">=</span> <span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">;</span>
-<span class="k">while</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">SR_PRE_AD_DATA_ACK</span> <span class="o">||</span> <span class="n">status</span> <span class="o">==</span> <span class="n">SR_PRE_GC_DATA_ACK</span><span class="p">){</span>
-    <span class="n">rxBuffer</span><span class="p">[</span><span class="n">rxBufferIndex</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">TWDR</span><span class="p">;</span>
-    <span class="n">rxBufferLength</span><span class="o">++</span><span class="p">;</span>
-    <span class="n">TWCR</span> <span class="o">=</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">));</span>
-    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span>
-    <span class="n">status</span> <span class="o">=</span> <span class="n">TWSR</span> <span class="o">&amp;</span> <span class="n">STATUS_CODE_MASK</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STATUS_CODE_MASK</span><span class="p">;</span><span class="w"></span>
+<span class="k">while</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SR_PRE_AD_DATA_ACK</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SR_PRE_GC_DATA_ACK</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">rxBuffer</span><span class="p">[</span><span class="n">rxBufferIndex</span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWDR</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rxBufferLength</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TWCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEN</span><span class="p">))</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWEA</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">TWCR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">_BV</span><span class="p">(</span><span class="n">TWINT</span><span class="p">))));</span><span class="w"></span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STATUS_CODE_MASK</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">//received a STOP signal</span>
-<span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">SR_STOP</span><span class="p">){</span>
-    <span class="n">rxBufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SR_STOP</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">rxBufferIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
 <span class="c1">//code to do some operations when the transmission is unsuccessful</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </pre>
           </div>
          </div>
@@ -1213,7 +1213,7 @@ from a master.
       <a href="http://sphinx-doc.org/">
        Sphinx
       </a>
-      4.1.1.
+      4.2.0.
       <br/>
      </p>
     </div>
