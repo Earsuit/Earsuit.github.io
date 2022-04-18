@@ -121,4 +121,4 @@ sitemap_filename = "sitemap.xml"
 
 # Alternative languages are either manually set by sitemap_locales option or auto-detected by the extension 
 # from the locale_dirs config value, so make sure one of those is set.
-sitemap_locales = ['en']
+sitemap_locales = [None]
